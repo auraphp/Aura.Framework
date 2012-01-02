@@ -1,5 +1,4 @@
 <?php
-namespace Aura\Framework;
 require dirname(__DIR__) . '/src/Aura/Framework/Bootstrap.php';
-$bootstrap = new Bootstrap;
+$bootstrap = new \Aura\Framework\Bootstrap;
 $bootstrap->execCli('Aura\\Framework\\Cli\\HelloWorld\\Command');
