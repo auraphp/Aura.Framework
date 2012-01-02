@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://pear.php.net/dtd/package-2.1" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" packagerversion="1.9.2" version="2.1" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.1 http://pear.php.net/dtd/package-2.1.xsd">
+ <name>YAML</name>
+ <channel>pear.symfony-project.com</channel>
+ <summary>The Symfony YAML Component.</summary>
+ <description>The Symfony YAML Component.</description>
+ <lead>
+  <name>Fabien Potencier</name>
+  <user>fabpot</user>
+  <email>fabien.potencier@symfony-project.org</email>
+  <active>yes</active>
+ </lead>
+ <date>2011-10-21</date>
+ <time>11:51:38</time>
+ <version>
+  <release>1.0.6</release>
+  <api>1.0.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.symfony-project.com/license">MIT license</license>
+ <notes>
+-
+ </notes>
+ <contents>
+  <dir name="/">
+   <file md5sum="872df9017f6485111a36d2ce9c1e8bdc" name="README.markdown" role="doc"/>
+   <file md5sum="4828aab1cb984d8a5d29e1c0df3cdcbd" name="LICENSE" role="doc"/>
+   <file md5sum="02fc0966083c293c851f2de6abb24875" name="lib/sfYamlParser.php" role="php"/>
+   <file md5sum="cb97a7ac95e5c6df398514b43dfe9191" name="lib/sfYamlInline.php" role="php"/>
+   <file md5sum="28196a0efdcea67d72e1eaf71e936958" name="lib/sfYamlDumper.php" role="php"/>
+   <file md5sum="2b7116a9f3bf6f9e8cd914c81bf79830" name="lib/sfYaml.php" role="php"/>
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.2.4</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.1</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <phprelease>
+  <filelist>
+   <install as="SymfonyComponents/YAML/sfYaml.php" name="lib/sfYaml.php"/>
+   <install as="SymfonyComponents/YAML/sfYamlDumper.php" name="lib/sfYamlDumper.php"/>
+   <install as="SymfonyComponents/YAML/sfYamlInline.php" name="lib/sfYamlInline.php"/>
+   <install as="SymfonyComponents/YAML/sfYamlParser.php" name="lib/sfYamlParser.php"/>
+  </filelist>
+ </phprelease>
+ <changelog>
+  <release>
+   <version>
+    <release>1.0.6</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2011-07-01</date>
+   <license>MIT</license>
+   <notes>
+* fabien: fixed typo
+       * fabien: renamed doc files to avoid collision with pecl/yaml
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.5</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2010-02-22</date>
+   <license>MIT</license>
+   <notes>
+* indiyets: fixed package.xml
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.4</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2010-11-29</date>
+   <license>MIT</license>
+   <notes>
+* fabien: fixed parsing of simple inline documents
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.3</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2010-04-06</date>
+   <license>MIT</license>
+   <notes>
+* fabien: fixed YAML parser when mbstring.func_overload is used with an mbstring.internal_encoding different from ASCII 
+       * fabien: fixed offset when the document use --- or the %YAML element 
+       * fabien: added ? in the list of characters that trigger quoting (for compatibility with libyaml) 
+       * fabien: added backtick to the list of characters that trigger quotes as it is reserved for future use 
+       * FabianLange: fixed missing newline in sfYamlParser when parsing certain symfony core files 
+       * FabianLange: removed the unused value property from Parser 
+       * fabien: changed Exception to InvalidArgumentException 
+       * fabien: fixed YAML dump when a string contains a \r without a \n
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.2</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2009-12-01</date>
+   <license>MIT</license>
+   <notes>
+* fabien: fixed \ usage in quoted string
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.1</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2009-12-01</date>
+   <license>MIT</license>
+   <notes>
+* fabien: fixed a possible loop in parsing a non-valid quoted string
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.0</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2009-11-30</date>
+   <license>MIT</license>
+   <notes>
+* fabien: first stable release as a Symfony Component
+   </notes>
+  </release>
+ </changelog>
+</package>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" packagerversion="1.9.4" version="2.0" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0                       http://pear.php.net/dtd/tasks-1.0.xsd                       http://pear.php.net/dtd/package-2.0                       http://pear.php.net/dtd/package-2.0.xsd">
+ <name>PHP_CodeCoverage</name>
+ <channel>pear.phpunit.de</channel>
+ <summary>Library that provides collection, processing, and rendering functionality for PHP code coverage information.</summary>
+ <description>Library that provides collection, processing, and rendering functionality for PHP code coverage information.</description>
+ <lead>
+  <name>Sebastian Bergmann</name>
+  <user>sb</user>
+  <email>sb@sebastian-bergmann.de</email>
+  <active>yes</active>
+ </lead>
+ <date>2011-10-21</date>
+ <time>11:51:38</time>
+ <version>
+  <release>1.0.5</release>
+  <api>1.0.3</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license>BSD License</license>
+ <notes>
+http://github.com/sebastianbergmann/php-code-coverage/
+ </notes>
+ <contents>
+  <dir name="/">
+   <file baseinstalldir="/" md5sum="92d2335d7cb3476b513cf9fef92d1ace" name="phpcov.php" role="script">
+    <tasks:replace from="/usr/bin/env php" to="php_bin" type="pear-config"/>
+    <tasks:replace from="@php_bin@" to="php_bin" type="pear-config"/>
+    <tasks:replace from="@package_version@" to="version" type="package-info"/>
+   </file>
+   <file baseinstalldir="/" md5sum="5b483d53ece6f726eba6125f0480c67a" name="phpcov.bat" role="script">
+    <tasks:replace from="@php_bin@" to="php_bin" type="pear-config"/>
+    <tasks:replace from="@bin_dir@" to="bin_dir" type="pear-config"/>
+    <tasks:replace from="@package_version@" to="version" type="package-info"/>
+   </file>
+   <file baseinstalldir="/" md5sum="ede56ac3510f8207329d0e3fea4ffc2e" name="PHP/CodeCoverage/Util.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info"/>
+   </file>
+   <file baseinstalldir="/" md5sum="4f217001573cd0576c96bccd11a56080" name="PHP/CodeCoverage/TextUI/Command.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info"/>
+   </file>
+   <file baseinstalldir="/" md5sum="32c5c6a60f60136b454fe03e685776b3" name="PHP/CodeCoverage/Report/HTML/Template/yui_item.js" role="php"/>
+   <file baseinstalldir="/" md5sum="cd9e43683db291f5c2cc7280e0afd50b" name="PHP/CodeCoverage/Report/HTML/Template/yahoo-dom-event.js" role="php"/>
+   <file baseinstalldir="/" md5sum="bc0d8208a8a6f78cf078c95935cdfa83" name="PHP/CodeCoverage/Report/HTML/Template/style.css" role="php"/>
+   <file baseinstalldir="/" md5sum="3d0fcd32ed86be159672d1fe52f8d3cc" name="PHP/CodeCoverage/Report/HTML/Template/snow.png" role="php"/>
+   <file baseinstalldir="/" md5sum="e7e94dd89a3b37b6d8bae1cfc1c00be5" name="PHP/CodeCoverage/Report/HTML/Template/scarlet_red.png" role="php"/>
+   <file baseinstalldir="/" md5sum="b0382e9598572eac713d7699f3f82d92" name="PHP/CodeCoverage/Report/HTML/Template/RGraph.scatter.js" role="php"/>
+   <file baseinstalldir="/" md5sum="8799096b8fb0fe6ec57c742599133033" name="PHP/CodeCoverage/Report/HTML/Template/RGraph.common.tooltips.js" role="php"/>
+   <file baseinstalldir="/" md5sum="7faf61dd758ec519388ca70e3159587e" name="PHP/CodeCoverage/Report/HTML/Template/RGraph.common.core.js" role="php"/>
+   <file baseinstalldir="/" md5sum="04b016bffec84f84504febcbcdb6325e" name="PHP/CodeCoverage/Report/HTML/Template/RGraph.bar.js" role="php"/>
+   <file baseinstalldir="/" md5sum="2c75b646f5694e81be33a3a91717324c" name="PHP/CodeCoverage/Report/HTML/Template/method_item.html.dist" role="php"/>
+   <file baseinstalldir="/" md5sum="d0bcded9081d6a0efda48c495867da73" name="PHP/CodeCoverage/Report/HTML/Template/glass.png" role="php"/>
+   <file baseinstalldir="/" md5sum="8f11cfc810ee05397f78394960a5f03b" name="PHP/CodeCoverage/Report/HTML/Template/file_no_yui.html.dist" role="php"/>
+   <file baseinstalldir="/" md5sum="2c1fed659a2620fda5dcab56e48858a0" name="PHP/CodeCoverage/Report/HTML/Template/file_item.html.dist" role="php"/>
+   <file baseinstalldir="/" md5sum="6983bd4ac09f5135eb128cbdf0ceadfe" name="PHP/CodeCoverage/Report/HTML/Template/file.png" role="php"/>
+   <file baseinstalldir="/" md5sum="c39ec17a61c41e0c495f8d82a645b98b" name="PHP/CodeCoverage/Report/HTML/Template/file.html.dist" role="php"/>
+   <file baseinstalldir="/" md5sum="7306e67e87b1de0be3f126d3fe77e905" name="PHP/CodeCoverage/Report/HTML/Template/excanvas.compressed.js" role="php"/>
+   <file baseinstalldir="/" md5sum="bce63bb2d06cec5b85740525e0aada25" name="PHP/CodeCoverage/Report/HTML/Template/directory_item.html.dist" role="php"/>
+   <file baseinstalldir="/" md5sum="0c2ea106ded3a3b443ad39e3eddcd7a6" name="PHP/CodeCoverage/Report/HTML/Template/directory.png" role="php"/>
+   <file baseinstalldir="/" md5sum="d6757e4422fd4e5101a01b1d5ce8df16" name="PHP/CodeCoverage/Report/HTML/Template/directory.html.dist" role="php"/>
+   <file baseinstalldir="/" md5sum="4d96decbe007db660121be437af91c14" name="PHP/CodeCoverage/Report/HTML/Template/dashboard.html.dist" role="php"/>
+   <file baseinstalldir="/" md5sum="4b3ed883bf9dccdd810a9bfe81a3dd00" name="PHP/CodeCoverage/Report/HTML/Template/container.css" role="php"/>
+   <file baseinstalldir="/" md5sum="5f92636128fdc8997792b55e9d0eb72f" name="PHP/CodeCoverage/Report/HTML/Template/container-min.js" role="php"/>
+   <file baseinstalldir="/" md5sum="770d9c592b4300457ae025448c4c6816" name="PHP/CodeCoverage/Report/HTML/Template/close12_1.gif" role="php"/>
+   <file baseinstalldir="/" md5sum="24abc354105ffce45a55cf5a0949527b" name="PHP/CodeCoverage/Report/HTML/Template/chameleon.png" role="php"/>
+   <file baseinstalldir="/" md5sum="521e849d37d1f1e3b769ccc7138c69c1" name="PHP/CodeCoverage/Report/HTML/Template/butter.png" role="php"/>
+   <file baseinstalldir="/" md5sum="614bfe672efed929341464d67ecd34cb" name="PHP/CodeCoverage/Report/HTML/Node/Iterator.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info"/>
+   </file>
+   <file baseinstalldir="/" md5sum="90bc5ba9fe9e32ffa286691dc8203454" name="PHP/CodeCoverage/Report/HTML/Node/File.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info"/>
+   </file>
+   <file baseinstalldir="/" md5sum="ef7e4326daf345d4a11ff78c41391ea6" name="PHP/CodeCoverage/Report/HTML/Node/Directory.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info"/>
+   </file>
+   <file baseinstalldir="/" md5sum="0c25e038cace50da2d470906a30a02d1" name="PHP/CodeCoverage/Report/HTML/Node.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info"/>
+   </file>
+   <file baseinstalldir="/" md5sum="6fb4fd95843fc700b35847489e727ec8" name="PHP/CodeCoverage/Report/HTML.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info"/>
+   </file>
+   <file baseinstalldir="/" md5sum="4c871c7e2283fb387ce6c28aa4ba6346" name="PHP/CodeCoverage/Report/Clover.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info"/>
+   </file>
+   <file baseinstalldir="/" md5sum="835b7628cf0a3526ab6cd63bbd7f09f9" name="PHP/CodeCoverage/Filter.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info"/>
+   </file>
+   <file baseinstalldir="/" md5sum="ca1bcb987131f35f0a0c0b863d2c0dd6" name="PHP/CodeCoverage/Driver/Xdebug.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info"/>
+   </file>
+   <file baseinstalldir="/" md5sum="8abf95856d533b30f3e61377f4c21cde" name="PHP/CodeCoverage/Driver.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info"/>
+   </file>
+   <file baseinstalldir="/" md5sum="87619db47ddfce862f2216226227816c" name="PHP/CodeCoverage.php" role="php">
+    <tasks:replace from="@package_version@" to="version" type="package-info"/>
+   </file>
+   <file baseinstalldir="/" md5sum="d7c5304cf818d58578c2e254d4c2d155" name="LICENSE" role="doc"/>
+   <file baseinstalldir="/" md5sum="7da5fb61a63ef85a02b60059dae5ef78" name="ChangeLog.markdown" role="doc"/>
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.2.7</min>
+   </php>
+   <pearinstaller>
+    <min>1.9.2</min>
+   </pearinstaller>
+   <package>
+    <name>ConsoleTools</name>
+    <channel>components.ez.no</channel>
+    <min>1.6</min>
+   </package>
+   <package>
+    <name>File_Iterator</name>
+    <channel>pear.phpunit.de</channel>
+    <min>1.2.2</min>
+   </package>
+   <package>
+    <name>PHP_TokenStream</name>
+    <channel>pear.phpunit.de</channel>
+    <min>1.0.0</min>
+   </package>
+   <package>
+    <name>Text_Template</name>
+    <channel>pear.phpunit.de</channel>
+    <min>1.0.0</min>
+   </package>
+  </required>
+  <optional>
+   <extension>
+    <name>dom</name>
+   </extension>
+   <extension>
+    <name>reflection</name>
+   </extension>
+   <extension>
+    <name>spl</name>
+   </extension>
+   <extension>
+    <name>xdebug</name>
+    <min>2.0.5</min>
+   </extension>
+  </optional>
+ </dependencies>
+ <phprelease>
+  <installconditions>
+   <os>
+    <name>windows</name>
+   </os>
+  </installconditions>
+  <filelist>
+   <install as="phpcov.bat" name="phpcov.bat"/>
+   <install as="phpcov" name="phpcov.php"/>
+  </filelist>
+ </phprelease>
+ <phprelease>
+  <filelist>
+   <install as="phpcov" name="phpcov.php"/>
+   <ignore name="phpcov.bat"/>
+  </filelist>
+ </phprelease>
+</package>

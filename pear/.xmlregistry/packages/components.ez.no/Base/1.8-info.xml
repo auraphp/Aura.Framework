@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" packagerversion="1.9.0" version="2.0" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0     http://pear.php.net/dtd/tasks-1.0.xsd     http://pear.php.net/dtd/package-2.0     http://pear.php.net/dtd/package-2.0.xsd">
+ <name>Base</name>
+ <channel>components.ez.no</channel>
+ <summary>The Base package provides the basic infrastructure that all packages rely on.</summary>
+ <description>The Base package provides the basic infrastructure that all packages rely on.
+Therefore every component relies on this package.</description>
+ <lead>
+  <name>eZ systems</name>
+  <user>ezc</user>
+  <email>ezc@ez.no</email>
+  <active>yes</active>
+ </lead>
+ <date>2011-10-21</date>
+ <time>11:51:38</time>
+ <version>
+  <release>1.8</release>
+  <api>1.8</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license>New BSD</license>
+ <notes>
+- Fixed issue #15896: Autoload not working for all lowercase class names.
+ </notes>
+ <contents>
+  <dir name="/">
+   <file baseinstalldir="/" md5sum="6dd22392400103056ced0bac2769197c" name="ezc/Base/structs/repository_directory.php" role="php"/>
+   <file baseinstalldir="/" md5sum="23efc7803de088935e856b72e0ee8bea" name="ezc/Base/structs/file_find_context.php" role="php"/>
+   <file baseinstalldir="/" md5sum="d817afdeef8ee0d02e1cebddfc8915e5" name="ezc/Base/struct.php" role="php"/>
+   <file baseinstalldir="/" md5sum="cb22067aa3adbf0152698040c6194ff8" name="ezc/Base/options/autoload.php" role="php"/>
+   <file baseinstalldir="/" md5sum="89b149eb5eddf69c1424fd9883d51382" name="ezc/Base/options.php" role="php"/>
+   <file baseinstalldir="/" md5sum="988bce2474a73cf18bad85a2fb9112cf" name="ezc/Base/metadata/tarball.php" role="php"/>
+   <file baseinstalldir="/" md5sum="71fc5b479b6d8aa27103a16a29a715ea" name="ezc/Base/metadata/pear.php" role="php"/>
+   <file baseinstalldir="/" md5sum="a6c718b782e8c23497183a11ab1e8954" name="ezc/Base/metadata.php" role="php"/>
+   <file baseinstalldir="/" md5sum="916e40d5c700ab2888c01e4ebf587dcc" name="ezc/Base/interfaces/persistable.php" role="php"/>
+   <file baseinstalldir="/" md5sum="9f7c4a9cb5cf5c9647f7a827ebe9e435" name="ezc/Base/interfaces/exportable.php" role="php"/>
+   <file baseinstalldir="/" md5sum="dc2ea8522a7c06d5b3569a43ff536e7e" name="ezc/Base/interfaces/configuration_initializer.php" role="php"/>
+   <file baseinstalldir="/" md5sum="0ccaeea1d41417f464914cebb064b7d7" name="ezc/Base/init.php" role="php"/>
+   <file baseinstalldir="/" md5sum="dbe0d8855229df798919b9b1d3f84373" name="ezc/Base/file.php" role="php"/>
+   <file baseinstalldir="/" md5sum="6fd930e0989b4f0ab940d7bfd6f41c90" name="ezc/Base/features.php" role="php"/>
+   <file baseinstalldir="/" md5sum="88d0e047b97d85c99114583aa103c745" name="ezc/Base/ezc_bootstrap.php" role="php"/>
+   <file baseinstalldir="/" md5sum="990f3ff806a9b5e7b11d172d8dd98462" name="ezc/Base/exceptions/whatever.php" role="php"/>
+   <file baseinstalldir="/" md5sum="ba9fd1b76372a61fdf21788fb57652e3" name="ezc/Base/exceptions/value.php" role="php"/>
+   <file baseinstalldir="/" md5sum="a9dd91058d170afb1728619c7b848504" name="ezc/Base/exceptions/setting_value.php" role="php"/>
+   <file baseinstalldir="/" md5sum="8b95e40352468ff28126fc02abc8a9b6" name="ezc/Base/exceptions/setting_not_found.php" role="php"/>
+   <file baseinstalldir="/" md5sum="58e2f2dc39f347b59a1afc957a8cdfcd" name="ezc/Base/exceptions/property_permission.php" role="php"/>
+   <file baseinstalldir="/" md5sum="e6147c51e29536df0683a49aeab920e8" name="ezc/Base/exceptions/property_not_found.php" role="php"/>
+   <file baseinstalldir="/" md5sum="416b95f88e0480547b51340afef5d647" name="ezc/Base/exceptions/invalid_parent_class.php" role="php"/>
+   <file baseinstalldir="/" md5sum="f4f5f5d9599ea1cdde2929e4dbbcbdbe" name="ezc/Base/exceptions/invalid_callback_class.php" role="php"/>
+   <file baseinstalldir="/" md5sum="9ae4f81ab15f52153132439840096a47" name="ezc/Base/exceptions/init_callback_configured.php" role="php"/>
+   <file baseinstalldir="/" md5sum="f914328c784c38af9dcb71d6fdbbac42" name="ezc/Base/exceptions/functionality_not_supported.php" role="php"/>
+   <file baseinstalldir="/" md5sum="249cdcf29b1fc357587301d1a8f8a25f" name="ezc/Base/exceptions/file_permission.php" role="php"/>
+   <file baseinstalldir="/" md5sum="cee70f6094d8e6a1da052f3b2e9913ab" name="ezc/Base/exceptions/file_not_found.php" role="php"/>
+   <file baseinstalldir="/" md5sum="2a2d0e89497bd188477d43f5a87701d8" name="ezc/Base/exceptions/file_io.php" role="php"/>
+   <file baseinstalldir="/" md5sum="83889a8ded5df760a1184a44e64beb08" name="ezc/Base/exceptions/file_exception.php" role="php"/>
+   <file baseinstalldir="/" md5sum="d9b8d14dcddd1453d36025842a915c88" name="ezc/Base/exceptions/extension_not_found.php" role="php"/>
+   <file baseinstalldir="/" md5sum="1b1d2ccf1d83e9f2126ce6d423ad4a06" name="ezc/Base/exceptions/exception.php" role="php"/>
+   <file baseinstalldir="/" md5sum="26ae1c2a3243187d8b281a33e28ab388" name="ezc/Base/exceptions/double_class_repository_prefix.php" role="php"/>
+   <file baseinstalldir="/" md5sum="4cbf7efc1654c118c1ab4013da584ea2" name="ezc/Base/exceptions/autoload.php" role="php"/>
+   <file baseinstalldir="/" md5sum="bf570452286a6c882531370b75ef4ed5" name="ezc/Base/base_autoload.php" role="php"/>
+   <file baseinstalldir="/" md5sum="3c4ce22ba182187085b754f643ee00bd" name="ezc/Base/base.php" role="php"/>
+   <file baseinstalldir="/" md5sum="bf570452286a6c882531370b75ef4ed5" name="ezc/autoload/base_autoload.php" role="php"/>
+   <file baseinstalldir="/" md5sum="f6399aeed38cbc422ba7a95a4cc3e4d1" name="docs/tutorial_lazy_initialization.php" role="doc"/>
+   <file baseinstalldir="/" md5sum="c93496ab05d259e2f2867c177a31b9df" name="docs/tutorial_example_04.php" role="doc"/>
+   <file baseinstalldir="/" md5sum="09ddc9170be2be2f9a197823f4fb05b3" name="docs/tutorial_example_03.php" role="doc"/>
+   <file baseinstalldir="/" md5sum="1493849915073e203c09c0615ad1dc22" name="docs/tutorial_example_02.php" role="doc"/>
+   <file baseinstalldir="/" md5sum="7a4a698465b2dbcf948d5a9abdf16ab6" name="docs/tutorial_example_01.php" role="doc"/>
+   <file baseinstalldir="/" md5sum="c62acdb41db6b2f5f90506fda0ffe426" name="docs/tutorial_autoload.php" role="doc"/>
+   <file baseinstalldir="/" md5sum="15e07d15fb1865740da5a5255da0b330" name="docs/tutorial.txt" role="doc"/>
+   <file baseinstalldir="/" md5sum="2ff7777b81e887c50b09e23bbaa9c152" name="docs/repos/You/yourclass2.php" role="doc"/>
+   <file baseinstalldir="/" md5sum="8a4863c1e5bc1b10e25fe78b028acd2f" name="docs/repos/You/yourclass1.php" role="doc"/>
+   <file baseinstalldir="/" md5sum="9f53d279b27b65a325be9274d49f6f74" name="docs/repos/Me/myclass2.php" role="doc"/>
+   <file baseinstalldir="/" md5sum="1300956dd09bc8fc6346eca3ad5d07d9" name="docs/repos/Me/myclass1.php" role="doc"/>
+   <file baseinstalldir="/" md5sum="bd6af5ed742435bd1cdc7f2f4f5b998a" name="docs/repos/autoloads/your_autoload.php" role="doc"/>
+   <file baseinstalldir="/" md5sum="524b92ec3bf9055dd50e0a527b2f4b9c" name="docs/repos/autoloads/my_autoload.php" role="doc"/>
+   <file baseinstalldir="/" md5sum="0d01eec9cb573a51f7cb73a1573c5350" name="docs/LICENSE" role="doc"/>
+   <file baseinstalldir="/" md5sum="6a44661d8d0ed5dea17e26938c1c388c" name="docs/CREDITS" role="doc"/>
+   <file baseinstalldir="/" md5sum="64dbc0df23c0142f806e3837a4557c07" name="design/design.txt" role="data"/>
+   <file baseinstalldir="/" md5sum="ab5f9f34361961cc74b309325509e87f" name="design/class_diagram.png" role="data"/>
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.2.1</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.2</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <phprelease/>
+ <changelog>
+  <release>
+   <version>
+    <release>1.8</release>
+    <api>1.8</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2009-12-21</date>
+   <license>New BSD</license>
+   <notes>
+- Fixed issue #15896: Autoload not working for all lowercase class names.
+   </notes>
+  </release>
+ </changelog>
+</package>

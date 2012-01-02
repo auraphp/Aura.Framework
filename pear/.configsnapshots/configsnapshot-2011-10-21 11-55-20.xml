@@ -1,0 +1,2 @@
+<?xml version="1.0"?>
+<pearconfig version="1.0"><php_dir>pear/php</php_dir><ext_dir>/usr/lib/php/extensions/no-debug-non-zts-20090626</ext_dir><cfg_dir>pear/cfg</cfg_dir><doc_dir>pear/docs</doc_dir><bin_dir>./pear/bin</bin_dir><data_dir>pear/data</data_dir><www_dir>pear/www</www_dir><test_dir>pear/tests</test_dir><src_dir>pear/src</src_dir><php_bin>/usr/bin/php</php_bin><php_ini>/private/etc/php-cli.ini</php_ini><php_prefix></php_prefix><php_suffix></php_suffix></pearconfig>
