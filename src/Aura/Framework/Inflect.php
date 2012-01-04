@@ -5,14 +5,14 @@
  * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
+ * @package Aura.Framework
+ * 
  */
 namespace Aura\Framework;
 
 /**
  * 
  * Methods for inflecting strings from one form to another form.
- * 
- * @package Aura.Framework
  * 
  */
 class Inflect

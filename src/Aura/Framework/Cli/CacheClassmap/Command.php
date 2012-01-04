@@ -5,6 +5,8 @@
  * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
+ * @package Aura.Framework
+ * 
  */
 namespace Aura\Framework\Cli\CacheClassmap;
 use Aura\Framework\Cli\AbstractCommand;
@@ -13,8 +15,6 @@ use Aura\Framework\System as System;
 /**
  * 
  * Caches all package source class files.
- * 
- * @package Aura.Framework
  * 
  */
 class Command extends AbstractCommand

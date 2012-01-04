@@ -5,6 +5,8 @@
  * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
+ * @package Aura.Framework
+ * 
  */
 namespace Aura\Framework\Cli\HelloWorld;
 use Aura\Framework\Cli\AbstractCommand;
@@ -12,8 +14,6 @@ use Aura\Framework\Cli\AbstractCommand;
 /**
  * 
  * A simple CLI command to output "Hello, World!"
- * 
- * @package Aura.Framework
  * 
  */
 class Command extends AbstractCommand

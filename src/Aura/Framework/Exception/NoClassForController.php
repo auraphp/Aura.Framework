@@ -5,6 +5,8 @@
  * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
+ * @package Aura.Framework
+ * 
  */
 namespace Aura\Framework\Exception;
 class NoClassForController extends \Aura\Framework\Exception {}

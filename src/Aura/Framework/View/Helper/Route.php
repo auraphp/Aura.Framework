@@ -7,6 +7,8 @@
  * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
+ * @package Aura.Framework
+ * 
  */
 namespace Aura\Framework\View\Helper;
 use Aura\View\Helper\AbstractHelper;
