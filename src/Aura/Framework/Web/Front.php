@@ -5,8 +5,6 @@
  * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
- * @package Aura.Framework
- * 
  */
 namespace Aura\Framework\Web;
 use Aura\Framework\Web\Factory;
@@ -20,6 +18,8 @@ use Aura\Web\Response as WebResponse;
  * 
  * Takes an incoming web request (Context), then dispatches it, renders
  * content, and returns a response for it.
+ * 
+ * @package Aura.Framework
  * 
  */
 class Front

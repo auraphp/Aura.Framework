@@ -5,14 +5,14 @@
  * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
- * @package Aura.Framework
- * 
  */
 namespace Aura\Framework\Exception;
 
 /**
  * 
  * A test file already exists for a given class.
+ * 
+ * @package Aura.Framework
  * 
  */
 class TestFileExists extends \Aura\Framework\Exception {}

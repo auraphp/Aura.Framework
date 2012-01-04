@@ -5,8 +5,6 @@
  * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
- * @package Aura.Framework
- * 
  */
 namespace Aura\Framework\Web\Asset;
 use Aura\Framework\Web\AbstractPage;
@@ -33,6 +31,8 @@ use Aura\Framework\Web\AbstractPage;
  * 
  * Additionally, you can cache the assets to the web document root, so that
  * they are served statically instead of through PHP.
+ * 
+ * @package Aura.Framework
  * 
  */
 class Page extends AbstractPage

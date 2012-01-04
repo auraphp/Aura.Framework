@@ -5,8 +5,6 @@
  * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
- * @package Aura.Framework
- * 
  */
 namespace Aura\Framework;
 use Aura\Autoload\Loader;
@@ -14,6 +12,13 @@ use Aura\Di\Container as DiContainer;
 use Aura\Di\Forge as DiForge;
 use Aura\Di\Config as DiConfig;
 
+/**
+ * 
+ * A bootstrapper for web and cli execution.
+ * 
+ * @package Aura.Framework
+ * 
+ */
 class Bootstrap
 {
     protected $system;

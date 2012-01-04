@@ -7,8 +7,6 @@
  * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
- * @package Aura.Framework
- * 
  */
 namespace Aura\Framework\View\Helper;
 use Aura\View\Helper\AbstractHelper;
@@ -17,6 +15,8 @@ use Aura\Router\Map as RouterMap;
 /**
  * 
  * Generates route links.
+ * 
+ * @package Aura.Framework
  * 
  */
 class Route extends AbstractHelper

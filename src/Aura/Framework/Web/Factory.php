@@ -5,8 +5,6 @@
  * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
- * @package Aura.Framework
- * 
  */
 namespace Aura\Framework\Web;
 use Aura\Di\ForgeInterface as ForgeInterface;
@@ -18,6 +16,8 @@ use Aura\Framework\Exception\NoClassForController;
  * controllers, but (e.g.) Resource or App controllers.
  * 
  * @package Aura.Web
+ * 
+ * @package Aura.Framework
  * 
  */
 class Factory

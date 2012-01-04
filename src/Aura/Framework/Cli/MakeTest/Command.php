@@ -5,8 +5,6 @@
  * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
- * @package Aura.Framework
- * 
  */
 namespace Aura\Framework\Cli\MakeTest;
 use Aura\Framework\Cli\AbstractCommand;
@@ -26,6 +24,8 @@ use Aura\Framework\Exception\TestFileExists;
  * 
  * ... where `$FILE` is a package file path, e.g. 
  * `package/Aura.Framework/System.php`.
+ * 
+ * @package Aura.Framework
  * 
  */
 class Command extends AbstractCommand

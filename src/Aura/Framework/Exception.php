@@ -5,14 +5,14 @@
  * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
- * @package Aura.Framework
- * 
  */
 namespace Aura\Framework;
 
 /**
  * 
  * Generic package exception.
+ * 
+ * @package Aura.Framework
  * 
  */
 class Exception extends \Exception {}
