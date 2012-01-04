@@ -7,7 +7,7 @@
  * 
  */
 namespace Aura\Framework\Cli\CacheClassmap;
-use Aura\Framework\Cli\Command as CliCommand;
+use Aura\Framework\Cli\AbstractCommand;
 use Aura\Framework\System as System;
 
 /**
@@ -17,7 +17,7 @@ use Aura\Framework\System as System;
  * @package Aura.Framework
  * 
  */
-class Command extends CliCommand
+class Command extends AbstractCommand
 {
     protected $system;
     

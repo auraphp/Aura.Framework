@@ -7,7 +7,7 @@
  * 
  */
 namespace Aura\Framework\Cli\HelloWorld;
-use Aura\Framework\Cli\Command as CliCommand;
+use Aura\Framework\Cli\AbstractCommand;
 
 /**
  * 
@@ -16,7 +16,7 @@ use Aura\Framework\Cli\Command as CliCommand;
  * @package Aura.Framework
  * 
  */
-class Command extends CliCommand
+class Command extends AbstractCommand
 {
     public function action()
     {

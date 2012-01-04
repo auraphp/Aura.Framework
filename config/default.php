@@ -2,14 +2,13 @@
 /**
  * Package prefix for autoloader.
  */
-
 $loader->add('Aura\Framework\\', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'src');
 
 /**
  * Instance params and setter values.
  */
  
-$di->setter['Aura\Framework\Cli\Command']['setSignal'] = $di->lazyGet('signal_manager');
+$di->setter['Aura\Framework\Cli\AbstractCommand']['setSignal'] = $di->lazyGet('signal_manager');
 
 $di->setter['Aura\Framework\Cli\CacheClassmap\Command'] = [
     'setSystem'  => $di->lazyGet('framework_system'),
@@ -21,11 +20,9 @@ $di->setter['Aura\Framework\Cli\CacheConfig\Command'] = [
 
 $di->setter['Aura\Framework\Cli\MakeTest\Command'] = [
     'setInflect' => $di->lazyGet('framework_inflect'),
+    'setPhpunit' => 'phpunit',
     'setSystem'  => $di->lazyGet('framework_system'),
 ];
-
-$phpunit = 'php -d include_path=' . dirname(__DIR__) . '/pear/php '
-         . dirname(__DIR__) . '/pear/bin/phpunit --verbose';
 
 $di->params['Aura\Framework\Web\Factory'] = [
     'forge' => $di->getForge(),

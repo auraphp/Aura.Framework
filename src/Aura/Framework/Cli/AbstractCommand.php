@@ -1,8 +1,8 @@
 <?php
 namespace Aura\Framework\Cli;
-use Aura\Cli\Command as CliCommand;
+use Aura\Cli\AbstractCommand as AbstractCliCommand;
 use Aura\Signal\Manager as SignalManager;
-abstract class Command extends CliCommand
+abstract class AbstractCommand extends AbstractCliCommand
 {
     protected $signal;
     
