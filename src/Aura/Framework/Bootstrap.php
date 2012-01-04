@@ -10,7 +10,7 @@
  */
 namespace Aura\Framework;
 use Aura\Autoload\Loader;
-use Aura\Di\Manager as DiManager;
+use Aura\Di\Container as DiContainer;
 use Aura\Di\Forge as DiForge;
 use Aura\Di\Config as DiConfig;
 
@@ -58,7 +58,7 @@ class Bootstrap
         }
         
         // set the DI container object
-        $this->di = new DiManager(new DiForge(new DiConfig));
+        $this->di = new DiContainer(new DiForge(new DiConfig));
         
         // set the config object
         $this->config = new Config($this->system, $this->loader, $this->di);

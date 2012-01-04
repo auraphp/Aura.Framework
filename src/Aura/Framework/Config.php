@@ -1,7 +1,7 @@
 <?php
 namespace Aura\Framework;
 use Aura\Autoload\Loader;
-use Aura\Di\Manager;
+use Aura\Di\Container;
 
 class Config
 {
@@ -13,7 +13,7 @@ class Config
     
     public $files;
     
-    public function __construct(System $system, Loader $loader, Manager $di)
+    public function __construct(System $system, Loader $loader, Container $di)
     {
         $this->system = $system;
         $this->loader = $loader;
