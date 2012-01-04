@@ -18,6 +18,7 @@ class CommandTest extends AbstractCommandTest
         $this->inflect = new Inflect;
         $command->setSystem($this->system);
         $command->setInflect($this->inflect);
+        $command->setPhpunit('phpunit');
         return $command;
     }
     

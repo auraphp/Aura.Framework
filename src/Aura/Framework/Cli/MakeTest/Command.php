@@ -9,7 +9,7 @@
  * 
  */
 namespace Aura\Framework\Cli\MakeTest;
-use Aura\Framework\Cli\Command as CliCommand;
+use Aura\Framework\Cli\AbstractCommand;
 use Aura\Framework\System;
 use Aura\Framework\Inflect;
 use Aura\Framework\Exception\SourceNotFound;
@@ -28,17 +28,8 @@ use Aura\Framework\Exception\TestFileExists;
  * `package/Aura.Framework/System.php`.
  * 
  */
-class Command extends CliCommand
+class Command extends AbstractCommand
 {
-    /**
-     * 
-     * The include path before being modified by this class.
-     * 
-     * @var string
-     * 
-     */
-    protected $include_path;
-    
     /**
      * 
      * A word inflector.
@@ -50,21 +41,14 @@ class Command extends CliCommand
     
     /**
      * 
-     * The directory where packages reside.
+     * A system object.
      * 
-     * @var string
+     * @var System
      * 
      */
-    protected $package_dir;
+    protected $system;
     
-    /**
-     * 
-     * The directory where test classes should be created.
-     * 
-     * @var string
-     * 
-     */
-    protected $test_dir;
+    protected $phpunit;
     
     /**
      * 
@@ -96,30 +80,14 @@ class Command extends CliCommand
     
     /**
      * 
-     * Runs before `action()` as called by signal. Modifies the include-path
-     * so that PHPUnit is part of it.
+     * Sets the phpunit executable.
      * 
-     * @return void
-     * 
-     */
-    public function preAction()
-    {
-        $this->include_path = ini_get('include_path');
-        $dir = dirname(dirname(dirname(dirname(dirname(__DIR__)))))
-             . DIRECTORY_SEPARATOR . 'pear' . DIRECTORY_SEPARATOR . 'php';
-        ini_set('include_path', $this->include_path . PATH_SEPARATOR . $dir);
-    }
-    
-    /**
-     * 
-     * Runs after `action()` as called by signal. Restores the include-path.
-     * 
-     * @return void
+     * @var string
      * 
      */
-    public function postAction()
+    public function setPhpunit($phpunit)
     {
-        ini_set('include_path', $this->include_path);
+        $this->phpunit = $phpunit;
     }
     
     /**
@@ -131,52 +99,55 @@ class Command extends CliCommand
      */
     public function action()
     {
-        // get the class file for the test source
-        $spec = $this->params[0];
+        // get the file for the source to be tested
+        $source_file = $this->params[0];
         
-        // split up the pieces of the class file specification
-        list($vendor, $package, $class) = $this->getVendorPackageClass($spec);
-        
-        // the fully-qualified class to write a test from
-        $incl_name = $class;
-        
-        // the *class name only* of the test to write
-        $test_name = "{$class}Test";
-        
-        // the original source file
-        $incl_file = $spec;
-        $this->stdio->outln("Source file is '$incl_file'.");
-        
-        // look where the test file will go:
-        // package/$vendor.$package/tests/$class_to_file
-        $test_file = $this->system->getPackagePath(
-            "{$vendor}.{$package}/tests/" . $this->inflect->classToFile($test_name)
-        );
-        
-        // does the test file exist already?
-        if (is_file($test_file)) {
-            throw new TestFileExists($test_file);
+        // what test file will phpunit create?
+        $create_file = str_replace('.php', 'Test.php', $source_file);
+        if (is_readable($create_file)) {
+            // don't want to overwrite an existing file
+            throw new TestFileExists($create_file);
         }
         
-        // generate the test skeleton code
-        $skel = new \PHPUnit_Util_Skeleton_Test(
-            $incl_name,
-            $incl_file,
-            $test_name,
-            $test_file
+        // what target file will we move it to?
+        $target_file = str_replace(
+            DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR,
+            DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR,
+            $create_file
         );
-        $skel_code = $skel->generate();
+        if (is_readable($target_file)) {
+            // don't want to overwrite an existing file
+            throw new TestFileExists($target_file);
+        }
         
-        // modify the resulting code
-        $test_code = $this->modifySkeleton($skel_code, "$vendor\\$package");
+        // get the class name
+        $class = $this->getClass($source_file);
         
-        // make sure a directory exists for the test file
-        $test_dir = dirname($test_file);
-        @mkdir($test_dir, 0755, true);
+        // create the phpunit command
+        $cmd = $this->phpunit . " --skeleton-test '{$class}' " . $source_file;
+        exec($cmd);
         
-        // write the test file
-        file_put_contents($test_file, $test_code);
-        $this->stdio->outln("Test file created at '$test_file'.");
+        // did it get created?
+        if (! is_readable($create_file)) {
+            throw new Exception("Not created: '{$create_file}'");
+        }
+        
+        // make sure we have a directory for the new location
+        @mkdir(dirname($target_file), 0755, true);
+        
+        // move it to the proper location
+        $ok = rename($create_file, $target_file);
+        if (! $ok) {
+            throw new Exception("Could not move from '{$create_file}' to '{$target_file}'");
+        }
+        
+        // modify it in place
+        $skel = file_get_contents($target_file);
+        $skel = $this->modifySkeleton($skel);
+        file_put_contents($target_file, $skel);
+        
+        // done!
+        $this->stdio->outln("Test file created at '{$target_file}'.");
     }
     
     /**
@@ -190,7 +161,7 @@ class Command extends CliCommand
      * class name.
      * 
      */
-    protected function getVendorPackageClass($spec)
+    protected function getClass($spec)
     {
         // incoming spec: package/Vendor.Package/src/Vendor/Package/Class.php
         $real = realpath($spec);
@@ -212,10 +183,10 @@ class Command extends CliCommand
         // pull off 'src'
         array_shift($part);
         
-        // turn the rest into a class, minus .php
+        // turn the rest into the full class name, minus .php
         $class = substr(implode('\\', $part), 0, -4);
         
-        return [$vendor, $package, $class];
+        return $class;
     }
     
     /**
@@ -230,15 +201,9 @@ class Command extends CliCommand
      * @return string The modified test skeleton.
      * 
      */
-    protected function modifySkeleton($skel, $namespace)
+    protected function modifySkeleton($skel)
     {
-        $skel = preg_replace('/\nrequire_once.*\n/', '', $skel);
-        
-        $skel = str_replace(
-            'extends PHPUnit_Framework_TestCase',
-            'extends \PHPUnit_Framework_TestCase',
-            $skel
-        );
+        $skel = preg_replace('/\n\nrequire_once.*\n/', '', $skel);
         
         $skel = str_replace(
             "function setUp()\n    {",
