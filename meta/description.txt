@@ -1,0 +1,1 @@
+The Aura Framework package, when combined with a system skeleton, provides a full-stack framework built from Aura components.

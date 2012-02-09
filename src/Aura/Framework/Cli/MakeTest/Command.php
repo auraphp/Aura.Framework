@@ -12,6 +12,8 @@ use Aura\Framework\System;
 use Aura\Framework\Inflect;
 use Aura\Framework\Exception\SourceNotFound;
 use Aura\Framework\Exception\TestFileExists;
+use Aura\Framework\Exception\TestFileNotCreated;
+use Aura\Framework\Exception\TestFileNotMoved;
 
 /**
  * 
@@ -26,6 +28,8 @@ use Aura\Framework\Exception\TestFileExists;
  * `package/Aura.Framework/System.php`.
  * 
  * @package Aura.Framework
+ * 
+ * @todo Include path/autoloader is not honored by the phpunit test creator.
  * 
  */
 class Command extends AbstractCommand
@@ -50,11 +54,13 @@ class Command extends AbstractCommand
     
     protected $phpunit;
     
+    protected $bootstrap;
+    
     /**
      * 
      * Sets a System object for this class.
      * 
-     * @param System
+     * @param System $system The System object.
      * 
      * @return void
      * 
@@ -68,7 +74,7 @@ class Command extends AbstractCommand
      * 
      * Sets an Inflect object for this class.
      * 
-     * @param System
+     * @param Inflect $inflect An Inflect object.
      * 
      * @return void
      * 
@@ -82,12 +88,26 @@ class Command extends AbstractCommand
      * 
      * Sets the phpunit executable.
      * 
-     * @var string
+     * @param string $phpunit The phpunit executable path.
+     * 
+     * @return void
      * 
      */
     public function setPhpunit($phpunit)
     {
         $this->phpunit = $phpunit;
+    }
+    
+    /**
+     * 
+     * Sets the location of the bootstrap file.
+     * 
+     * @param string $bootstrap The path to the bootstrap file.
+     * 
+     */
+    public function setBootstrap($bootstrap)
+    {
+        $this->bootstrap = $bootstrap;
     }
     
     /**
@@ -124,12 +144,17 @@ class Command extends AbstractCommand
         $class = $this->getClass($source_file);
         
         // create the phpunit command
-        $cmd = $this->phpunit . " --skeleton-test '{$class}' " . $source_file;
+        $cmd = $this->phpunit;
+        if ($this->bootstrap) {
+            $cmd .= " --bootstrap {$this->bootstrap}";
+        }
+        $cmd .= " --skeleton-test '{$class}' {$source_file}";
+        
         exec($cmd);
         
         // did it get created?
         if (! is_readable($create_file)) {
-            throw new Exception("Not created: '{$create_file}'");
+            throw new TestFileNotCreated("Not created: '{$create_file}'");
         }
         
         // make sure we have a directory for the new location
@@ -138,7 +163,7 @@ class Command extends AbstractCommand
         // move it to the proper location
         $ok = rename($create_file, $target_file);
         if (! $ok) {
-            throw new Exception("Could not move from '{$create_file}' to '{$target_file}'");
+            throw new TestFileNotMoved("Could not move from '{$create_file}' to '{$target_file}'");
         }
         
         // modify it in place

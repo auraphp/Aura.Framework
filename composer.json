@@ -1,0 +1,29 @@
+{
+    "name": "Aura/Framework",
+    "type": "library",
+    "description": "The Aura Framework package, when combined with a system skeleton, provides a full-stack framework built from Aura component packages.",
+    "keywords": [
+        "framework"
+    ],
+    "homepage": "http://auraphp.github.com/Aura.Framework",
+    "version": "1.0.0-dev",
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "Aura Contributors",
+            "homepage": "https://github.com/auraphp/Aura.Framework/contributors"
+        }
+    ],
+    "require": {
+        "php"               : ">=5.4.0",
+        "Aura/Autoload"     : ">=1.0.0beta1",
+        "Aura/Cli"          : ">=1.0.0beta1",
+        "Aura/Di"           : ">=1.0.0beta1",
+        "Aura/Http"         : ">=1.0.0beta1",
+        "Aura/Marshal"      : ">=1.0.0beta1",
+        "Aura/Router"       : ">=1.0.0beta1",
+        "Aura/Signal"       : ">=1.0.0beta1",
+        "Aura/View"         : ">=1.0.0beta1",
+        "Aura/Web"          : ">=1.0.0beta1"
+    }
+}

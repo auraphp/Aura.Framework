@@ -58,7 +58,7 @@ abstract class AbstractCommandTest extends \PHPUnit_Framework_TestCase
     {
         $_SERVER['argv'] = $argv;
         
-        $this->context = new Context;
+        $this->context = new Context($GLOBALS);
         
         $sub = "test/Aura.Framework/Cli/{$this->command_name}/Command";
         $this->tmp_dir =  $this->system->getTmpPath();

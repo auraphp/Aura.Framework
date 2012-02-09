@@ -19,6 +19,7 @@ class CommandTest extends AbstractCommandTest
         $command->setSystem($this->system);
         $command->setInflect($this->inflect);
         $command->setPhpunit('phpunit');
+        // note that we do not set the bootstrap
         return $command;
     }
     
