@@ -1,7 +1,6 @@
 <?php
 namespace Aura\Framework\Cli\MakeTest;
 use Aura\Framework\Cli\AbstractCommandTest;
-use Aura\Framework\Inflect;
 
 /**
  * Test class for make_test\Command.
@@ -10,14 +9,10 @@ class CommandTest extends AbstractCommandTest
 {
     protected $command_name = 'MakeTest';
     
-    protected $inflect;
-    
     protected function newCommand($argv = [])
     {
         $command = parent::newCommand($argv);
-        $this->inflect = new Inflect;
         $command->setSystem($this->system);
-        $command->setInflect($this->inflect);
         $command->setPhpunit('phpunit');
         // note that we do not set the bootstrap
         return $command;

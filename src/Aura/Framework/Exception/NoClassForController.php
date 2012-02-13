@@ -7,4 +7,12 @@
  * 
  */
 namespace Aura\Framework\Exception;
+
+/**
+ * 
+ * Could not find a class mapped to a controller name.
+ * 
+ * @package Aura.Framework
+ * 
+ */
 class NoClassForController extends \Aura\Framework\Exception {}

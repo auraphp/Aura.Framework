@@ -51,16 +51,47 @@ class Front
      */
     protected $response;
     
+    /**
+     * 
+     * A page controller factory.
+     * 
+     * @var Aura\Framework\Web\Factory
+     * 
+     */
     protected $factory;
     
+    /**
+     * 
+     * A signal manager.
+     * 
+     * @var Aura\Signal\Manager
+     * 
+     */
     protected $signal;
     
+    /**
+     * 
+     * A router map.
+     * 
+     * @var Aura\Router\Map
+     * 
+     */
     protected $router;
     
     
     /**
      * 
      * Constructor.
+     * 
+     * @param SignalManager $signal A signal manager.
+     * 
+     * @param Context $context The web context.
+     * 
+     * @param RouterMap $router The router map.
+     * 
+     * @param Factory $factory A web page controller factory.
+     * 
+     * @param HttpResponse $response The eventual HTTP response object.
      * 
      */
     public function __construct(
@@ -96,8 +127,6 @@ class Front
      * Dispatches a Route to a web controller, renders a view into the
      * ReponseTransfer, and returns an HTTP response.
      * 
-     * @return Aura\Http\Response
-     * 
      * @signal pre_exec
      * 
      * @signal pre_request
@@ -109,6 +138,8 @@ class Front
      * @signal post_response
      * 
      * @signal post_exec
+     * 
+     * @return Aura\Http\Response
      * 
      */
     public function exec()
@@ -131,6 +162,13 @@ class Front
         return $this->response;
     }
     
+    /**
+     * 
+     * Handle the incoming request.
+     * 
+     * @return void
+     * 
+     */
     public function request()
     {
         // match to a route

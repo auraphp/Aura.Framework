@@ -27,7 +27,7 @@ class PageTest extends AbstractPageTest
         <p>No controller found for <code>NULL</code></p>
         <p>Please check that your config has:</p>
         <ol>
-            <li>An <code>Aura\Router\Map</code> route for the path <code>'/'</code></li>
+            <li>An <code>Aura\Router\Map</code> route for the path <code>&#039;/&#039;</code></li>
             <li>A <code>['values']['controller']</code> value for the mapped route</li>
             <li>A <code>\$di->params['Aura\Framework\Web\Factory']['map']</code> entry for the controller value.</li>
         </ol>

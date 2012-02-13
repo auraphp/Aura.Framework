@@ -1,18 +1,80 @@
 <?php
+/**
+ * 
+ * This file is part of the Aura project for PHP.
+ * 
+ * @license http://opensource.org/licenses/bsd-license.php BSD
+ * 
+ */
 namespace Aura\Framework;
 use Aura\Autoload\Loader;
 use Aura\Di\Container;
 
+/**
+ * 
+ * Loads config values from package and system config files.
+ * 
+ * @package Aura.Framework
+ * 
+ */
 class Config
 {
-    public $system;
+    /**
+     * 
+     * The System object.
+     * 
+     * @var System
+     * 
+     */
+    protected $system;
     
-    public $loader;
+    /**
+     * 
+     * The autoloader object.
+     * 
+     * @var Aura\Autoloader\Loader
+     * 
+     */
+    protected $loader;
     
-    public $di;
+    /**
+     * 
+     * The dependency injection container.
+     * 
+     * @var Aura\Di\Container
+     * 
+     */
+    protected $di;
     
-    public $files;
+    /**
+     * 
+     * Config files that have been loaded.
+     * 
+     * @var array
+     * 
+     */
+    protected $files;
     
+    /**
+     * 
+     * The config mode.
+     * 
+     * @var string
+     * 
+     */
+    protected $mode;
+    
+    /**
+     * 
+     * Constructor.
+     * 
+     * @param System $system The System object.
+     * 
+     * @param Loader $loader The autoloader object.
+     * 
+     * @param Container $di The dependency injection container.
+     * 
+     */
     public function __construct(System $system, Loader $loader, Container $di)
     {
         $this->system = $system;
@@ -23,16 +85,38 @@ class Config
                       : $_ENV['AURA_CONFIG_MODE'];
     }
     
+    /**
+     * 
+     * Returns the config mode.
+     * 
+     * @return string The config mode.
+     * 
+     */
     public function getMode()
     {
         return $this->mode;
     }
     
+    /**
+     * 
+     * Returns the list of config files that have been loaded.
+     * 
+     * @return array The loaded config files.
+     * 
+     */
     public function getFiles()
     {
         return $this->files;
     }
     
+    /**
+     * 
+     * Loads config files, either from the cache or from the packages, and
+     * for the system mode config file.
+     * 
+     * @return void
+     * 
+     */
     public function exec()
     {
         $cache_file = $this->getCacheFile();
@@ -45,6 +129,13 @@ class Config
         $this->loadMode();
     }
     
+    /**
+     * 
+     * Gets the name of the config cache file.
+     * 
+     * @return mixed The config file path, or null if not readable.
+     * 
+     */
     public function getCacheFile()
     {
         $file = $this->system->getTmpPath("cache/config/{$this->mode}.php");
@@ -53,6 +144,13 @@ class Config
         }
     }
     
+    /**
+     * 
+     * Loads each package config file for the mode.
+     * 
+     * @return void
+     * 
+     */
     public function loadFromPackages()
     {
         $package_glob = $this->system->getPackagePath('*');
@@ -81,6 +179,13 @@ class Config
         }
     }
     
+    /**
+     * 
+     * Loads the system-level config file for the current mode.
+     * 
+     * @return void
+     * 
+     */
     public function loadMode()
     {
         $file = $this->system->getConfigPath("{$this->mode}.php");
@@ -89,6 +194,15 @@ class Config
         }
     }
     
+    /**
+     * 
+     * Loads a config file in a limited scope.
+     * 
+     * @param string $file The config file to load.
+     * 
+     * @return void
+     * 
+     */
     public function load($file)
     {
         $system = $this->system->getRootPath();

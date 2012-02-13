@@ -12,20 +12,43 @@ use Aura\Framework\System as System;
 
 /**
  * 
- * Caches all package source class files.
+ * Caches all mode-specific package config files to
+ * `tmp/cache/config/{$mode}.php`.
  * 
  * @package Aura.Framework
  * 
  */
 class Command extends AbstractCommand
 {
+    /**
+     * 
+     * The System object.
+     * 
+     * @var System
+     * 
+     */
     protected $system;
     
+    /**
+     * 
+     * Sets the system object.
+     * 
+     * @param System $system The system object.
+     * 
+     */
     public function setSystem(System $system)
     {
         $this->system = $system;
     }
     
+    /**
+     * 
+     * Caches the mode-specific package config files to
+     * `tmp/cache/config/{$mode}.php`.
+     * 
+     * @return mixed
+     * 
+     */
     public function action()
     {
         if (! isset($this->params[0])) {
@@ -58,6 +81,19 @@ class Command extends AbstractCommand
         $this->stdio->outln('Done.');
     }
     
+    /**
+     * 
+     * Reads a config file from a package directory; replaces __DIR__ and
+     * __FILE__ constants with string values so that the original values
+     * are honored regardless of where the cached configs are placed.
+     * 
+     * @param string $package_dir The package directory.
+     * 
+     * @param string $mode The config mode to read.
+     * 
+     * @return string The config file, with __DIR__ and
+     * 
+     */
     protected function read($package_dir, $mode)
     {
         // is there a mode-specific config file?

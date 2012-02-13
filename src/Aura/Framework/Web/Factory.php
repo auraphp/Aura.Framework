@@ -15,8 +15,6 @@ use Aura\Framework\Exception\NoClassForController;
  * A factory to create controller objects; these need not be only Page
  * controllers, but (e.g.) Resource or App controllers.
  * 
- * @package Aura.Web
- * 
  * @package Aura.Framework
  * 
  */

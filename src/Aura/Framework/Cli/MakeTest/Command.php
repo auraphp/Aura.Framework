@@ -17,32 +17,21 @@ use Aura\Framework\Exception\TestFileNotMoved;
 
 /**
  * 
- * This command uses PHPUnit to make a skeleton test file from an existing 
- * class.
+ * Using PHPUnit, creates a test file from an existing package source class 
+ * and places it in the package tests directory.
  * 
  * Usage is ...
  * 
  *      $ php package/Aura.Framework/cli/make-test {$FILE}
  * 
  * ... where `$FILE` is a package file path, e.g. 
- * `package/Aura.Framework/System.php`.
+ * `package/Vendor.Package/src/Vendor/Package/Class.php`.
  * 
  * @package Aura.Framework
- * 
- * @todo Include path/autoloader is not honored by the phpunit test creator.
  * 
  */
 class Command extends AbstractCommand
 {
-    /**
-     * 
-     * A word inflector.
-     * 
-     * @var Inflect
-     * 
-     */
-    protected $inflect;
-    
     /**
      * 
      * A system object.
@@ -52,8 +41,22 @@ class Command extends AbstractCommand
      */
     protected $system;
     
+    /**
+     * 
+     * The `phpunit` executable path.
+     * 
+     * @var string
+     * 
+     */
     protected $phpunit;
     
+    /**
+     * 
+     * The bootstrap file PHPUnit should load.
+     * 
+     * @var string
+     * 
+     */
     protected $bootstrap;
     
     /**
@@ -68,20 +71,6 @@ class Command extends AbstractCommand
     public function setSystem(System $system)
     {
         $this->system = $system;
-    }
-    
-    /**
-     * 
-     * Sets an Inflect object for this class.
-     * 
-     * @param Inflect $inflect An Inflect object.
-     * 
-     * @return void
-     * 
-     */
-    public function setInflect(Inflect $inflect)
-    {
-        $this->inflect = $inflect;
     }
     
     /**
@@ -112,7 +101,8 @@ class Command extends AbstractCommand
     
     /**
      * 
-     * Creates a test file from an existing class.
+     * Creates a test file from an existing package source class and places
+     * it in the package tests directory.
      * 
      * @return void
      * 

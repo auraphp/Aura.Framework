@@ -7,4 +7,12 @@
  * 
  */
 namespace Aura\Framework\Exception;
+
+/**
+ * 
+ * The requested test file was not created.
+ * 
+ * @package Aura.Framework
+ * 
+ */
 class TestFileNotCreated extends \Aura\Framework\Exception {}

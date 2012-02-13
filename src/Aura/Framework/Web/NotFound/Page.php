@@ -1,22 +1,54 @@
 <?php
+/**
+ * 
+ * This file is part of the Aura Project for PHP.
+ * 
+ * @license http://opensource.org/licenses/bsd-license.php BSD
+ * 
+ */
 namespace Aura\Framework\Web\NotFound;
 use Aura\Framework\Web\AbstractPage;
+
+/**
+ * 
+ * Show this when a page controller could not be found for the request.
+ * 
+ * @package Aura.Framework
+ * 
+ */
 class Page extends AbstractPage
 {
-    // force the action to "index"
+    /**
+     * 
+     * Force the action to "index".
+     * 
+     * @return void
+     * 
+     */
     public function preExec()
     {
         $this->action = 'index';
     }
     
+    /**
+     * 
+     * Shows information about what happened.
+     * 
+     * @return void
+     * 
+     */
     public function actionIndex()
     {
         $uri = htmlspecialchars(
-            var_export($this->context->getServer('REQUEST_URI'), true)
+            var_export($this->context->getServer('REQUEST_URI'), true),
+            ENT_QUOTES,
+            'UTF-8'
         );
         
         $path = htmlspecialchars(
-            var_export($this->context->getServer('PATH_INFO', '/'), true)
+            var_export($this->context->getServer('PATH_INFO', '/'), true),
+            ENT_QUOTES,
+            'UTF-8'
         );
         
         $html = <<<HTML
@@ -31,7 +63,7 @@ class Page extends AbstractPage
         <ol>
             <li>An <code>Aura\\Router\\Map</code> route for the path <code>$path</code></li>
             <li>A <code>['values']['controller']</code> value for the mapped route</li>
-            <li>A <code>\$di->params['Aura\Framework\Web\Factory']['map']</code> entry for the controller value.</li>
+            <li>A <code>\$di->params['Aura\\Framework\\Web\\Factory']['map']</code> entry for the controller value.</li>
         </ol>
     </body>
 </html>

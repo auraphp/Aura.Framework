@@ -1,11 +1,42 @@
 <?php
+/**
+ * 
+ * This file is part of the Aura project for PHP.
+ * 
+ * @license http://opensource.org/licenses/bsd-license.php BSD
+ * 
+ */
 namespace Aura\Framework\Cli;
 use Aura\Cli\AbstractCommand as AbstractCliCommand;
 use Aura\Signal\Manager as SignalManager;
+
+/**
+ * 
+ * Abstract class for framework commands.
+ * 
+ * @package Aura.Framework
+ * 
+ */
 abstract class AbstractCommand extends AbstractCliCommand
 {
+    /**
+     * 
+     * A signal manager.
+     * 
+     * @var SignalManager
+     * 
+     */
     protected $signal;
     
+    /**
+     * 
+     * Sets the signal manager and adds handler hooks.
+     * 
+     * @param SignalManager $signal The signal manager.
+     * 
+     * @return void
+     * 
+     */
     public function setSignal(SignalManager $signal)
     {
         $this->signal = $signal;
@@ -15,6 +46,13 @@ abstract class AbstractCommand extends AbstractCliCommand
         $this->signal->handler($this, 'post_exec',   [$this, 'postExec']);
     }
     
+    /**
+     * 
+     * Executes the action while invoking signal manager hooks.
+     * 
+     * @return mixed
+     * 
+     */
     public function exec()
     {
         $this->signal->send($this, 'pre_exec', $this);

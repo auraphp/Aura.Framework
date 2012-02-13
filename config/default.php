@@ -19,7 +19,6 @@ $di->setter['Aura\Framework\Cli\CacheConfig\Command'] = [
 ];
 
 $di->setter['Aura\Framework\Cli\MakeTest\Command'] = [
-    'setInflect' => $di->lazyGet('framework_inflect'),
     'setPhpunit' => 'phpunit',
     'setBootstrap' => dirname(__DIR__) . '/tests/bootstrap.php',
     'setSystem'  => $di->lazyGet('framework_system'),

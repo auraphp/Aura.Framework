@@ -12,20 +12,42 @@ use Aura\Framework\System as System;
 
 /**
  * 
- * Caches all package source class files.
+ * Caches the map of package source class files to `tmp/cache/classmap.php`.
  * 
  * @package Aura.Framework
  * 
  */
 class Command extends AbstractCommand
 {
+    /**
+     * 
+     * The System object.
+     * 
+     * @var System
+     * 
+     */
     protected $system;
     
+    /**
+     * 
+     * Sets the system object.
+     * 
+     * @param System $system The system object.
+     * 
+     */
     public function setSystem(System $system)
     {
         $this->system = $system;
     }
     
+    /**
+     * 
+     * Caches the map of package source class files to
+     * `tmp/cache/classmap.php`.
+     * 
+     * @return mixed
+     * 
+     */
     public function action()
     {
         $this->stdio->outln("Caching package class map ... ");

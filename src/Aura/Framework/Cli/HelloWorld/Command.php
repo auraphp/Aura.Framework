@@ -18,6 +18,13 @@ use Aura\Framework\Cli\AbstractCommand;
  */
 class Command extends AbstractCommand
 {
+    /**
+     * 
+     * Sends "Hello World!" to standard output.
+     * 
+     * @return void
+     * 
+     */
     public function action()
     {
         $this->stdio->outln("Hello World!");

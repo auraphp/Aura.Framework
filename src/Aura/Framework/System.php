@@ -140,6 +140,16 @@ class System
         return $this->getSubPath('include', $sub);
     }
     
+    /**
+     * 
+     * Gets the web path for the Aura system, along with an optional 
+     * subdirectory path.
+     * 
+     * @param string $sub An optional subdirectory path.
+     * 
+     * @return The full directory path, with proper directory separators.
+     * 
+     */
     public function getWebPath($sub = null)
     {
         return $this->getSubPath('web', $sub);

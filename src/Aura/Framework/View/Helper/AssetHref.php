@@ -18,11 +18,25 @@ use Aura\View\Helper\AbstractHelper;
  */
 class AssetHref extends AbstractHelper
 {
+    /**
+     * 
+     * Sets the base (prefix) href for all asset hrefs.
+     * 
+     * @param string $base The base href.
+     * 
+     */
     public function setBase($base)
     {
         $this->base = rtrim($base, '/');
     }
     
+    /**
+     * 
+     * Returns the href for an asset.
+     * 
+     * @param string $href The asset href, prefixed with the base href.
+     * 
+     */
     public function __invoke($href)
     {
         return $this->base . '/' . ltrim($href, '/');

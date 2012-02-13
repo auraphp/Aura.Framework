@@ -7,4 +7,12 @@
  * 
  */
 namespace Aura\Framework\Exception;
+
+/**
+ * 
+ * The test file could not be moved to its proper location.
+ * 
+ * @package Aura.Framework
+ * 
+ */
 class TestFileNotMoved extends \Aura\Framework\Exception {}

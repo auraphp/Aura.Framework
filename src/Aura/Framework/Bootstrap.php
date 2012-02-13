@@ -21,14 +21,49 @@ use Aura\Di\Config as DiConfig;
  */
 class Bootstrap
 {
+    /**
+     * 
+     * The System object.
+     * 
+     * @var System
+     * 
+     */
     protected $system;
     
+    /**
+     * 
+     * The autoloader object.
+     * 
+     * @var Aura\Autoloader\Loader
+     * 
+     */
     protected $loader;
     
+    /**
+     * 
+     * The Config object.
+     * 
+     * @var Config
+     * 
+     */
     protected $config;
     
+    /**
+     * 
+     * The dependency injection container.
+     * 
+     * @var Aura\Di\Container
+     * 
+     */
     protected $di;
     
+    /**
+     * 
+     * Execution setup method.
+     * 
+     * @return void
+     * 
+     */
     public function exec()
     {
         // turn up error reporting
@@ -82,6 +117,13 @@ class Bootstrap
         // done!
     }
     
+    /**
+     * 
+     * Execute bootstrap in a web context.
+     * 
+     * @return void
+     * 
+     */
     public function execWeb()
     {
         try {
@@ -95,6 +137,15 @@ class Bootstrap
         }
     }
     
+    /**
+     * 
+     * Execute bootstrap in a CLI context.
+     * 
+     * @param string $class The command class to instantiate and execute.
+     * 
+     * @return void
+     * 
+     */
     public function execCli($class)
     {
         try {
@@ -109,6 +160,16 @@ class Bootstrap
         }
     }
     
+    /**
+     * 
+     * Require a file in a limited scope with variables for `$system`,
+     * `$loader`, and `$di`. Generally for loading PHP-based config files.
+     * 
+     * @param string $file The file to require.
+     * 
+     * @return mixed
+     * 
+     */
     public function load($file)
     {
         $system = $this->system->getRootPath();
