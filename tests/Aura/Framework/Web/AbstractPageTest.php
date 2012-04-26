@@ -7,6 +7,7 @@ use Aura\Signal\HandlerFactory;
 use Aura\Signal\Manager as SignalManager;
 use Aura\Signal\ResultCollection;
 use Aura\Signal\ResultFactory;
+use Aura\View\EscaperFactory;
 use Aura\View\FormatTypes;
 use Aura\View\HelperLocator;
 use Aura\View\Template;
@@ -41,10 +42,11 @@ abstract class AbstractPageTest extends \PHPUnit_Framework_TestCase
         
         $router = new RouterMap(new RouteFactory);
         $page->setRouter($router);
-
+        
+        $escaper_factory = new EscaperFactory;
         $template_finder = new TemplateFinder;
         $helper_locator = new HelperLocator;
-        $template = new Template($template_finder, $helper_locator);
+        $template = new Template($escaper_factory, $template_finder, $helper_locator);
         $format_types = new FormatTypes;
         $view = new TwoStep($template, $format_types);
         $page->setView($view);
