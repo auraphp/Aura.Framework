@@ -1,7 +1,7 @@
 <?php
 namespace Aura\Framework\Web\Asset;
 use Aura\Framework\Web\AbstractPageTest;
-use Aura\Framework\System;
+use Aura\Framework\Mock\System;
 
 class PageTest extends AbstractPageTest
 {
@@ -17,12 +17,8 @@ class PageTest extends AbstractPageTest
     {
         parent::setUp();
         
-        $system_dir = dirname(dirname(dirname(dirname(__DIR__)))) . DIRECTORY_SEPARATOR
-                    . 'tmp' . DIRECTORY_SEPARATOR
-                    . 'test' . DIRECTORY_SEPARATOR
-                    . 'Aura.Framework.Web.Asset.PageTest' . DIRECTORY_SEPARATOR
-                    . 'mock_system';
-        $this->system = new System($system_dir);
+        $system_dir = dirname(dirname(dirname(dirname(__DIR__))));
+        $this->system = System::newInstance($system_dir);
         @mkdir($system_dir, 0777, true);
         
         $web_dir = $this->system->getWebPath();
@@ -35,16 +31,7 @@ class PageTest extends AbstractPageTest
     
     public function tearDown()
     {
-        // delete any cached files
-        $dir = $this->system->getWebPath('cache/asset/Vendor.Package');
-        $list = glob("$dir/*");
-        foreach ($list as $file) {
-            unlink($file);
-        }
-        
-        @rmdir($dir); //cache/asset/Vendor.Package
-        @rmdir(dirname($dir)); //cache/asset
-        @rmdir(dirname(dirname($dir))); //cache
+        $this->system->remove();
     }
     
     protected function newPage($params = [])
