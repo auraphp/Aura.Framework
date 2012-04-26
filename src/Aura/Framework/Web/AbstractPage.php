@@ -216,9 +216,15 @@ abstract class AbstractPage extends WebAbstractPage
     {
         $this->view->setFormat($this->getFormat());
         if (! $this->response->getContent()) {
-            $this->view->setInnerData((array) $this->getData());
-            $this->view->setAccept($this->getContext()->getAccept());
-            $this->response->setContent($this->view->render());
+            // set data
+            $data = (array) $this->getData();
+            $this->view->setInnerData($data);
+            // set accept headers
+            $accept = $this->getContext()->getAccept();
+            $this->view->setAccept($accept);
+            // render view and set content
+            $content = $this->view->render();
+            $this->response->setContent($content);
         }
         $this->response->setContentType($this->view->getContentType());
     }
