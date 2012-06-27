@@ -130,7 +130,8 @@ class Bootstrap
             $this->exec();
             $front = $this->di->get('web_front');
             $response = $front->exec();
-            $response->send();
+            $transport = $this->di->get('http_transport');
+            $transport->sendResponse($response);
         } catch (Exception $e) {
             echo $e . PHP_EOL;
             exit(1);

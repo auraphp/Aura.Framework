@@ -8,7 +8,7 @@
  */
 namespace Aura\Framework\Web;
 use Aura\Framework\Web\Factory;
-use Aura\Http\Response as HttpResponse;
+use Aura\Http\Message\Response as HttpResponse;
 use Aura\Router\Map as RouterMap;
 use Aura\Signal\Manager as SignalManager;
 use Aura\Web\Context;
