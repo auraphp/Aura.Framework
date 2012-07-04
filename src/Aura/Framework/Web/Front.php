@@ -172,7 +172,8 @@ class Front
     public function request()
     {
         // match to a route
-        $path   = $this->context->getServer('REQUEST_URI', '/');
+        $url    = $this->context->getServer('REQUEST_URI', '/');
+        $path   = parse_url($url, PHP_URL_PATH);
         $server = $this->context->getServer();
         $route  = $this->router->match($path, $server);
         
