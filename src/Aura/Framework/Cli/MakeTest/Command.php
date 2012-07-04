@@ -110,6 +110,11 @@ class Command extends AbstractCommand
     public function action()
     {
         // get the file for the source to be tested
+        if (! isset($this->params[0])) {
+            $this->stdio->errln('Please specify a package file path.');
+            return -1;
+        }
+        
         $source_file = $this->params[0];
         
         // what test file will phpunit create?
