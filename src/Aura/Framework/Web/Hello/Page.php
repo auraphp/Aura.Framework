@@ -7,7 +7,8 @@
  * 
  */
 namespace Aura\Framework\Web\Hello;
-use Aura\Framework\Web\AbstractPage;
+
+use Aura\Framework\Web\Controller\AbstractPage;
 
 /**
  * 
@@ -27,7 +28,7 @@ class Page extends AbstractPage
      */
     public function actionWorld()
     {
-        $this->view->setInnerView('world');
+        $this->view = 'world';
     }
     
     /**
@@ -39,6 +40,6 @@ class Page extends AbstractPage
      */
     public function actionAsset()
     {
-        $this->view->setInnerView('asset');
+        $this->view = 'asset';
     }
 }

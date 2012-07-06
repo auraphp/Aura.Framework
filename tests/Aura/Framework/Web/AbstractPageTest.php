@@ -1,10 +1,12 @@
 <?php
 namespace Aura\Framework\Web;
+
 use Aura\Framework\Inflect;
+use Aura\Framework\Signal\Manager as SignalManager;
+use Aura\Framework\Web\Renderer\AuraViewTwoStep as Renderer;
 use Aura\Router\Map as RouterMap;
 use Aura\Router\RouteFactory;
 use Aura\Signal\HandlerFactory;
-use Aura\Signal\Manager as SignalManager;
 use Aura\Signal\ResultCollection;
 use Aura\Signal\ResultFactory;
 use Aura\View\EscaperFactory;
@@ -26,31 +28,41 @@ abstract class AbstractPageTest extends \PHPUnit_Framework_TestCase
 
     protected function newPage($params = [])
     {
-        $class = "\Aura\Framework\Web\\{$this->page_name}\Page";
+        // context
+        $context            = new Context($GLOBALS);
         
+        // web response dto
+        $response           = new Response;
+        
+        // signal manager
+        $signal             = new SignalManager(new HandlerFactory, new ResultFactory, new ResultCollection);
+        
+        // two step view
+        $escaper_factory    = new EscaperFactory;
+        $template_finder    = new TemplateFinder;
+        $helper_locator     = new HelperLocator;
+        $template           = new Template($escaper_factory, $template_finder, $helper_locator);
+        $format_types       = new FormatTypes;
+        $twostep            = new TwoStep($template, $format_types);
+        
+        // renderer
+        $renderer           = new Renderer($twostep, new Inflect);
+        
+        // page
+        $class = "\Aura\Framework\Web\\{$this->page_name}\Page";
         $page = new $class(
-            new Context($GLOBALS),
-            new Response,
+            $context,
+            $response,
+            $signal,
+            $renderer,
             $params
         );
         
-        $inflect = new Inflect;
-        $page->setInflect($inflect);
-        
-        $signal = new SignalManager(new HandlerFactory, new ResultFactory, new ResultCollection);
-        $page->setSignal($signal);
-        
+        // add router to page
         $router = new RouterMap(new RouteFactory);
         $page->setRouter($router);
         
-        $escaper_factory = new EscaperFactory;
-        $template_finder = new TemplateFinder;
-        $helper_locator = new HelperLocator;
-        $template = new Template($escaper_factory, $template_finder, $helper_locator);
-        $format_types = new FormatTypes;
-        $view = new TwoStep($template, $format_types);
-        $page->setView($view);
-        
+        // done!
         return $page;
     }
 }

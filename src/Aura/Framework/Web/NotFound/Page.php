@@ -7,7 +7,7 @@
  * 
  */
 namespace Aura\Framework\Web\NotFound;
-use Aura\Framework\Web\AbstractPage;
+use Aura\Framework\Web\Controller\AbstractPage;
 
 /**
  * 

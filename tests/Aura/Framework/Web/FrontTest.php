@@ -1,18 +1,21 @@
 <?php
 namespace Aura\Framework\Web;
+
 use Aura\Di\Config;
 use Aura\Di\Forge;
+use Aura\Framework\Web\Factory;
+use Aura\Http\Cookie\Collection as Cookies;
+use Aura\Http\Cookie\Factory as CookieFactory;
+use Aura\Http\Header\Collection as Headers;
+use Aura\Http\Header\Factory as HeaderFactory;
+use Aura\Http\Message\Response as HttpResponse;
 use Aura\Router\Map as RouterMap;
 use Aura\Router\RouteFactory;
-use Aura\Framework\Web\Factory;
-use Aura\Web\Context;
-use Aura\Signal\Manager as SignalManager;
 use Aura\Signal\HandlerFactory;
-use Aura\Signal\ResultFactory;
+use Aura\Signal\Manager as SignalManager;
 use Aura\Signal\ResultCollection;
-use Aura\Http\Response as HttpResponse;
-use Aura\Http\Headers;
-use Aura\Http\Cookies;
+use Aura\Signal\ResultFactory;
+use Aura\Web\Context;
 
 class FrontTest extends \PHPUnit_Framework_TestCase
 {
@@ -56,7 +59,7 @@ class FrontTest extends \PHPUnit_Framework_TestCase
         $not_found = 'Aura\Framework\Mock\NotFound';
         $this->factory = new Factory($this->forge, $map, $not_found);
         
-        $this->response = new HttpResponse(new Headers, new Cookies);
+        $this->response = new HttpResponse(new Headers(new HeaderFactory), new Cookies(new CookieFactory));
         
         return new Front(
             $this->signal,
@@ -93,8 +96,8 @@ class FrontTest extends \PHPUnit_Framework_TestCase
     {
         $front = $this->newFront('/mock');
         $response = $front->exec();
-        $this->assertInstanceOf('Aura\Http\Response', $response);
-        $expect = "Aura\Framework\Mock\Page::exec";
+        $this->assertInstanceOf('Aura\Http\Message\Response', $response);
+        $expect = "Aura\Framework\Mock\NotFound::exec";
         $actual = $response->getContent();
         $this->assertSame($expect, $actual);
     }
@@ -103,7 +106,7 @@ class FrontTest extends \PHPUnit_Framework_TestCase
     {
         $front = $this->newFront('/no-such-controller');
         $response = $front->exec();
-        $this->assertInstanceOf('Aura\Http\Response', $response);
+        $this->assertInstanceOf('Aura\Http\Message\Response', $response);
         $expect = "Aura\Framework\Mock\NotFound::exec";
         $actual = $response->getContent();
         $this->assertSame($expect, $actual);

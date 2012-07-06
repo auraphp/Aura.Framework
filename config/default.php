@@ -36,12 +36,9 @@ $di->params['Aura\Framework\Web\Front'] = [
     'response'  => $di->lazyNew('Aura\Http\Message\Response'),
 ];
 
-$di->setter['Aura\Framework\Web\AbstractPage'] = [
-    'setInflect' => $di->lazyGet('framework_inflect'),
+$di->setter['Aura\Framework\Web\Controller\AbstractPage'] = [
     'setRouter'  => $di->lazyGet('router_map'),
-    'setSignal'  => $di->lazyGet('signal_manager'),
     'setSystem'  => $di->lazyGet('framework_system'),
-    'setView'    => $di->lazyNew('Aura\View\TwoStep'),
 ];
 
 $di->setter['Aura\Framework\Web\Asset\Page'] = [
@@ -57,6 +54,11 @@ $di->params['Aura\View\HelperLocator']['registry']['assetHref'] = function() use
 $di->params['Aura\View\HelperLocator']['registry']['route'] = function() use ($di) {
     return $di->newInstance('Aura\Framework\View\Helper\Route');
 };
+
+$di->params['Aura\Framework\Web\Renderer\AuraViewTwoStep'] = [
+    'twostep' => $di->lazyNew('Aura\View\TwoStep'),
+    'inflect' => $di->lazyGet('framework_inflect'),
+];
 
 /**
  * Dependency services.

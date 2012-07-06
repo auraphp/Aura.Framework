@@ -7,7 +7,8 @@
  * 
  */
 namespace Aura\Framework\Web\Asset;
-use Aura\Framework\Web\AbstractPage;
+
+use Aura\Framework\Web\Controller\AbstractPage;
 
 /**
  * 
