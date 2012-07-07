@@ -1,16 +1,37 @@
 <?php
+/**
+ * 
+ * This file is part of the Aura Project for PHP.
+ * 
+ * @package Aura.Framework
+ * 
+ * @license http://opensource.org/licenses/bsd-license.php BSD
+ * 
+ */
 namespace Aura\Framework\Web\Renderer;
 
 use Aura\Framework\Inflect;
 use Aura\View\TwoStep;
 use Aura\Web\Renderer\AbstractRenderer;
 
+/**
+ * 
+ * Incorporate the Aura.View two step rendering
+ * 
+ * @package Aura.Framework
+ * 
+ */
 class AuraViewTwoStep extends AbstractRenderer
 {
     protected $twostep;
     
     protected $inflect;
     
+    /**
+     *
+     * @param TwoStep $twostep TwoStep View of Aura.View
+     * @param Inflect $inflect Inflect class to file
+     */
     public function __construct(
         TwoStep $twostep,
         Inflect $inflect
@@ -19,8 +40,14 @@ class AuraViewTwoStep extends AbstractRenderer
         $this->inflect = $inflect;
     }
     
-    // allows us to call, e.g., $renderer->addInnerPath() to override stuff
-    // in a seemingly-direct manner.
+    /**
+     * 
+     * allows us to call, e.g., $renderer->addInnerPath() to override stuff
+     * in a seemingly-direct manner.
+     *
+     * @param string $method Method to 
+     * @param array $params
+     */
     public function __call($method, array $params)
     {
         return call_user_func_array([$this->twostep, $method], $params);
