@@ -3,6 +3,8 @@
  * 
  * This file is part of the Aura project for PHP.
  * 
+ * @package Aura.Framework
+ * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
@@ -33,7 +35,7 @@ class Factory
      * 
      * A map of controller names to controller classes.
      * 
-     * @var ForgeInterface
+     * @var array
      * 
      */
     protected $map = [];
@@ -42,7 +44,7 @@ class Factory
      * 
      * The controller class to instantiate when no mapping is found.
      * 
-     * @var ForgeInterface
+     * @var Aura\Framework\Web\NotFound
      * 
      */
     protected $not_found = null;

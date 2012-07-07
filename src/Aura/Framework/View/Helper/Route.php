@@ -3,7 +3,7 @@
  * 
  * This file is part of the Aura project for PHP.
  * 
- * @package Aura.View
+ * @package Aura.Framework
  * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
@@ -16,7 +16,7 @@ use Aura\Router\Map as RouterMap;
  * 
  * Generates route links.
  * 
- * @package Aura.Framework
+ * @package Aura.View
  * 
  */
 class Route extends AbstractHelper
