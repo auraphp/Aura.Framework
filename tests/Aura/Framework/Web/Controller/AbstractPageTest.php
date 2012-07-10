@@ -1,5 +1,5 @@
 <?php
-namespace Aura\Framework\Web;
+namespace Aura\Framework\Web\Controller;
 
 use Aura\Framework\Inflect;
 use Aura\Framework\Signal\Manager as SignalManager;

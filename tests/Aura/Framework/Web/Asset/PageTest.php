@@ -1,6 +1,7 @@
 <?php
 namespace Aura\Framework\Web\Asset;
-use Aura\Framework\Web\AbstractPageTest;
+
+use Aura\Framework\Web\Controller\AbstractPageTest;
 use Aura\Framework\Mock\System;
 
 class PageTest extends AbstractPageTest

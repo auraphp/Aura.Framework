@@ -8,8 +8,9 @@
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
-namespace Aura\Framework\Web;
-use Aura\Framework\Web\Factory;
+namespace Aura\Framework\Web\Controller;
+
+use Aura\Framework\Web\Controller\Factory;
 use Aura\Http\Message\Response as HttpResponse;
 use Aura\Router\Map as RouterMap;
 use Aura\Signal\Manager as SignalManager;
@@ -30,7 +31,7 @@ class Front
      * 
      * The web request context.
      * 
-     * @var Aura\Web\Context
+     * @var Context
      * 
      */
     protected $context;
@@ -39,7 +40,7 @@ class Front
      * 
      * The web reponse transfer object returned from the controller.
      * 
-     * @var Aura\Web\Response
+     * @var WebResponse
      * 
      */
     protected $transfer;
@@ -48,16 +49,16 @@ class Front
      * 
      * The full HTTP response created from the transfer object.
      * 
-     * @var Aura\Http\Response
+     * @var HttpResponse
      * 
      */
     protected $response;
     
     /**
      * 
-     * A page controller factory.
+     * A controller factory.
      * 
-     * @var Aura\Framework\Web\Factory
+     * @var Factory
      * 
      */
     protected $factory;
@@ -66,7 +67,7 @@ class Front
      * 
      * A signal manager.
      * 
-     * @var Aura\Signal\Manager
+     * @var SignalManager
      * 
      */
     protected $signal;
@@ -75,7 +76,7 @@ class Front
      * 
      * A router map.
      * 
-     * @var Aura\Router\Map
+     * @var RouterMap
      * 
      */
     protected $router;

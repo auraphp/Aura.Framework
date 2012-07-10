@@ -1,9 +1,9 @@
 <?php
-namespace Aura\Framework\Web;
+namespace Aura\Framework\Web\Controller;
 
 use Aura\Di\Config;
 use Aura\Di\Forge;
-use Aura\Framework\Web\Factory;
+use Aura\Framework\Web\Controller\Factory;
 use Aura\Http\Cookie\Collection as Cookies;
 use Aura\Http\Cookie\Factory as CookieFactory;
 use Aura\Http\Header\Collection as Headers;
