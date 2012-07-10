@@ -23,14 +23,32 @@ use Aura\Web\Renderer\AbstractRenderer;
  */
 class AuraViewTwoStep extends AbstractRenderer
 {
+    /**
+     * 
+     * A TwoStep view object.
+     * 
+     * @var TwoStep
+     * 
+     */
     protected $twostep;
     
+    /**
+     * 
+     * An inflection object.
+     * 
+     * @var Inflect
+     * 
+     */
     protected $inflect;
     
     /**
-     *
+     * 
+     * Constructor.
+     * 
      * @param TwoStep $twostep TwoStep View of Aura.View
+     * 
      * @param Inflect $inflect Inflect class to file
+     * 
      */
     public function __construct(
         TwoStep $twostep,
@@ -45,14 +63,23 @@ class AuraViewTwoStep extends AbstractRenderer
      * allows us to call, e.g., $renderer->addInnerPath() to override stuff
      * in a seemingly-direct manner.
      *
-     * @param string $method Method to 
-     * @param array $params
+     * @param string $method Method to call.
+     * 
+     * @param array $params Params for the method.
+     * 
      */
     public function __call($method, array $params)
     {
         return call_user_func_array([$this->twostep, $method], $params);
     }
     
+    /**
+     * 
+     * Prepares the renderer after setController().
+     * 
+     * @return void
+     * 
+     */
     protected function prep()
     {
         // get all included files
@@ -87,6 +114,13 @@ class AuraViewTwoStep extends AbstractRenderer
         }
     }
     
+    /**
+     * 
+     * Executes the renderer.
+     * 
+     * @return void
+     * 
+     */
     public function exec()
     {
         $this->twostep->setFormat($this->controller->getFormat());

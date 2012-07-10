@@ -9,6 +9,7 @@
  * 
  */
 namespace Aura\Framework\Cli\MakeTest;
+
 use Aura\Framework\Cli\AbstractCommand;
 use Aura\Framework\System;
 use Aura\Framework\Inflect;
@@ -217,8 +218,6 @@ class Command extends AbstractCommand
      * nicely within the Aura testing system.
      * 
      * @param string $skel The PHPUnit test class skeleton.
-     * 
-     * @param string $namespace The namespace of the class being tested.
      * 
      * @return string The modified test skeleton.
      * 

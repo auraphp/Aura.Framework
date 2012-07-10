@@ -24,11 +24,20 @@ class Command extends AbstractCommand
 {
     /**
      * 
-     * @var string The path to the PHP executable.
+     * The path to the PHP executable.
+     * 
+     * @var string
      * 
      */
     protected $php = 'php';
 
+    /**
+     * 
+     * Getopt definitions.
+     * 
+     * @var array
+     * 
+     */
     protected $options = [
         'port' => [
             'long'    => 'port',
@@ -43,13 +52,14 @@ class Command extends AbstractCommand
      *
      * Set the path to the PHP executable.
      *
-     * @param string $path The path to PHP.
+     * @param string $php The path to PHP.
      *
-     *
+     * @return void
+     * 
      */
-    public function phpPath($path)
+    public function setPhp($php)
     {
-        $this->php = $path;
+        $this->php = $php;
     }
 
     /**

@@ -9,6 +9,7 @@
  * 
  */
 namespace Aura\Framework\Web;
+
 use Aura\Di\ForgeInterface as ForgeInterface;
 use Aura\Framework\Exception\NoClassForController;
 
@@ -53,7 +54,7 @@ class Factory
      * 
      * Constructor.
      * 
-     * @param Aura\Di\ForgeInterface $forge An object-creation Forge.
+     * @param ForgeInterface $forge An object-creation Forge.
      * 
      * @param array $map A map of controller names to controller classes.
      * 
