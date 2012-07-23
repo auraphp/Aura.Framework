@@ -17,4 +17,7 @@ namespace Aura\Framework;
  * @package Aura.Framework
  * 
  */
-class Exception extends \Exception {}
+class Exception extends \Exception
+{
+}
+ 

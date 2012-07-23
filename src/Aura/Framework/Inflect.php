@@ -34,7 +34,7 @@ class Inflect
         $str = str_replace(' ', '-', ucwords($str));
         return strtolower($str);
     }
-    
+
     /**
      * 
      * Returns "camelCapsWord" and "CamelCapsWord" as "Camel_Caps_Word".
@@ -50,7 +50,7 @@ class Inflect
         $str = str_replace(' ', '_', ucwords($str));
         return $str;
     }
-    
+
     /**
      * 
      * PSR-0 class-to-filename implementation.
@@ -67,13 +67,13 @@ class Inflect
             $namespace = str_replace('\\', DIRECTORY_SEPARATOR, $namespace)
                        . DIRECTORY_SEPARATOR;
         }
-        
+
         // convert class underscores, and done
         return $namespace
              . str_replace('_',  DIRECTORY_SEPARATOR, $class)
              . '.php';
     }
-    
+
     /**
      * 
      * Splits a fully-qualified class name into namespace and class portions.
@@ -95,10 +95,10 @@ class Inflect
             $namespace = substr($spec, 0, $pos);
             $class     = substr($spec, $pos + 1);
         }
-        
+
         return [$namespace, $class];
     }
-    
+
     /**
      * 
      * Returns "foo-bar-baz" as "fooBarBaz".
@@ -114,7 +114,7 @@ class Inflect
         $str = str_replace(' ', '', $str);
         return lcfirst($str);
     }
-    
+
     /**
      * 
      * Returns "foo-bar-baz" as "foo_bar_baz".
@@ -128,7 +128,7 @@ class Inflect
     {
         return str_replace('-', '_', $str);
     }
-    
+
     /**
      * 
      * Returns "foo-bar-baz" as "FooBarBaz".
@@ -142,7 +142,7 @@ class Inflect
     {
         return ucfirst($this->dashesToCamel($str));
     }
-    
+
     /**
      * 
      * Returns "foo_bar_baz" as "fooBarBaz".
@@ -158,7 +158,7 @@ class Inflect
         $str = str_replace(' ', '', $str);
         return lcfirst($str);
     }
-    
+
     /**
      * 
      * Returns "foo_bar_baz" as "foo-bar-baz".
@@ -172,7 +172,7 @@ class Inflect
     {
         return str_replace('_', '-', $str);
     }
-    
+
     /**
      * 
      * Returns "foo_bar_baz" as "FooBarBaz".
@@ -187,3 +187,4 @@ class Inflect
         return ucfirst($this->underToCamel($str));
     }
 }
+ 

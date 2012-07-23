@@ -24,3 +24,4 @@ class Manager extends SignalManager implements WebSignalInterface
 {
     // nothing to do but implement the separated interface
 }
+ 

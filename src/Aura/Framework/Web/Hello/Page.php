@@ -32,7 +32,7 @@ class Page extends AbstractPage
     {
         $this->view = 'world';
     }
-    
+
     /**
      * 
      * Sets the inner view to "asset" and does nothing else.
@@ -45,3 +45,4 @@ class Page extends AbstractPage
         $this->view = 'asset';
     }
 }
+ 

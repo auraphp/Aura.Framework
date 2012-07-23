@@ -9,6 +9,7 @@
  * 
  */
 namespace Aura\Framework\Web\NotFound;
+
 use Aura\Framework\Web\Controller\AbstractPage;
 
 /**
@@ -31,7 +32,7 @@ class Page extends AbstractPage
     {
         $this->action = 'index';
     }
-    
+
     /**
      * 
      * Shows information about what happened.
@@ -46,13 +47,13 @@ class Page extends AbstractPage
             ENT_QUOTES,
             'UTF-8'
         );
-        
+
         $path = htmlspecialchars(
             var_export($this->context->getServer('PATH_INFO', '/'), true),
             ENT_QUOTES,
             'UTF-8'
         );
-        
+
         $html = <<<HTML
 <html>
     <head>
@@ -75,3 +76,4 @@ HTML;
         $this->response->setStatusCode(404);
     }
 }
+ 

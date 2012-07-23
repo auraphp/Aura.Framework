@@ -10,6 +10,8 @@
  */
 namespace Aura\Framework\Exception;
 
+use Aura\Framework\Exception;
+
 /**
  * 
  * Could not find the source class file for a test.
@@ -17,4 +19,7 @@ namespace Aura\Framework\Exception;
  * @package Aura.Framework
  * 
  */
-class SourceNotFound extends \Aura\Framework\Exception {}
+class SourceNotFound extends Exception
+{
+}
+ 
