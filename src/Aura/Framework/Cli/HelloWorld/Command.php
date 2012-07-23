@@ -9,6 +9,7 @@
  * 
  */
 namespace Aura\Framework\Cli\HelloWorld;
+
 use Aura\Framework\Cli\AbstractCommand;
 
 /**
@@ -32,3 +33,4 @@ class Command extends AbstractCommand
         $this->stdio->outln("Hello World!");
     }
 }
+ 

@@ -10,6 +10,8 @@
  */
 namespace Aura\Framework\Exception;
 
+use Aura\Framework\Exception;
+
 /**
  * 
  * A test file already exists for a given class.
@@ -17,4 +19,7 @@ namespace Aura\Framework\Exception;
  * @package Aura.Framework
  * 
  */
-class TestFileExists extends \Aura\Framework\Exception {}
+class TestFileExists extends Exception
+{
+}
+ 

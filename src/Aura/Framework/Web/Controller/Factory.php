@@ -31,7 +31,7 @@ class Factory
      * 
      */
     protected $forge;
-    
+
     /**
      * 
      * A map of controller names to controller classes.
@@ -40,7 +40,7 @@ class Factory
      * 
      */
     protected $map = [];
-    
+
     /**
      * 
      * The controller class to instantiate when no mapping is found.
@@ -49,7 +49,7 @@ class Factory
      * 
      */
     protected $not_found = null;
-    
+
     /**
      * 
      * Constructor.
@@ -71,7 +71,7 @@ class Factory
         $this->map       = $map;
         $this->not_found = $not_found;
     }
-    
+
     /**
      * 
      * Creates and returns a controller class based on a controller name.
@@ -92,7 +92,8 @@ class Factory
         } else {
             throw new NoClassForController("'$name'");
         }
-        
+
         return $this->forge->newInstance($class, ['params' => $params]);
     }
 }
+ 
