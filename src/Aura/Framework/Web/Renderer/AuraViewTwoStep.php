@@ -31,7 +31,7 @@ class AuraViewTwoStep extends AbstractRenderer
      * 
      */
     protected $twostep;
-    
+
     /**
      * 
      * An inflection object.
@@ -40,7 +40,7 @@ class AuraViewTwoStep extends AbstractRenderer
      * 
      */
     protected $inflect;
-    
+
     /**
      * 
      * Constructor.
@@ -57,7 +57,7 @@ class AuraViewTwoStep extends AbstractRenderer
         $this->twostep = $twostep;
         $this->inflect = $inflect;
     }
-    
+
     /**
      * 
      * allows us to call, e.g., $renderer->addInnerPath() to override stuff
@@ -72,7 +72,7 @@ class AuraViewTwoStep extends AbstractRenderer
     {
         return call_user_func_array([$this->twostep, $method], $params);
     }
-    
+
     /**
      * 
      * Prepares the renderer after setController().
@@ -84,19 +84,19 @@ class AuraViewTwoStep extends AbstractRenderer
     {
         // get all included files
         $includes = array_reverse(get_included_files());
-        
+
         // get the controller class hierarchy stack
         $class = get_class($this->controller);
         $stack = class_parents($class);
-        
+
         // remove from the stack these classes without template dirs:
         array_pop($stack); // Aura\Framework\Web\Controller\AbstractPage
         array_pop($stack); // Aura\Web\Controller\AbstractPage
         array_pop($stack); // Aura\Web\Controller\AbstractController
-        
+
         // add the controller class itself
         array_unshift($stack, $class);
-        
+
         // go through the hierarchy and look for each class file.
         // N.b.: this will not work if we concatenate all the classes into a
         // single file.
@@ -114,7 +114,7 @@ class AuraViewTwoStep extends AbstractRenderer
             }
         }
     }
-    
+
     /**
      * 
      * Executes the renderer.
@@ -125,7 +125,7 @@ class AuraViewTwoStep extends AbstractRenderer
     public function exec()
     {
         $this->twostep->setFormat($this->controller->getFormat());
-        
+
         $response = $this->controller->getResponse();
         if (! $response->getContent()) {
             $this->twostep->setData((array) $this->controller->getData());
@@ -134,7 +134,8 @@ class AuraViewTwoStep extends AbstractRenderer
             $this->twostep->setOuterView($this->controller->getLayout());
             $response->setContent($this->twostep->render());
         }
-        
+
         $response->setContentType($this->twostep->getContentType());
     }
 }
+ 

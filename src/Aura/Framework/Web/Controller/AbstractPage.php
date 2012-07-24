@@ -31,7 +31,7 @@ abstract class AbstractPage extends WebAbstractPage
      * 
      */
     protected $layout;
-    
+
     /**
      * 
      * A router object.
@@ -40,7 +40,7 @@ abstract class AbstractPage extends WebAbstractPage
      * 
      */
     protected $router;
-    
+
     /**
      * 
      * A system object.
@@ -49,7 +49,7 @@ abstract class AbstractPage extends WebAbstractPage
      * 
      */
     protected $system;
-    
+
     /**
      * 
      * The view to use for rendering.
@@ -58,7 +58,7 @@ abstract class AbstractPage extends WebAbstractPage
      * 
      */
     protected $view;
-    
+
     /**
      * 
      * Sets the router object.
@@ -72,7 +72,7 @@ abstract class AbstractPage extends WebAbstractPage
     {
         $this->router = $router;
     }
-    
+
     /**
      * 
      * Sets the system object.
@@ -86,7 +86,7 @@ abstract class AbstractPage extends WebAbstractPage
     {
         $this->system = $system;
     }
-    
+
     /**
      * 
      * Returns the layout to use for rendering.
@@ -98,7 +98,7 @@ abstract class AbstractPage extends WebAbstractPage
     {
         return $this->layout;
     }
-    
+
     /**
      * 
      * Returns the view to use for rendering.
@@ -111,3 +111,4 @@ abstract class AbstractPage extends WebAbstractPage
         return $this->view;
     }
 }
+ 

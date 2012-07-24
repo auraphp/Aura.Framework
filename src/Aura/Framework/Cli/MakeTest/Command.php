@@ -43,7 +43,7 @@ class Command extends AbstractCommand
      * 
      */
     protected $system;
-    
+
     /**
      * 
      * The `phpunit` executable path.
@@ -52,7 +52,7 @@ class Command extends AbstractCommand
      * 
      */
     protected $phpunit;
-    
+
     /**
      * 
      * The bootstrap file PHPUnit should load.
@@ -61,7 +61,7 @@ class Command extends AbstractCommand
      * 
      */
     protected $bootstrap;
-    
+
     /**
      * 
      * Sets a System object for this class.
@@ -75,7 +75,7 @@ class Command extends AbstractCommand
     {
         $this->system = $system;
     }
-    
+
     /**
      * 
      * Sets the phpunit executable.
@@ -89,7 +89,7 @@ class Command extends AbstractCommand
     {
         $this->phpunit = $phpunit;
     }
-    
+
     /**
      * 
      * Sets the location of the bootstrap file.
@@ -101,7 +101,7 @@ class Command extends AbstractCommand
     {
         $this->bootstrap = $bootstrap;
     }
-    
+
     /**
      * 
      * Creates a test file from an existing package source class and places
@@ -117,16 +117,16 @@ class Command extends AbstractCommand
             $this->stdio->errln('Please specify a package file path.');
             return -1;
         }
-        
+
         $source_file = $this->params[0];
-        
+
         // what test file will phpunit create?
         $create_file = str_replace('.php', 'Test.php', $source_file);
         if (is_readable($create_file)) {
             // don't want to overwrite an existing file
             throw new TestFileExists($create_file);
         }
-        
+
         // what target file will we move it to?
         $target_file = str_replace(
             DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR,
@@ -137,42 +137,42 @@ class Command extends AbstractCommand
             // don't want to overwrite an existing file
             throw new TestFileExists($target_file);
         }
-        
+
         // get the class name
         $class = $this->getClass($source_file);
-        
+
         // create the phpunit command
         $cmd = $this->phpunit;
         if ($this->bootstrap) {
             $cmd .= " --bootstrap {$this->bootstrap}";
         }
         $cmd .= " --skeleton-test '{$class}' {$source_file}";
-        
+
         exec($cmd);
-        
+
         // did it get created?
         if (! is_readable($create_file)) {
             throw new TestFileNotCreated("Not created: '{$create_file}'");
         }
-        
+
         // make sure we have a directory for the new location
         @mkdir(dirname($target_file), 0755, true);
-        
+
         // move it to the proper location
         $ok = rename($create_file, $target_file);
         if (! $ok) {
             throw new TestFileNotMoved("Could not move from '{$create_file}' to '{$target_file}'");
         }
-        
+
         // modify it in place
         $skel = file_get_contents($target_file);
         $skel = $this->modifySkeleton($skel);
         file_put_contents($target_file, $skel);
-        
+
         // done!
         $this->stdio->outln("Test file created at '{$target_file}'.");
     }
-    
+
     /**
      * 
      * Given a class specification, extract the vendor, package, and class 
@@ -191,27 +191,27 @@ class Command extends AbstractCommand
         if (! $real) {
             throw new SourceNotFound($spec);
         }
-        
+
         // strip off the "package/" dir prefix
         $len  = strlen($this->system->getPackagePath() . DIRECTORY_SEPARATOR);
         $spec = substr($real, $len);
-        
+
         // this should leave us with, e.g., Vendor.Package/src/Vendor/Package/Class.php
         // get the package name out
         $part = explode(DIRECTORY_SEPARATOR, $spec);
-        
+
         // pull off the top part and turn into vendor and package
         list($vendor, $package) = explode('.', array_shift($part));
-        
+
         // pull off 'src'
         array_shift($part);
-        
+
         // turn the rest into the full class name, minus .php
         $class = substr(implode('\\', $part), 0, -4);
-        
+
         return $class;
     }
-    
+
     /**
      * 
      * Given a test class skeleton from PHPUnit, modify it so that it works
@@ -225,21 +225,22 @@ class Command extends AbstractCommand
     protected function modifySkeleton($skel)
     {
         $skel = preg_replace('/\n\nrequire_once.*\n/', '', $skel);
-        
+
         $skel = str_replace(
             "function setUp()\n    {",
             "function setUp()\n    {\n        parent::setUp();",
             $skel
         );
-        
+
         $skel = str_replace(
             "function tearDown()\n    {",
             "function tearDown()\n    {\n        parent::tearDown();",
             $skel
         );
-        
+
         $skel = preg_replace('/\?\>\n$/', '', $skel);
-        
+
         return $skel;
     }
 }
+ 

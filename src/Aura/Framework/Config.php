@@ -9,6 +9,7 @@
  * 
  */
 namespace Aura\Framework;
+
 use Aura\Autoload\Loader;
 use Aura\Di\Container;
 
@@ -29,7 +30,7 @@ class Config
      * 
      */
     protected $system;
-    
+
     /**
      * 
      * The autoloader object.
@@ -38,7 +39,7 @@ class Config
      * 
      */
     protected $loader;
-    
+
     /**
      * 
      * The dependency injection container.
@@ -47,7 +48,7 @@ class Config
      * 
      */
     protected $di;
-    
+
     /**
      * 
      * Config files that have been loaded.
@@ -56,7 +57,7 @@ class Config
      * 
      */
     protected $files;
-    
+
     /**
      * 
      * The config mode.
@@ -65,7 +66,7 @@ class Config
      * 
      */
     protected $mode;
-    
+
     /**
      * 
      * Constructor.
@@ -86,7 +87,7 @@ class Config
                       ? 'default'
                       : $_ENV['AURA_CONFIG_MODE'];
     }
-    
+
     /**
      * 
      * Returns the config mode.
@@ -98,7 +99,7 @@ class Config
     {
         return $this->mode;
     }
-    
+
     /**
      * 
      * Returns the list of config files that have been loaded.
@@ -110,7 +111,7 @@ class Config
     {
         return $this->files;
     }
-    
+
     /**
      * 
      * Loads config files, either from the cache or from the packages, and
@@ -127,10 +128,10 @@ class Config
         } else {
             $this->loadFromPackages();
         }
-        
+
         $this->loadMode();
     }
-    
+
     /**
      * 
      * Gets the name of the config cache file.
@@ -145,7 +146,7 @@ class Config
             return $file;
         }
     }
-    
+
     /**
      * 
      * Loads each package config file for the mode.
@@ -166,12 +167,12 @@ class Config
             if (is_readable($package_file)) {
                 $this->load($package_file, $this->system, $this->loader, $this->di);
             }
-            
+
             // load its config-mode-specific file, if any
             if ($this->mode == 'default') {
                 continue;
             }
-            
+
             $package_file = $package_path . DIRECTORY_SEPARATOR
                             . 'config' . DIRECTORY_SEPARATOR
                             . "{$config_mode}.php";
@@ -180,7 +181,7 @@ class Config
             }
         }
     }
-    
+
     /**
      * 
      * Loads the system-level config file for the current mode.
@@ -195,7 +196,7 @@ class Config
             $this->load($file);
         }
     }
-    
+
     /**
      * 
      * Loads a config file in a limited scope.
@@ -214,3 +215,4 @@ class Config
         $this->files[] = $file;
     }
 }
+ 

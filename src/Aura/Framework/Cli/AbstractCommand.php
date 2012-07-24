@@ -9,6 +9,7 @@
  * 
  */
 namespace Aura\Framework\Cli;
+
 use Aura\Cli\AbstractCommand as AbstractCliCommand;
 use Aura\Signal\Manager as SignalManager;
 
@@ -29,7 +30,7 @@ abstract class AbstractCommand extends AbstractCliCommand
      * 
      */
     protected $signal;
-    
+
     /**
      * 
      * Sets the signal manager and adds handler hooks.
@@ -47,7 +48,7 @@ abstract class AbstractCommand extends AbstractCliCommand
         $this->signal->handler($this, 'post_action', [$this, 'postAction']);
         $this->signal->handler($this, 'post_exec',   [$this, 'postExec']);
     }
-    
+
     /**
      * 
      * Executes the action while invoking signal manager hooks.
@@ -62,9 +63,10 @@ abstract class AbstractCommand extends AbstractCliCommand
         $this->action();
         $this->signal->send($this, 'post_action', $this);
         $this->signal->send($this, 'post_exec', $this);
-        
+
         // return terminal output to normal colors
         $this->stdio->out("%n");
         $this->stdio->err("%n");
     }
 }
+ 

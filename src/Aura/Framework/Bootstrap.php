@@ -9,6 +9,7 @@
  * 
  */
 namespace Aura\Framework;
+
 use Aura\Autoload\Loader;
 use Aura\Di\Container as DiContainer;
 use Aura\Di\Forge as DiForge;
@@ -31,7 +32,7 @@ class Bootstrap
      * 
      */
     protected $system;
-    
+
     /**
      * 
      * The autoloader object.
@@ -40,7 +41,7 @@ class Bootstrap
      * 
      */
     protected $loader;
-    
+
     /**
      * 
      * The Config object.
@@ -49,7 +50,7 @@ class Bootstrap
      * 
      */
     protected $config;
-    
+
     /**
      * 
      * The dependency injection container.
@@ -58,7 +59,7 @@ class Bootstrap
      * 
      */
     protected $di;
-    
+
     /**
      * 
      * Execution setup method.
@@ -77,7 +78,7 @@ class Bootstrap
         require __DIR__ . DIRECTORY_SEPARATOR . 'System.php';
         $root = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
         $this->system = new System($root);
-        
+
         // set the include path
         set_include_path($this->system->getIncludePath());
 
@@ -86,7 +87,7 @@ class Bootstrap
         require $autoload_src;
         $this->loader = new Loader;
         $this->loader->register();
-        
+
         // load the class map, if any
         $classmap = $this->system->getTmpPath("cache/classmap.php");
         if (is_readable($classmap)) {
@@ -98,27 +99,27 @@ class Bootstrap
             $this->loader->add('Aura\Framework\\', $this->system->getPackagePath('Aura.Framework/src'));
             $this->loader->add('Aura\Di\\', $this->system->getPackagePath('Aura.Di/src'));
         }
-        
+
         // set the DI container object
         $this->di = new DiContainer(new DiForge(new DiConfig));
-        
+
         // set the config object
         $this->config = new Config($this->system, $this->loader, $this->di);
-        
+
         // add the bootstrap objects to the container
         $this->di->set('framework_config', $this->config);
         $this->di->set('framework_loader', $this->loader);
         $this->di->set('framework_system', $this->system);
-        
+
         // load configs
         $this->config->exec();
-        
+
         // lock the container
         $this->di->lock();
-        
+
         // done!
     }
-    
+
     /**
      * 
      * Execute bootstrap in a web context.
@@ -139,7 +140,7 @@ class Bootstrap
             exit(1);
         }
     }
-    
+
     /**
      * 
      * Execute bootstrap in a CLI context.
@@ -162,7 +163,7 @@ class Bootstrap
             exit(1);
         }
     }
-    
+
     /**
      * 
      * Require a file in a limited scope with variables for `$system`,
@@ -181,3 +182,4 @@ class Bootstrap
         return require $file;
     }
 }
+ 

@@ -9,6 +9,7 @@
  * 
  */
 namespace Aura\Framework\View\Helper;
+
 use Aura\View\Helper\AbstractHelper;
 
 /**
@@ -31,7 +32,7 @@ class AssetHref extends AbstractHelper
     {
         $this->base = rtrim($base, '/');
     }
-    
+
     /**
      * 
      * Returns the href for an asset.
@@ -44,3 +45,4 @@ class AssetHref extends AbstractHelper
         return $this->base . '/' . ltrim($href, '/');
     }
 }
+ 

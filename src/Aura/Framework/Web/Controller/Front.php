@@ -35,7 +35,7 @@ class Front
      * 
      */
     protected $context;
-    
+
     /**
      * 
      * The web reponse transfer object returned from the controller.
@@ -44,7 +44,7 @@ class Front
      * 
      */
     protected $transfer;
-    
+
     /**
      * 
      * The full HTTP response created from the transfer object.
@@ -53,7 +53,7 @@ class Front
      * 
      */
     protected $response;
-    
+
     /**
      * 
      * A controller factory.
@@ -62,7 +62,7 @@ class Front
      * 
      */
     protected $factory;
-    
+
     /**
      * 
      * A signal manager.
@@ -71,7 +71,7 @@ class Front
      * 
      */
     protected $signal;
-    
+
     /**
      * 
      * A router map.
@@ -80,8 +80,7 @@ class Front
      * 
      */
     protected $router;
-    
-    
+
     /**
      * 
      * Constructor.
@@ -110,7 +109,7 @@ class Front
         $this->factory  = $factory;
         $this->response = $response;
     }
-    
+
     /**
      * 
      * Magic read-only access to properties.
@@ -149,22 +148,22 @@ class Front
     {
         // prep
         $this->signal->send($this, 'pre_exec', $this);
-        
+
         // send request to a controller and get back a transfer object
         $this->signal->send($this, 'pre_request', $this);
         $this->request();
         $this->signal->send($this, 'post_request', $this);
-        
+
         // convert the response transfer object to an HTTP response
         $this->signal->send($this, 'pre_response', $this);
         $this->response();
         $this->signal->send($this, 'post_response', $this);
-        
+
         // done!
         $this->signal->send($this, 'post_exec', $this);
         return $this->response;
     }
-    
+
     /**
      * 
      * Handle the incoming request.
@@ -179,7 +178,7 @@ class Front
         $path   = parse_url($url, PHP_URL_PATH);
         $server = $this->context->getServer();
         $route  = $this->router->match($path, $server);
-        
+
         // was there a match?
         if ($route) {
             // retain info
@@ -190,14 +189,14 @@ class Front
             $controller = null;
             $params     = [];
         }
-        
+
         // create controller
         $obj = $this->factory->newInstance($controller, $params);
-        
+
         // execute and get back response transfer object
         $this->transfer = $obj->exec();
     }
-    
+
     /**
      * 
      * Converts the web response transfer object into the HTTP response.
@@ -215,3 +214,4 @@ class Front
         $this->response->setContent($this->transfer->getContent());
     }
 }
+ 
