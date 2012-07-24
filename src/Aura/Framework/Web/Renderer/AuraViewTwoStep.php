@@ -89,9 +89,10 @@ class AuraViewTwoStep extends AbstractRenderer
         $class = get_class($this->controller);
         $stack = class_parents($class);
         
-        // drop Aura.Web and Aura.Framework
-        array_pop($stack);
-        array_pop($stack);
+        // remove from the stack these classes without template dirs:
+        array_pop($stack); // Aura\Framework\Web\Controller\AbstractPage
+        array_pop($stack); // Aura\Web\Controller\AbstractPage
+        array_pop($stack); // Aura\Web\Controller\AbstractController
         
         // add the controller class itself
         array_unshift($stack, $class);
