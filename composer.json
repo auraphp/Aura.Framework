@@ -1,29 +1,52 @@
 {
-    "name": "Aura/Framework",
+    "name": "aura/framework",
     "type": "library",
-    "description": "The Aura Framework package, when combined with a system skeleton, provides a full-stack framework built from Aura component packages.",
+    "description": "The Aura Framework package, when combined with a system skeleton, provides a full-stack framework built from Aura components.",
     "keywords": [
         "framework"
     ],
     "homepage": "http://auraphp.github.com/Aura.Framework",
-    "version": "1.0.0-dev",
+    "version": "1.0.0-beta3",
+    "time": "2012-07-30",
     "license": "BSD",
     "authors": [
         {
-            "name": "Aura Contributors",
+            "name": "Aura.Framework Contributors",
             "homepage": "https://github.com/auraphp/Aura.Framework/contributors"
+        },
+        {
+            "name": "Paul M. Jones",
+            "email": "pmjones88@gmail.com",
+            "homepage": "http://paul-m-jones.com"
+        },
+        {
+            "name": "Galactic Void",
+            "email": "galacticvoid+git@gmail.com",
+            "homepage": ""
+        },
+        {
+            "name": "Hari KT",
+            "email": "kthari85@gmail.com",
+            "homepage": "http://harikt.com"
         }
     ],
     "require": {
-        "php"               : ">=5.4.0",
-        "Aura/Autoload"     : ">=1.0.0beta1",
-        "Aura/Cli"          : ">=1.0.0beta1",
-        "Aura/Di"           : ">=1.0.0beta1",
-        "Aura/Http"         : ">=1.0.0beta1",
-        "Aura/Marshal"      : ">=1.0.0beta1",
-        "Aura/Router"       : ">=1.0.0beta1",
-        "Aura/Signal"       : ">=1.0.0beta1",
-        "Aura/View"         : ">=1.0.0beta1",
-        "Aura/Web"          : ">=1.0.0beta1"
+        "php": ">=5.4.0",
+        "Aura/Autoload": ">=1.0.0beta1",
+        "Aura/Cli": ">=1.0.0beta1",
+        "Aura/Di": ">=1.0.0beta1",
+        "Aura/Http": ">=1.0.0beta1",
+        "Aura/Marshal": ">=1.0.0beta1",
+        "Aura/Router": ">=1.0.0beta1",
+        "Aura/Signal": ">=1.0.0beta1",
+        "Aura/Sql": ">=1.0.0beta1",
+        "Aura/View": ">=1.0.0beta1",
+        "Aura/Web": ">=1.0.0beta1"
+    },
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-0": {
+            "Aura\\Framework": "src/"
+        }
     }
 }
