@@ -1,1 +1,16 @@
-Initial release (beta2 version notwithstanding).
+- [BRK] Moved Web\Factory and Web\Front to Web\Controller\Factory and
+  Web\Controller\Front, respectively.
+
+- [CHG] Updated to use new package versions.
+
+- [FIX] Cli\MakeTest\Command::action() now errors when no package file path is
+  specified.
+
+- [NEW] CLI script to set up and run a development server using the built-in
+  PHP server.
+
+- [FIX] Web\Controller\Front::request() now extracts path from REQUEST_URI
+  instead of using PATH_INFO; this helps with some non-Apache servers.
+
+- [CHG] PSR-1/2 compliance.
+

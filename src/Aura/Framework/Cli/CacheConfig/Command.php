@@ -3,10 +3,13 @@
  * 
  * This file is part of the Aura project for PHP.
  * 
+ * @package Aura.Framework
+ * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
 namespace Aura\Framework\Cli\CacheConfig;
+
 use Aura\Framework\Cli\AbstractCommand;
 use Aura\Framework\System as System;
 
@@ -28,7 +31,7 @@ class Command extends AbstractCommand
      * 
      */
     protected $system;
-    
+
     /**
      * 
      * Sets the system object.
@@ -40,7 +43,7 @@ class Command extends AbstractCommand
     {
         $this->system = $system;
     }
-    
+
     /**
      * 
      * Caches the mode-specific package config files to
@@ -55,19 +58,19 @@ class Command extends AbstractCommand
             $this->stdio->errln('Please specify a config mode to cache.');
             return -1;
         }
-        
+
         $mode = $this->params[0];
-        
+
         // create and/or clear the cached config-mode file
         $cache = $this->system->getTmpPath("cache/config/$mode.php");
         @mkdir(dirname($cache), 0777, true);
         file_put_contents($cache, "<?php\n");
         $this->stdio->outln("Caching '$mode' config mode to $cache ... ");
-        
+
         // get the list of all packages in the system
         $package_glob = $this->system->getPackagePath('*');
         $package_list = glob($package_glob, GLOB_ONLYDIR);
-        
+
         // go through each package in the system
         foreach ($package_list as $package_dir) {
             // load its default config
@@ -77,10 +80,10 @@ class Command extends AbstractCommand
                 file_put_contents($cache, $this->read($package_dir, $mode), FILE_APPEND);
             }
         }
-        
+
         $this->stdio->outln('Done.');
     }
-    
+
     /**
      * 
      * Reads a config file from a package directory; replaces __DIR__ and
@@ -102,16 +105,16 @@ class Command extends AbstractCommand
             // nope
             return;
         }
-        
+
         // read the mode-specific config file
         $this->stdio->outln($file);
-        
+
         // get the file contents
         $src = file_get_contents($file);
-        
+
         // strip off the opening PHP tag
         $src = preg_replace('/^\s*\<\?php/m', '', $src);
-        
+
         // replace __DIR__ with string literal for dirname($file),
         // relative to the $system directory
         $__dir__ = str_replace(
@@ -120,7 +123,7 @@ class Command extends AbstractCommand
             '"' . dirname($file) . '"'
         );
         $src = str_replace('__DIR__', $__dir__, $src);
-        
+
         // replace __FILE__ with string literal for $file,
         // relative to the $system directory
         $__file__ = str_replace(
@@ -129,14 +132,15 @@ class Command extends AbstractCommand
             '"' . $file . '"'
         );
         $src = str_replace('__FILE__', $__file__, $src);
-        
+
         // add a leading comment about the file source
         $src = "// " . str_pad('', strlen($__file__), '-') . PHP_EOL
              . "// $__file__" . PHP_EOL
              . "// " . PHP_EOL
              . $src;
-        
+
         // done!
         return trim($src) . PHP_EOL . PHP_EOL . PHP_EOL;
     }
 }
+ 

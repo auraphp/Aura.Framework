@@ -1,6 +1,8 @@
 <?php
 namespace Aura\Framework\Web\Hello;
-use Aura\Framework\Web\AbstractPageTest;
+
+use Aura\Framework\Web\Controller\AbstractPageTest;
+
 class PageTest extends AbstractPageTest
 {
     protected $page_name = 'Hello';

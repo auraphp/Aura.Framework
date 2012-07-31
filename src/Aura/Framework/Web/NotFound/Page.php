@@ -3,10 +3,13 @@
  * 
  * This file is part of the Aura Project for PHP.
  * 
+ * @package Aura.Framework
+ * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
 namespace Aura\Framework\Web\NotFound;
+
 use Aura\Framework\Web\Controller\AbstractPage;
 
 /**
@@ -29,7 +32,7 @@ class Page extends AbstractPage
     {
         $this->action = 'index';
     }
-    
+
     /**
      * 
      * Shows information about what happened.
@@ -44,13 +47,13 @@ class Page extends AbstractPage
             ENT_QUOTES,
             'UTF-8'
         );
-        
+
         $path = htmlspecialchars(
             var_export($this->context->getServer('PATH_INFO', '/'), true),
             ENT_QUOTES,
             'UTF-8'
         );
-        
+
         $html = <<<HTML
 <html>
     <head>
@@ -63,7 +66,7 @@ class Page extends AbstractPage
         <ol>
             <li>An <code>Aura\\Router\\Map</code> route for the path <code>$path</code></li>
             <li>A <code>['values']['controller']</code> value for the mapped route</li>
-            <li>A <code>\$di->params['Aura\\Framework\\Web\\Factory']['map']</code> entry for the controller value.</li>
+            <li>A <code>\$di->params['Aura\\Framework\\Web\\Controller\\Factory']['map']</code> entry for the controller value.</li>
         </ol>
     </body>
 </html>
@@ -73,3 +76,4 @@ HTML;
         $this->response->setStatusCode(404);
     }
 }
+ 

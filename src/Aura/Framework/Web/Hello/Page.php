@@ -3,6 +3,8 @@
  * 
  * This file is part of the Aura Project for PHP.
  * 
+ * @package Aura.Framework
+ * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
@@ -30,7 +32,7 @@ class Page extends AbstractPage
     {
         $this->view = 'world';
     }
-    
+
     /**
      * 
      * Sets the inner view to "asset" and does nothing else.
@@ -43,3 +45,4 @@ class Page extends AbstractPage
         $this->view = 'asset';
     }
 }
+ 

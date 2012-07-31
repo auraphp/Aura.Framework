@@ -3,10 +3,13 @@
  * 
  * This file is part of the Aura project for PHP.
  * 
+ * @package Aura.Framework
+ * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
 namespace Aura\Framework\Cli\HelloWorld;
+
 use Aura\Framework\Cli\AbstractCommand;
 
 /**
@@ -30,3 +33,4 @@ class Command extends AbstractCommand
         $this->stdio->outln("Hello World!");
     }
 }
+ 

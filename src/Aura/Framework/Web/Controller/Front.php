@@ -3,11 +3,14 @@
  * 
  * This file is part of the Aura project for PHP.
  * 
+ * @package Aura.Framework
+ * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
-namespace Aura\Framework\Web;
-use Aura\Framework\Web\Factory;
+namespace Aura\Framework\Web\Controller;
+
+use Aura\Framework\Web\Controller\Factory;
 use Aura\Http\Message\Response as HttpResponse;
 use Aura\Router\Map as RouterMap;
 use Aura\Signal\Manager as SignalManager;
@@ -28,57 +31,56 @@ class Front
      * 
      * The web request context.
      * 
-     * @var Aura\Web\Context
+     * @var Context
      * 
      */
     protected $context;
-    
+
     /**
      * 
      * The web reponse transfer object returned from the controller.
      * 
-     * @var Aura\Web\Response
+     * @var WebResponse
      * 
      */
     protected $transfer;
-    
+
     /**
      * 
      * The full HTTP response created from the transfer object.
      * 
-     * @var Aura\Http\Response
+     * @var HttpResponse
      * 
      */
     protected $response;
-    
+
     /**
      * 
-     * A page controller factory.
+     * A controller factory.
      * 
-     * @var Aura\Framework\Web\Factory
+     * @var Factory
      * 
      */
     protected $factory;
-    
+
     /**
      * 
      * A signal manager.
      * 
-     * @var Aura\Signal\Manager
+     * @var SignalManager
      * 
      */
     protected $signal;
-    
+
     /**
      * 
      * A router map.
      * 
-     * @var Aura\Router\Map
+     * @var RouterMap
      * 
      */
     protected $router;
-    
-    
+
     /**
      * 
      * Constructor.
@@ -107,7 +109,7 @@ class Front
         $this->factory  = $factory;
         $this->response = $response;
     }
-    
+
     /**
      * 
      * Magic read-only access to properties.
@@ -146,22 +148,22 @@ class Front
     {
         // prep
         $this->signal->send($this, 'pre_exec', $this);
-        
+
         // send request to a controller and get back a transfer object
         $this->signal->send($this, 'pre_request', $this);
         $this->request();
         $this->signal->send($this, 'post_request', $this);
-        
+
         // convert the response transfer object to an HTTP response
         $this->signal->send($this, 'pre_response', $this);
         $this->response();
         $this->signal->send($this, 'post_response', $this);
-        
+
         // done!
         $this->signal->send($this, 'post_exec', $this);
         return $this->response;
     }
-    
+
     /**
      * 
      * Handle the incoming request.
@@ -176,7 +178,7 @@ class Front
         $path   = parse_url($url, PHP_URL_PATH);
         $server = $this->context->getServer();
         $route  = $this->router->match($path, $server);
-        
+
         // was there a match?
         if ($route) {
             // retain info
@@ -187,14 +189,14 @@ class Front
             $controller = null;
             $params     = [];
         }
-        
+
         // create controller
         $obj = $this->factory->newInstance($controller, $params);
-        
+
         // execute and get back response transfer object
         $this->transfer = $obj->exec();
     }
-    
+
     /**
      * 
      * Converts the web response transfer object into the HTTP response.
@@ -212,3 +214,4 @@ class Front
         $this->response->setContent($this->transfer->getContent());
     }
 }
+ 

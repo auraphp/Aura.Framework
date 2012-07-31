@@ -1,4 +1,13 @@
 <?php
+/**
+ * 
+ * This file is part of the Aura project for PHP.
+ * 
+ * @package Aura.Framework
+ * 
+ * @license http://opensource.org/licenses/bsd-license.php BSD
+ * 
+ */
 
 $root      = substr(__DIR__, 0, strrpos(__DIR__, 'package'));
 $root      = $root . 'web';
@@ -25,3 +34,4 @@ if (false !== strpos($_SERVER['REQUEST_URI'], '.')) {
 }
 
 require_once 'index.php';
+ 

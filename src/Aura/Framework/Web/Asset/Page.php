@@ -3,6 +3,8 @@
  * 
  * This file is part of the Aura Project for PHP.
  * 
+ * @package Aura.Framework
+ * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
@@ -46,7 +48,7 @@ class Page extends AbstractPage
      * 
      */
     protected $cache_config_modes = [];
-    
+
     /**
      * 
      * The subdirectory inside the web document root where we should cache
@@ -56,7 +58,7 @@ class Page extends AbstractPage
      * 
      */
     protected $web_cache_dir;
-    
+
     /**
      * 
      * Sets the config modes in which caching should take place.
@@ -70,7 +72,7 @@ class Page extends AbstractPage
     {
         $this->cache_config_modes = $modes;
     }
-    
+
     /**
      * 
      * Sets the subdirectory in the web document root where web assets should
@@ -85,7 +87,7 @@ class Page extends AbstractPage
     {
         $this->web_cache_dir = $dir;
     }
-    
+
     /**
      * 
      * Given a package name and an asset file name, delivers the asset
@@ -102,11 +104,11 @@ class Page extends AbstractPage
     {
         // add the format to the filename
         $file .= $this->format;
-        
+
         // get the real path to the asset
         $fakepath = $this->system->getPackagePath("$package/web/$file");
         $realpath = realpath($fakepath);
-        
+
         // does the asset file exist?
         if (! file_exists($realpath) || ! is_readable($realpath)) {
             $content = "Asset not found: "
@@ -115,7 +117,7 @@ class Page extends AbstractPage
             $this->response->setContent($content);
             return;
         }
-        
+
         // are we in a config mode that wants us to cache?
         $config_mode = $this->context->getEnv('AURA_CONFIG_MODE', 'default');
         if (in_array($config_mode, $this->cache_config_modes)) {
@@ -125,23 +127,24 @@ class Page extends AbstractPage
                   . $file;
 
             $webcache = $this->system->getWebPath($path);
-        
+
             // make sure we have a dir for it
             $dir = dirname($webcache);
             if (! is_dir($dir)) {
                 @mkdir($dir, 0755, true);
             }
-            
-            // copy from the source package to the target cache dir for the 
+
+            // copy from the source package to the target cache dir for the
             // next time this package asset is requested
             copy($realpath, $webcache);
         }
-        
+
         // open the asset file using a shared (read) lock
         $fh = fopen($realpath, 'rb');
         flock($fh, LOCK_SH);
-        
+
         // set the response content to the file handle
         $this->response->setContent($fh);
     }
 }
+ 

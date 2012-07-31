@@ -24,15 +24,15 @@ $di->setter['Aura\Framework\Cli\MakeTest\Command'] = [
     'setSystem'  => $di->lazyGet('framework_system'),
 ];
 
-$di->params['Aura\Framework\Web\Factory'] = [
+$di->params['Aura\Framework\Web\Controller\Factory'] = [
     'forge' => $di->getForge(),
 ];
 
-$di->params['Aura\Framework\Web\Front'] = [
+$di->params['Aura\Framework\Web\Controller\Front'] = [
     'signal'    => $di->lazyGet('signal_manager'),
     'context'   => $di->lazyGet('web_context'),
     'router'    => $di->lazyGet('router_map'),
-    'factory'   => $di->lazyNew('Aura\Framework\Web\Factory'),
+    'factory'   => $di->lazyNew('Aura\Framework\Web\Controller\Factory'),
     'response'  => $di->lazyNew('Aura\Http\Message\Response'),
 ];
 
@@ -51,6 +51,10 @@ $di->params['Aura\View\HelperLocator']['registry']['assetHref'] = function() use
     return $di->newInstance('Aura\Framework\View\Helper\AssetHref');
 };
 
+$di->params['Aura\Framework\View\Helper\Route'] = [
+    'router' => $di->lazyGet('router_map')
+];
+
 $di->params['Aura\View\HelperLocator']['registry']['route'] = function() use ($di) {
     return $di->newInstance('Aura\Framework\View\Helper\Route');
 };
@@ -68,5 +72,5 @@ $di->set('framework_inflect', function() {
 });
 
 $di->set('web_front', function() use ($di) {
-    return $di->newInstance('Aura\Framework\Web\Front');
+    return $di->newInstance('Aura\Framework\Web\Controller\Front');
 });

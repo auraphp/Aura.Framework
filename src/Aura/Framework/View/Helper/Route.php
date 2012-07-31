@@ -3,12 +3,13 @@
  * 
  * This file is part of the Aura project for PHP.
  * 
- * @package Aura.View
+ * @package Aura.Framework
  * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
 namespace Aura\Framework\View\Helper;
+
 use Aura\View\Helper\AbstractHelper;
 use Aura\Router\Map as RouterMap;
 
@@ -16,7 +17,7 @@ use Aura\Router\Map as RouterMap;
  * 
  * Generates route links.
  * 
- * @package Aura.Framework
+ * @package Aura.View
  * 
  */
 class Route extends AbstractHelper
@@ -29,7 +30,7 @@ class Route extends AbstractHelper
      * 
      */
     protected $router;
-    
+
     /**
      * 
      * Constructor.
@@ -41,7 +42,7 @@ class Route extends AbstractHelper
     {
         $this->router = $router;
     }
-    
+
     /**
      * 
      * Returns a route by name; optionall interpolates data into it.
@@ -60,3 +61,4 @@ class Route extends AbstractHelper
         return $this->router->generate($name, $data);
     }
 }
+ 

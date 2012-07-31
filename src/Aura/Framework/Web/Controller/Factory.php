@@ -3,10 +3,13 @@
  * 
  * This file is part of the Aura project for PHP.
  * 
+ * @package Aura.Framework
+ * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
-namespace Aura\Framework\Web;
+namespace Aura\Framework\Web\Controller;
+
 use Aura\Di\ForgeInterface as ForgeInterface;
 use Aura\Framework\Exception\NoClassForController;
 
@@ -28,30 +31,30 @@ class Factory
      * 
      */
     protected $forge;
-    
+
     /**
      * 
      * A map of controller names to controller classes.
      * 
-     * @var ForgeInterface
+     * @var array
      * 
      */
     protected $map = [];
-    
+
     /**
      * 
      * The controller class to instantiate when no mapping is found.
      * 
-     * @var ForgeInterface
+     * @var Aura\Framework\Web\NotFound
      * 
      */
     protected $not_found = null;
-    
+
     /**
      * 
      * Constructor.
      * 
-     * @param Aura\Di\ForgeInterface $forge An object-creation Forge.
+     * @param ForgeInterface $forge An object-creation Forge.
      * 
      * @param array $map A map of controller names to controller classes.
      * 
@@ -68,7 +71,7 @@ class Factory
         $this->map       = $map;
         $this->not_found = $not_found;
     }
-    
+
     /**
      * 
      * Creates and returns a controller class based on a controller name.
@@ -89,7 +92,8 @@ class Factory
         } else {
             throw new NoClassForController("'$name'");
         }
-        
+
         return $this->forge->newInstance($class, ['params' => $params]);
     }
 }
+ 

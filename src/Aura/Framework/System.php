@@ -3,6 +3,8 @@
  * 
  * This file is part of the Aura project for PHP.
  * 
+ * @package Aura.Framework
+ * 
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
@@ -25,7 +27,7 @@ class System
      * 
      */
     protected $root;
-    
+
     /**
      * 
      * Constructor.
@@ -37,7 +39,7 @@ class System
     {
         $this->root = $root;
     }
-    
+
     /**
      * 
      * Gets the path for any directory, along with an optional subdirectory
@@ -59,7 +61,7 @@ class System
         }
         return $path;
     }
-    
+
     /**
      * 
      * Gets the root path for the Aura system, along with an optional 
@@ -79,7 +81,7 @@ class System
         }
         return $path;
     }
-    
+
     /**
      * 
      * Gets the package path for the Aura system, along with an optional 
@@ -94,7 +96,7 @@ class System
     {
         return $this->getSubPath('package', $sub);
     }
-    
+
     /**
      * 
      * Gets the tmp path for the Aura system, along with an optional 
@@ -109,7 +111,7 @@ class System
     {
         return $this->getSubPath('tmp', $sub);
     }
-    
+
     /**
      * 
      * Gets the config path for the Aura system, along with an optional 
@@ -124,7 +126,7 @@ class System
     {
         return $this->getSubPath('config', $sub);
     }
-    
+
     /**
      * 
      * Gets the include path for the Aura system, along with an optional 
@@ -139,7 +141,7 @@ class System
     {
         return $this->getSubPath('include', $sub);
     }
-    
+
     /**
      * 
      * Gets the web path for the Aura system, along with an optional 
@@ -155,3 +157,4 @@ class System
         return $this->getSubPath('web', $sub);
     }
 }
+ 

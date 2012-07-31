@@ -1,5 +1,6 @@
 <?php
-namespace Aura\Framework\Web;
+namespace Aura\Framework\Web\Controller;
+
 use Aura\Di\Config;
 use Aura\Di\Forge;
 
