@@ -15,15 +15,6 @@
         }
     ],
     "require": {
-        "php"               : ">=5.4.0",
-        "Aura/Autoload"     : ">=1.0.0beta1",
-        "Aura/Cli"          : ">=1.0.0beta1",
-        "Aura/Di"           : ">=1.0.0beta1",
-        "Aura/Http"         : ">=1.0.0beta1",
-        "Aura/Marshal"      : ">=1.0.0beta1",
-        "Aura/Router"       : ">=1.0.0beta1",
-        "Aura/Signal"       : ">=1.0.0beta1",
-        "Aura/View"         : ">=1.0.0beta1",
-        "Aura/Web"          : ">=1.0.0beta1"
+        "php" : ">=5.4.0"
     }
 }
