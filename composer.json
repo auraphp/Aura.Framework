@@ -1,5 +1,5 @@
 {
-    "name": "Aura/Framework",
+    "name": "aura/framework",
     "type": "aura-package",
     "description": "The Aura Framework package, when combined with a system skeleton, provides a full-stack framework built from Aura component packages.",
     "keywords": [
