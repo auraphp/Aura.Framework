@@ -123,7 +123,7 @@ class Front
     {
         return $this->$key;
     }
-    
+
     /**
      * 
      * Dispatches a Route to a web controller, renders a view into the
@@ -214,4 +214,4 @@ class Front
         $this->response->setContent($this->transfer->getContent());
     }
 }
- 
+

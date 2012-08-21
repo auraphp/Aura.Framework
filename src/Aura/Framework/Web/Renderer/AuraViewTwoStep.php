@@ -138,4 +138,4 @@ class AuraViewTwoStep extends AbstractRenderer
         $response->setContentType($this->twostep->getContentType());
     }
 }
- 
+

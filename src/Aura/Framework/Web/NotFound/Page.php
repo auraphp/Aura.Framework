@@ -66,7 +66,8 @@ class Page extends AbstractPage
         <ol>
             <li>An <code>Aura\\Router\\Map</code> route for the path <code>$path</code></li>
             <li>A <code>['values']['controller']</code> value for the mapped route</li>
-            <li>A <code>\$di->params['Aura\\Framework\\Web\\Controller\\Factory']['map']</code> entry for the controller value.</li>
+            <li>A <code>\$di->params['Aura\\Framework\\Web\\Controller\\Factory']['map']
+            </code> entry for the controller value.</li>
         </ol>
     </body>
 </html>
