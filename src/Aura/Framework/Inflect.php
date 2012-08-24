@@ -70,7 +70,7 @@ class Inflect
 
         // convert class underscores, and done
         return $namespace
-             . str_replace('_',  DIRECTORY_SEPARATOR, $class)
+             . str_replace('_', DIRECTORY_SEPARATOR, $class)
              . '.php';
     }
 
