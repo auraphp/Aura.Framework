@@ -1,11 +1,12 @@
 <?php
 namespace Aura\Framework\Cli;
-use Aura\Cli\Getopt as Getopt;
-use Aura\Cli\Stdio as Stdio;
-use Aura\Cli\Vt100 as Vt100;
-use Aura\Cli\Context as Context;
-use Aura\Cli\OptionFactory as OptionFactory;
-use Aura\Signal\Manager;
+use Aura\Cli\Getopt;
+use Aura\Cli\Stdio;
+use Aura\Cli\StdioResource;
+use Aura\Cli\Vt100;
+use Aura\Cli\Context;
+use Aura\Cli\OptionFactory;
+use Aura\Framework\Signal\Manager;
 use Aura\Signal\HandlerFactory;
 use Aura\Signal\ResultFactory;
 use Aura\Signal\ResultCollection;
@@ -45,10 +46,7 @@ abstract class AbstractCommandTest extends \PHPUnit_Framework_TestCase
     public function tearDown()
     {
         parent::tearDown();
-        if ($this->stdio) {
-            fclose($this->stdio->getStdout());
-            fclose($this->stdio->getStderr());
-        }
+        unset($this->stdio);
         unlink($this->outfile);
         unlink($this->errfile);
         $this->system->remove();
@@ -67,9 +65,9 @@ abstract class AbstractCommandTest extends \PHPUnit_Framework_TestCase
         $this->outfile = tempnam($this->tmp_dir, '');
         $this->errfile = tempnam($this->tmp_dir, '');
         
-        $stdin = fopen('php://stdin', 'r');
-        $stdout = fopen($this->outfile, 'w+');
-        $stderr = fopen($this->errfile, 'w+');
+        $stdin = new StdioResource('php://stdin', 'r');
+        $stdout = new StdioResource($this->outfile, 'w+');
+        $stderr = new StdioResource($this->errfile, 'w+');
         $vt100 = new Vt100;
         
         $this->stdio = new Stdio($stdin, $stdout, $stderr, $vt100);
@@ -83,9 +81,9 @@ abstract class AbstractCommandTest extends \PHPUnit_Framework_TestCase
         $command = new $class(
             $this->context,
             $this->stdio,
-            $this->getopt
+            $this->getopt,
+            $this->signal
         );
-        $command->setSignal($this->signal);
         return $command;
     }
 }
