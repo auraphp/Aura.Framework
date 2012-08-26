@@ -67,10 +67,5 @@ $di->params['Aura\Framework\Web\Renderer\AuraViewTwoStep'] = [
 /**
  * Dependency services.
  */
-$di->set('framework_inflect', function() {
-    return new Aura\Framework\Inflect;
-});
-
-$di->set('web_front', function() use ($di) {
-    return $di->newInstance('Aura\Framework\Web\Controller\Front');
-});
+$di->set('framework_inflect', $di->lazyNew('Aura\Framework\Inflect'));
+$di->set('web_front', $di->lazyNew('Aura\Framework\Web\Controller\Front'));
