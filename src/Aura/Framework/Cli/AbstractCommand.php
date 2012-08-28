@@ -69,4 +69,3 @@ abstract class AbstractCommand extends AbstractCliCommand
         $this->stdio->err("%n");
     }
 }
- 

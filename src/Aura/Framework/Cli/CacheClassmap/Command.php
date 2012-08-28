@@ -113,4 +113,3 @@ class Command extends AbstractCommand
         $this->stdio->outln('Done.');
     }
 }
- 

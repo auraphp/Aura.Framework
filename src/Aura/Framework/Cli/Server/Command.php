@@ -93,4 +93,3 @@ class Command extends AbstractCommand
         pclose($pipe);
     }
 }
- 

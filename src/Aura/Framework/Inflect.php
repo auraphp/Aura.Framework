@@ -187,4 +187,3 @@ class Inflect
         return ucfirst($this->underToCamel($str));
     }
 }
- 

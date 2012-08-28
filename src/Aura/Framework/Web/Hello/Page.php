@@ -45,4 +45,3 @@ class Page extends AbstractPage
         $this->view = 'asset';
     }
 }
- 

@@ -243,4 +243,3 @@ class Command extends AbstractCommand
         return $skel;
     }
 }
- 

@@ -157,4 +157,3 @@ class System
         return $this->getSubPath('web', $sub);
     }
 }
- 

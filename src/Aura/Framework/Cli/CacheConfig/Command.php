@@ -143,4 +143,3 @@ class Command extends AbstractCommand
         return trim($src) . PHP_EOL . PHP_EOL . PHP_EOL;
     }
 }
- 

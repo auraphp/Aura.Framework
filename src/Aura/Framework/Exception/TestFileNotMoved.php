@@ -22,4 +22,3 @@ use Aura\Framework\Exception;
 class TestFileNotMoved extends Exception
 {
 }
- 

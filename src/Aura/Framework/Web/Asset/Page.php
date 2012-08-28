@@ -147,4 +147,3 @@ class Page extends AbstractPage
         $this->response->setContent($fh);
     }
 }
- 

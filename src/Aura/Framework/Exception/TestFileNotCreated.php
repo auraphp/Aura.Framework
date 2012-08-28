@@ -22,4 +22,3 @@ use Aura\Framework\Exception;
 class TestFileNotCreated extends Exception
 {
 }
- 

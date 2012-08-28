@@ -45,4 +45,3 @@ class AssetHref extends AbstractHelper
         return $this->base . '/' . ltrim($href, '/');
     }
 }
- 

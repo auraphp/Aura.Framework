@@ -33,4 +33,3 @@ class Command extends AbstractCommand
         $this->stdio->outln("Hello World!");
     }
 }
- 

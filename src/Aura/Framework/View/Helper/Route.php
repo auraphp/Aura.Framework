@@ -61,4 +61,3 @@ class Route extends AbstractHelper
         return $this->router->generate($name, $data);
     }
 }
- 

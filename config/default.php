@@ -7,7 +7,7 @@ $loader->add('Aura\Framework\\', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'src')
 /**
  * Instance params and setter values.
  */
- 
+
 $di->setter['Aura\Framework\Cli\AbstractCommand']['setSignal'] = $di->lazyGet('signal_manager');
 
 $di->setter['Aura\Framework\Cli\CacheClassmap\Command'] = [

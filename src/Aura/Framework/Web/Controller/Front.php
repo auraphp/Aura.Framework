@@ -214,4 +214,3 @@ class Front
         $this->response->setContent($this->transfer->getContent());
     }
 }
-

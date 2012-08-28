@@ -79,4 +79,3 @@ HTML;
         $this->response->setStatusCode(404);
     }
 }
- 

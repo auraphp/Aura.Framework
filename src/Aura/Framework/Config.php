@@ -215,4 +215,3 @@ class Config
         $this->files[] = $file;
     }
 }
- 
