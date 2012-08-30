@@ -17,5 +17,19 @@
     "require": {
         "php": ">=5.4.0",
         "aura/default-installer": "*"
+    },
+    "suggest": {
+        "aura/autoload": "A PSR-0 compliant autoloader, ready for SplClassloader.",
+        "aura/cli": "Tools to build command-line controllers, including a CLI context, options management, and input/ouput handlers",
+        "aura/di": "Dependency injection container.",
+        "aura/filter": "Provides validation and sanitizing for data objects.",
+        "aura/http": "Tools to build HTTP response messages",
+        "aura/marshal": "Marshals data from any data source into domain objects, including relationships between those object.",
+        "aura/router": "A web router.",
+        "aura/signal": "A signal slots / event handler implementation.",
+        "aura/sql": "SQL database connection and query tools.",
+        "aura/uri": "objects to help you create and manipulate URLs",
+        "aura/view": "Template views, two-step views, and view helpers.",
+        "aura/web": "A bare-bones web page controller system, including pre- and post-hooks, a response transfer, and context discovery."
     }
 }
