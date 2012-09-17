@@ -144,6 +144,21 @@ class System
 
     /**
      * 
+     * Gets the vendor path for the Aura system, along with an optional 
+     * subdirectory path.
+     * 
+     * @param string $sub An optional subdirectory path.
+     * 
+     * @return The full directory path, with proper directory separators.
+     * 
+     */
+    public function getVendorPath($sub = null)
+    {
+        return $this->getSubPath('vendor', $sub);
+    }
+
+    /**
+     * 
      * Gets the web path for the Aura system, along with an optional 
      * subdirectory path.
      * 
