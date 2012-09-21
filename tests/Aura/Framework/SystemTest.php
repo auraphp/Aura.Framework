@@ -148,4 +148,27 @@ class SystemTest extends \PHPUnit_Framework_TestCase
         $actual = $this->system->getIncludePath('foo/bar/baz');
         $this->assertSame($expect, $actual);
     }
+
+    public function testGetVendorPath()
+    {
+
+        $expect = dirname(dirname(__DIR__))
+                . DIRECTORY_SEPARATOR . 'tmp'
+                . DIRECTORY_SEPARATOR . 'vendor';
+
+        $actual = $this->system->getVendorPath();
+        $this->assertSame($expect, $actual);
+
+        $expect .= DIRECTORY_SEPARATOR . 'foo'
+                 . DIRECTORY_SEPARATOR . 'bar'
+                 . DIRECTORY_SEPARATOR . 'baz';
+                
+        $actual = $this->system->getVendorPath('foo/bar/baz');
+        $this->assertSame($expect, $actual);
+
+        $expect .= DIRECTORY_SEPARATOR . 'autoload.php';
+
+        $actual = $this->system->getVendorPath('foo/bar/baz/autoload.php');
+        $this->assertSame($expect, $actual);
+    }
 }

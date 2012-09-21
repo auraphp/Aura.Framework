@@ -88,6 +88,14 @@ class Bootstrap
         $this->loader = new Loader;
         $this->loader->register();
 
+        // let composer do the vendor autoloading 
+        // if 3rd party packages are installed via composer
+        $vendor_autoload = $this->system->getVendorPath('autoload.php');
+        if (is_readable($vendor_autoload)) {
+            // let aura do exceptions silently
+            $this->loader->setMode(0);
+            require_once $vendor_autoload;
+        }
         // load the class map, if any
         $classmap = $this->system->getTmpPath("cache/classmap.php");
         if (is_readable($classmap)) {
