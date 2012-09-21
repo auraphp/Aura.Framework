@@ -82,24 +82,9 @@ class Bootstrap
         // set the include path
         set_include_path($this->system->getIncludePath());
 
-        // autoloader
-        $autoload_src = $this->system->getPackagePath('Aura.Autoload/src.php');
-        require $autoload_src;
-        $this->loader = new Loader;
-        $this->loader->register();
-
-        // load the class map, if any
-        $classmap = $this->system->getTmpPath("cache/classmap.php");
-        if (is_readable($classmap)) {
-            // load all classes from a map
-            $classes = $this->load($classmap);
-            $this->loader->setClasses($classes);
-        } else {
-            // add namespace prefixes
-            $this->loader->add('Aura\Framework\\', $this->system->getPackagePath('Aura.Framework/src'));
-            $this->loader->add('Aura\Di\\', $this->system->getPackagePath('Aura.Di/src'));
-        }
-
+        // set the loader object
+        $this->setLoader();
+        
         // set the DI container object
         $this->di = new DiContainer(new DiForge(new DiConfig));
 
@@ -120,6 +105,30 @@ class Bootstrap
         // done!
     }
 
+    protected function setLoader()
+    {
+        // require the loader class files
+        require $this->system->getPackagePath('Aura.Autoload/src.php');
+        
+        // create and register the loader
+        $this->loader = new Loader;
+        $this->loader->register();
+
+        // is there a cached class map?
+        $classmap = $this->system->getTmpPath("cache/classmap.php");
+        if (is_readable($classmap)) {
+            // load all classes from a map
+            $classes = $this->load($classmap);
+            $this->loader->setClasses($classes);
+            // done!
+            return;
+        }
+        
+        // add namespace prefixes
+        $this->loader->add('Aura\Framework\\', $this->system->getPackagePath('Aura.Framework/src'));
+        $this->loader->add('Aura\Di\\', $this->system->getPackagePath('Aura.Di/src'));
+    }
+    
     /**
      * 
      * Execute bootstrap in a web context.
