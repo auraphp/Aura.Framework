@@ -84,7 +84,7 @@ class Bootstrap
 
         // set the loader object
         $this->setLoader();
-        
+
         // set the DI container object
         $this->di = new DiContainer(new DiForge(new DiConfig));
 
@@ -105,6 +105,13 @@ class Bootstrap
         // done!
     }
 
+    /**
+     * 
+     * Set up the autoloader.
+     * 
+     * @return void
+     * 
+     */
     protected function setLoader()
     {
         // require the loader class files
@@ -124,9 +131,28 @@ class Bootstrap
             return;
         }
         
-        // add namespace prefixes
+        // add basic Aura namespace prefixes; we don't need Autoload because
+        // it's already been loaded
         $this->loader->add('Aura\Framework\\', $this->system->getPackagePath('Aura.Framework/src'));
         $this->loader->add('Aura\Di\\', $this->system->getPackagePath('Aura.Di/src'));
+        
+        // look for Composer namespaces
+        $file = $this->system->getVendorPath('composer/autoload_namespaces.php');
+        if (is_readable($file)) {
+            $namespaces = $this->load($file);
+            foreach ($namespaces as $prefix => $path) {
+                $this->loader->add($prefix, $path);
+            }
+        }
+        
+        // look for Composer classmap
+        $file = $this->system->getVendorPath('composer/autoload_classmap.php');
+        if (is_readable($file)) {
+            $classmap = $this->load($file);
+            $this->loader->addClasses($classmap);
+        }
+        
+        // done!
     }
     
     /**
