@@ -140,8 +140,10 @@ class Bootstrap
         $file = $this->system->getVendorPath('composer/autoload_namespaces.php');
         if (is_readable($file)) {
             $namespaces = $this->load($file);
-            foreach ($namespaces as $prefix => $path) {
-                $this->loader->add($prefix, $path);
+            foreach ($namespaces as $prefix => $paths) {
+                foreach ((array) $paths as $path) {
+                    $this->loader->add($prefix, $path);
+                }
             }
         }
         
