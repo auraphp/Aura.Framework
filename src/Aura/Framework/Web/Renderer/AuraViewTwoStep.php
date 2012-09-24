@@ -129,7 +129,7 @@ class AuraViewTwoStep extends AbstractRenderer
         $response = $this->controller->getResponse();
         if (! $response->getContent()) {
             $this->twostep->setData((array) $this->controller->getData());
-            $this->twostep->setAccept($this->controller->getContext()->getAccept('type'));
+            $this->twostep->setAccept((array) $this->controller->getContext()->getAccept('type'));
             $this->twostep->setInnerView($this->controller->getView());
             $this->twostep->setOuterView($this->controller->getLayout());
             $response->setContent($this->twostep->render());
