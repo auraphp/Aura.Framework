@@ -14,6 +14,7 @@ use Aura\Autoload\Loader;
 use Aura\Di\Container as DiContainer;
 use Aura\Di\Forge as DiForge;
 use Aura\Di\Config as DiConfig;
+use Exception;
 
 /**
  * 
@@ -121,20 +122,18 @@ class Bootstrap
         $this->loader = new Loader;
         $this->loader->register();
 
-        // is there a cached class map?
+        // is there a cached class map for Aura packages?
         $classmap = $this->system->getTmpPath("cache/classmap.php");
         if (is_readable($classmap)) {
-            // load all classes from a map
+            // use a class map instead of prefixes/paths
             $classes = $this->load($classmap);
             $this->loader->setClasses($classes);
-            // done!
-            return;
+        } else {
+            // add basic Aura namespace prefixes; we don't need Autoload
+            // because it's already been loaded
+            $this->loader->add('Aura\Framework\\', $this->system->getPackagePath('Aura.Framework/src'));
+            $this->loader->add('Aura\Di\\', $this->system->getPackagePath('Aura.Di/src'));
         }
-        
-        // add basic Aura namespace prefixes; we don't need Autoload because
-        // it's already been loaded
-        $this->loader->add('Aura\Framework\\', $this->system->getPackagePath('Aura.Framework/src'));
-        $this->loader->add('Aura\Di\\', $this->system->getPackagePath('Aura.Di/src'));
         
         // look for Composer namespaces
         $file = $this->system->getVendorPath('composer/autoload_namespaces.php');
@@ -196,7 +195,14 @@ class Bootstrap
             $command = $this->di->newInstance($class);
             $command->exec();
         } catch (Exception $e) {
-            echo $e . PHP_EOL;
+            $message = $e->getMessage();
+            if ($message == 'Unknown exception') {
+                // generic PHP exception, dump the whole exception
+                echo $e . PHP_EOL;
+            } else {
+                // show only the message
+                echo $message . PHP_EOL;
+            }
             exit(1);
         }
     }
