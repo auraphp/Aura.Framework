@@ -11,10 +11,11 @@
 namespace Aura\Framework;
 
 use Aura\Autoload\Loader;
+use Aura\Cli\Exception as CliException;
 use Aura\Di\Container as DiContainer;
 use Aura\Di\Forge as DiForge;
 use Aura\Di\Config as DiConfig;
-use Exception;
+use Exception as PhpException;
 
 /**
  * 
@@ -171,7 +172,7 @@ class Bootstrap
             $response = $front->exec();
             $transport = $this->di->get('http_transport');
             $transport->sendResponse($response);
-        } catch (Exception $e) {
+        } catch (PhpException $e) {
             echo $e . PHP_EOL;
             exit(1);
         }
@@ -194,15 +195,11 @@ class Bootstrap
             $context->shiftArgv();
             $command = $this->di->newInstance($class);
             $command->exec();
-        } catch (Exception $e) {
-            $message = $e->getMessage();
-            if ($message == 'Unknown exception') {
-                // generic PHP exception, dump the whole exception
-                echo $e . PHP_EOL;
-            } else {
-                // show only the message
-                echo $message . PHP_EOL;
-            }
+        } catch (CliException $e) {
+            echo $e->getMessage() . PHP_EOL;
+            exit(1);
+        } catch (PhpException $e) {
+            echo $e . PHP_EOL;
             exit(1);
         }
     }
