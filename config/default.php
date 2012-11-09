@@ -52,7 +52,7 @@ $di->params['Aura\View\HelperLocator']['registry']['assetHref'] = function() use
 };
 
 $di->params['Aura\Framework\View\Helper\Route'] = [
-    'router' => $di->lazyGet('router_map')
+    'router' => $di->lazyGet('router_map'),
 ];
 
 $di->params['Aura\View\HelperLocator']['registry']['route'] = function() use ($di) {
@@ -69,3 +69,9 @@ $di->params['Aura\Framework\Web\Renderer\AuraViewTwoStep'] = [
  */
 $di->set('framework_inflect', $di->lazyNew('Aura\Framework\Inflect'));
 $di->set('web_front', $di->lazyNew('Aura\Framework\Web\Controller\Front'));
+$di->set('signal_manager', $di->lazyNew('Aura\Framework\Signal\Manager'));
+
+/**
+ * Overrides from other packages
+ */
+$di->params['Aura\Intl\TranslatorLocator']['factory'] = $di->lazyNew('Aura\Framework\Intl\TranslatorFactory');
