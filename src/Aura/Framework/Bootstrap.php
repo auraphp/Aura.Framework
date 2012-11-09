@@ -15,7 +15,7 @@ use Aura\Cli\Exception as CliException;
 use Aura\Di\Container as DiContainer;
 use Aura\Di\Forge as DiForge;
 use Aura\Di\Config as DiConfig;
-use Exception as PhpException;
+use Exception;
 
 /**
  * 
@@ -172,7 +172,7 @@ class Bootstrap
             $response = $front->exec();
             $transport = $this->di->get('http_transport');
             $transport->sendResponse($response);
-        } catch (PhpException $e) {
+        } catch (Exception $e) {
             echo $e . PHP_EOL;
             exit(1);
         }
@@ -195,10 +195,7 @@ class Bootstrap
             $context->shiftArgv();
             $command = $this->di->newInstance($class);
             $command->exec();
-        } catch (CliException $e) {
-            echo $e->getMessage() . PHP_EOL;
-            exit(1);
-        } catch (PhpException $e) {
+        } catch (Exception $e) {
             echo $e . PHP_EOL;
             exit(1);
         }
