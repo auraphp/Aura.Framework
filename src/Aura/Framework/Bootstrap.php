@@ -184,7 +184,7 @@ class Bootstrap
      * 
      * @param string $class The command class to instantiate and execute.
      * 
-     * @return void
+     * @return int The return code from the command.
      * 
      */
     public function execCli($class)
@@ -194,10 +194,10 @@ class Bootstrap
             $context = $this->di->get('cli_context');
             $context->shiftArgv();
             $command = $this->di->newInstance($class);
-            $command->exec();
+            return (int) $command->exec();
         } catch (Exception $e) {
             echo $e . PHP_EOL;
-            exit(1);
+            return $e->getCode();
         }
     }
 
