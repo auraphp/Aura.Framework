@@ -13,6 +13,7 @@ namespace Aura\Framework\Web\Renderer;
 use Aura\Framework\Inflect;
 use Aura\View\TwoStep;
 use Aura\Web\Renderer\AbstractRenderer;
+use Aura\Web\Controller\ControllerInterface;
 
 /**
  * 
@@ -80,8 +81,11 @@ class AuraViewTwoStep extends AbstractRenderer
      * @return void
      * 
      */
-    protected function prep()
+    public function setController(ControllerInterface $controller)
     {
+        // retain the controller
+        $this->controller = $controller;
+        
         // get all included files
         $includes = array_reverse(get_included_files());
 
