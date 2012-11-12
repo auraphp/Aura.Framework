@@ -1,5 +1,6 @@
 <?php
 namespace Aura\Framework\Cli;
+use Aura\Cli\ExceptionFactory;
 use Aura\Cli\Getopt;
 use Aura\Cli\Stdio;
 use Aura\Cli\StdioResource;
@@ -11,6 +12,8 @@ use Aura\Signal\HandlerFactory;
 use Aura\Signal\ResultFactory;
 use Aura\Signal\ResultCollection;
 use Aura\Framework\Mock\System;
+use Aura\Framework\Intl\Translator;
+use Aura\Intl\BasicFormatter;
 
 /**
  * Test class for Command.
@@ -72,8 +75,14 @@ abstract class AbstractCommandTest extends \PHPUnit_Framework_TestCase
         
         $this->stdio = new Stdio($stdin, $stdout, $stderr, $vt100);
         
-        $option_factory = new OptionFactory();
-        $this->getopt = new Getopt($option_factory);
+        $option_factory = new OptionFactory;
+        $exception_factory = new ExceptionFactory(new Translator(
+            'en_US',
+            [],
+            new BasicFormatter,
+            null
+        ));
+        $this->getopt = new Getopt($option_factory, $exception_factory);
         
         $this->signal = new Manager(new HandlerFactory, new ResultFactory, new ResultCollection);
         
