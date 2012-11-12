@@ -68,5 +68,6 @@ $di->params['Aura\Framework\Web\Renderer\AuraViewTwoStep'] = [
  * Dependency services.
  */
 $di->set('framework_inflect', $di->lazyNew('Aura\Framework\Inflect'));
-$di->set('web_front', $di->lazyNew('Aura\Framework\Web\Controller\Front'));
+$di->set('intl_translator_locator', $di->lazyNew('Aura\Intl\TranslatorLocator'));
 $di->set('signal_manager', $di->lazyNew('Aura\Framework\Signal\Manager'));
+$di->set('web_front', $di->lazyNew('Aura\Framework\Web\Controller\Front'));
