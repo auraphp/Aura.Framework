@@ -26,6 +26,7 @@ $di->setter['Aura\Framework\Cli\MakeTest\Command'] = [
 
 $di->params['Aura\Framework\Web\Controller\Factory'] = [
     'forge' => $di->getForge(),
+    'not_found' => 'Aura\Framework\Web\NotFound\Page',
 ];
 
 $di->params['Aura\Framework\Web\Controller\Front'] = [
@@ -39,12 +40,6 @@ $di->params['Aura\Framework\Web\Controller\Front'] = [
 $di->setter['Aura\Framework\Web\Controller\AbstractPage'] = [
     'setRouter'  => $di->lazyGet('router_map'),
     'setSystem'  => $di->lazyGet('framework_system'),
-];
-
-$di->setter['Aura\Framework\Web\Asset\Page'] = [
-    'setSystem'           => $di->lazyGet('framework_system'),
-    'setWebCacheDir'      => 'cache/asset',
-    'setCacheConfigModes' => ['prod', 'staging'],
 ];
 
 $di->params['Aura\View\HelperLocator']['registry']['assetHref'] = function() use ($di) {

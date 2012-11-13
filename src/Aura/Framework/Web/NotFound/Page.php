@@ -42,14 +42,16 @@ class Page extends AbstractPage
      */
     public function actionIndex()
     {
+        $request_uri = $this->context->getServer('REQUEST_URI', '/');
+        
         $uri = htmlspecialchars(
-            var_export($this->context->getServer('REQUEST_URI'), true),
+            var_export($request_uri, true),
             ENT_QUOTES,
             'UTF-8'
         );
-
+        
         $path = htmlspecialchars(
-            var_export($this->context->getServer('PATH_INFO', '/'), true),
+            var_export(parse_url($request_uri, PHP_URL_PATH), true),
             ENT_QUOTES,
             'UTF-8'
         );

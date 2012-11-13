@@ -25,7 +25,7 @@ class PageTest extends AbstractPageTest
     </head>
     <body>
         <h1>404 Not Found</h1>
-        <p>No controller found for <code>NULL</code></p>
+        <p>No controller found for <code>&#039;/&#039;</code></p>
         <p>Please check that your config has:</p>
         <ol>
             <li>An <code>Aura\Router\Map</code> route for the path <code>&#039;/&#039;</code></li>
