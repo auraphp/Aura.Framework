@@ -58,9 +58,8 @@ class Command extends AbstractCommand
         // the eventual class map
         $classmap = [];
 
-        // get the list of all packages in the system
-        $package_glob = $this->system->getPackagePath('*');
-        $package_list = glob($package_glob, GLOB_ONLYDIR);
+        // get the list of all packages
+        $package_list = file($this->system->getConfigPath('_packages'));
 
         // retain the actual path to the packages, and create a "fake" path
         // with a literal '$system' in it, for use in the cached file.
@@ -72,10 +71,10 @@ class Command extends AbstractCommand
         );
 
         // go through each package in the system ...
-        foreach ($package_list as $package_dir) {
+        foreach ($package_list as $package_name) {
 
-            // ... and iterate over its src dir
-            $path = $package_dir . DIRECTORY_SEPARATOR . 'src';
+            $package_name = trim($package_name);
+            $path = $this->system->getPackagePath("{$package_name}/src");
             $items = new \RecursiveIteratorIterator(
                 new \RecursiveDirectoryIterator($path),
                 \RecursiveIteratorIterator::SELF_FIRST
