@@ -64,10 +64,15 @@ $di->params['Aura\Framework\Web\Renderer\AuraViewTwoStep'] = [
     'inflect' => $di->lazyGet('framework_inflect'),
 ];
 
+// override the factory for translator locator
+$di->params['Aura\Intl\TranslatorLocator']['factory'] = $di->lazyNew('Aura\Framework\Intl\TranslatorFactory');
+
+
 /**
  * Dependency services.
  */
 $di->set('framework_inflect', $di->lazyNew('Aura\Framework\Inflect'));
-$di->set('intl_translator_locator', $di->lazyNew('Aura\Intl\TranslatorLocator'));
-$di->set('signal_manager', $di->lazyNew('Aura\Framework\Signal\Manager'));
 $di->set('web_front', $di->lazyNew('Aura\Framework\Web\Controller\Front'));
+
+// override the service for signal manager
+$di->set('signal_manager', $di->lazyNew('Aura\Framework\Signal\Manager'));
