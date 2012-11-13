@@ -171,8 +171,6 @@ class Config
                           . 'config' . DIRECTORY_SEPARATOR
                           . 'default.php';
 
-            var_dump($package_file);
-            
             if (is_readable($package_file)) {
                 $this->load($package_file, $this->system, $this->loader, $this->di);
             }
