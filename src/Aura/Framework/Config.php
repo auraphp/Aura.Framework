@@ -156,14 +156,23 @@ class Config
      */
     public function loadFromPackages()
     {
-        $package_glob = $this->system->getPackagePath('*');
-        $package_list = glob($package_glob, GLOB_ONLYDIR);
-        foreach ($package_list as $package_path) {
-
+        $package_path = $this->system->getPackagePath();
+        $package_list = file($this->system->getConfigPath('_packages'));
+        foreach ($package_list as $package_name) {
+            
+            $package_name = trim($package_name);
+            if (! $package_name) {
+                continue;
+            }
+            
             // load its default config file, if any
             $package_file = $package_path . DIRECTORY_SEPARATOR
+                          . $package_name . DIRECTORY_SEPARATOR
                           . 'config' . DIRECTORY_SEPARATOR
                           . 'default.php';
+
+            var_dump($package_file);
+            
             if (is_readable($package_file)) {
                 $this->load($package_file, $this->system, $this->loader, $this->di);
             }
