@@ -21,7 +21,7 @@ use Aura\Intl\BasicFormatter;
  */
 abstract class AbstractCommandTest extends \PHPUnit_Framework_TestCase
 {
-    protected $command_name;
+    protected $command_class;
     
     protected $stdio;
     
@@ -61,7 +61,6 @@ abstract class AbstractCommandTest extends \PHPUnit_Framework_TestCase
         
         $this->context = new Context($GLOBALS);
         
-        $sub = "test/Aura.Framework/Cli/{$this->command_name}/Command";
         $this->tmp_dir =  $this->system->getTmpPath();
         
         // use files because we can't use php://memory in proc_open() calls
@@ -86,7 +85,7 @@ abstract class AbstractCommandTest extends \PHPUnit_Framework_TestCase
         
         $this->signal = new Manager(new HandlerFactory, new ResultFactory, new ResultCollection);
         
-        $class = "\Aura\Framework\Cli\\{$this->command_name}\Command";
+        $class = $this->command_class;
         $command = new $class(
             $this->context,
             $this->stdio,

@@ -8,10 +8,7 @@ use Aura\Framework\Cli\AbstractCommandTest;
  */
 class CommandTest extends AbstractCommandTest
 {
-    /**
-     * @var Command
-     */
-    protected $command_name = 'CacheClassmap';
+    protected $command_class = '\Aura\Framework\Cli\CacheClassmap\Command';
     
     protected function newCommand($argv = [], $system_dir = null)
     {

@@ -9,7 +9,7 @@ use Aura\Framework\Web\Controller\AbstractPageTest;
  */
 class PageTest extends AbstractPageTest
 {
-    protected $page_name = 'NotFound';
+    protected $page_class = '\Aura\Framework\Web\NotFound\Page';
     
     public function testActionIndex()
     {

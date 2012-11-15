@@ -7,7 +7,7 @@ use Aura\Framework\Cli\AbstractCommandTest;
  */
 class CommandTest extends AbstractCommandTest
 {
-    protected $command_name = 'MakeTest';
+    protected $command_class = '\Aura\Framework\Cli\MakeTest\Command';
     
     protected function newCommand($argv = [])
     {

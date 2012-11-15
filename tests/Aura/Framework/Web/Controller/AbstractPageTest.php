@@ -24,7 +24,7 @@ use Aura\Web\Response;
  */
 abstract class AbstractPageTest extends \PHPUnit_Framework_TestCase
 {
-    protected $page_name;
+    protected $page_class;
 
     protected function newPage($params = [])
     {
@@ -49,7 +49,7 @@ abstract class AbstractPageTest extends \PHPUnit_Framework_TestCase
         $renderer           = new Renderer($twostep, new Inflect);
         
         // page
-        $class = "\Aura\Framework\Web\\{$this->page_name}\Page";
+        $class = $this->page_class;
         $page = new $class(
             $context,
             $response,
