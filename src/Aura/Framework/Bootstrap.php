@@ -213,7 +213,7 @@ class Bootstrap
      */
     public function load($file)
     {
-        $system = $this->system->getRootPath();
+        $system = $this->system;
         $loader = $this->loader;
         $di = $this->di;
         return require $file;
