@@ -5,6 +5,7 @@ use Aura\Framework\Inflect;
 use Aura\Framework\Signal\Manager as SignalManager;
 use Aura\Framework\Web\Renderer\AuraViewTwoStep as Renderer;
 use Aura\Router\Map as RouterMap;
+use Aura\Router\DefinitionFactory;
 use Aura\Router\RouteFactory;
 use Aura\Signal\HandlerFactory;
 use Aura\Signal\ResultCollection;
@@ -59,7 +60,7 @@ abstract class AbstractPageTest extends \PHPUnit_Framework_TestCase
         );
         
         // add router to page
-        $router = new RouterMap(new RouteFactory);
+        $router = new RouterMap(new DefinitionFactory, new RouteFactory);
         $page->setRouter($router);
         
         // done!

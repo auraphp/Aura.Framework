@@ -11,6 +11,7 @@ use Aura\Http\Header\Factory as HeaderFactory;
 use Aura\Http\Message\Response as HttpResponse;
 use Aura\Router\Map as RouterMap;
 use Aura\Router\RouteFactory;
+use Aura\Router\DefinitionFactory;
 use Aura\Signal\HandlerFactory;
 use Aura\Signal\Manager as SignalManager;
 use Aura\Signal\ResultCollection;
@@ -46,7 +47,7 @@ class FrontTest extends \PHPUnit_Framework_TestCase
         $_SERVER['PATH_INFO'] = $path_info;
         $this->context = new Context($GLOBALS);
         
-        $this->router = new RouterMap(new RouteFactory);
+        $this->router = new RouterMap(new DefinitionFactory, new RouteFactory);
         $this->router->add(null, '/mock', [
             'values' => [
                 'controller' => 'mock',

@@ -49,6 +49,17 @@ class SystemTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expect, $actual);
     }
     
+    
+    public function test__toString()
+    {
+        $expect = dirname(dirname(__DIR__))
+                . DIRECTORY_SEPARATOR . 'tmp';
+        
+        $actual = (string) $this->system;
+        
+        $this->assertSame($expect, $actual);
+    }
+    
     /**
      * @todo Implement testGetPackagePath().
      */
