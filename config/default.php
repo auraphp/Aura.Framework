@@ -18,9 +18,7 @@ $di->setter['Aura\Framework\Cli\CacheConfig\Command'] = [
     'setSystem'  => $di->lazyGet('framework_system'),
 ];
 
-$di->setter['Aura\Framework\Cli\MakeTest\Command'] = [
-    'setPhpunit' => 'phpunit',
-    'setBootstrap' => dirname(__DIR__) . '/tests/bootstrap.php',
+$di->setter['Aura\Framework\Cli\Server\Command'] = [
     'setSystem'  => $di->lazyGet('framework_system'),
 ];
 
@@ -58,6 +56,13 @@ $di->params['Aura\Framework\Web\Renderer\AuraViewTwoStep'] = [
     'twostep' => $di->lazyNew('Aura\View\TwoStep'),
     'inflect' => $di->lazyGet('framework_inflect'),
 ];
+
+$di->params['Aura\Framework\Bootstrap\Cli']['forge'] = $di->getForge();
+$di->params['Aura\Framework\Bootstrap\Cli']['context'] = $di->lazyGet('cli_context');
+
+$di->params['Aura\Framework\Bootstrap\Web']['front_controller'] = $di->lazyGet('web_front');
+$di->params['Aura\Framework\Bootstrap\Web']['http_transport'] = $di->lazyGet('http_transport');
+
 
 // override the factory for translator locator
 $di->params['Aura\Intl\TranslatorLocator']['factory'] = $di->lazyNew('Aura\Framework\Intl\TranslatorFactory');

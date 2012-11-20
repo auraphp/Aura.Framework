@@ -1,5 +1,72 @@
 <?php
-require dirname(__DIR__) . '/src/Aura/Framework/Bootstrap.php';
-$bootstrap = new \Aura\Framework\Bootstrap;
-$return = $bootstrap->execCli('Aura\\Framework\\Cli\\MakeTest\\Command');
-exit($return);
+/**
+ * 
+ * This file is part of the Aura project for PHP.
+ * 
+ * Uses phpunit-skelgen to create a test file.
+ * 
+ * @package Aura.Framework
+ * 
+ * @license http://opensource.org/licenses/bsd-license.php BSD
+ * 
+ */
+// get rid of the script invocation
+$script = array_shift($_SERVER['argv']);
+
+// get the src file
+$src_file = array_shift($_SERVER['argv']);
+if (! $src_file) {
+    echo "Please enter a package src file name to make a test from." . PHP_EOL;
+    exit(1);
+}
+
+// does it exist?
+if (! file_exists($src_file)) {
+    echo "Package src file does not exist: '$src_file'" . PHP_EOL;
+    exit(1);
+}
+
+// what is the test file to be created?
+$test_file = str_replace(
+    DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR,
+    DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR,
+    $src_file
+);
+$test_file = str_replace('.php', 'Test.php', $test_file);
+
+// don't overwrite an existing test file
+if (file_exists($test_file)) {
+    echo "Package test file already exists: '$test_file'" . PHP_EOL;
+    exit(1);
+}
+
+// recursively create the test dir if needed
+$test_dir = dirname($test_file);
+if (! is_dir($test_dir)) {
+    mkdir($test_dir, 0777, true);
+}
+
+// strip off the package src directory prefix
+$find = '#'
+      . 'package' . DIRECTORY_SEPARATOR
+      . '.*' . DIRECTORY_SEPARATOR
+      . 'src' . DIRECTORY_SEPARATOR
+      . '#';
+
+// strip .php at the same time
+$src_class = preg_replace($find, '', substr($src_file, 0, -4));
+
+// replace directory separators with double namespace separators
+$src_class = str_replace(DIRECTORY_SEPARATOR, '\\\\', $src_class);
+
+// create the test class name
+$test_class = $src_class . 'Test';
+
+// the bootstrap file for loading classes as needed
+$bootstrap = dirname(__DIR__) . DIRECTORY_SEPARATOR
+           . 'tests' . DIRECTORY_SEPARATOR
+           . 'bootstrap.php';
+
+// create and run the phpunit-skelgen command
+$cmd = "phpunit-skelgen --bootstrap $bootstrap --test -- $src_class $src_file $test_class $test_file";
+passthru($cmd);

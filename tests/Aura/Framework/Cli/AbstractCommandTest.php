@@ -11,7 +11,8 @@ use Aura\Framework\Signal\Manager;
 use Aura\Signal\HandlerFactory;
 use Aura\Signal\ResultFactory;
 use Aura\Signal\ResultCollection;
-use Aura\Framework\Mock\System;
+use Aura\Framework\System;
+use Aura\Framework\VfsSystem;
 use Aura\Framework\Intl\Translator;
 use Aura\Intl\BasicFormatter;
 
@@ -41,9 +42,8 @@ abstract class AbstractCommandTest extends \PHPUnit_Framework_TestCase
     
     public function setUp()
     {
-        $root = dirname(dirname(dirname(__DIR__)));
-        $this->system = System::newInstance($root);
-        $this->system->create();
+        $root = VfsSystem::create('root');
+        $this->system = new System($root);
     }
     
     public function tearDown()
@@ -52,7 +52,6 @@ abstract class AbstractCommandTest extends \PHPUnit_Framework_TestCase
         unset($this->stdio);
         unlink($this->outfile);
         unlink($this->errfile);
-        $this->system->remove();
     }
     
     protected function newCommand($argv = [])
