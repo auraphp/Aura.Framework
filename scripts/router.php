@@ -9,8 +9,7 @@
  * 
  */
 
-$root      = substr(__DIR__, 0, strrpos(__DIR__, 'package'));
-$root      = $root . 'web';
+$root      = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'web';
 $has_index = strpos(strtolower($_SERVER['REQUEST_URI']), '/index.php');
 
 if (false === $has_index && file_exists($root . $_SERVER['REQUEST_URI'])) {

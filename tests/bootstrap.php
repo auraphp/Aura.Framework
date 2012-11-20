@@ -33,6 +33,17 @@ spl_autoload_register(function($class) {
         require $tmp;
         return;
     }
+    
+    // look in the include-path
+    $dirs = explode(PATH_SEPARATOR, get_include_path());
+    foreach ($dirs as $dir) {
+        $tmp = $dir . DIRECTORY_SEPARATOR . $file;
+        var_dump($tmp);
+        if (is_readable($tmp)) {
+            require $tmp;
+            return;
+        }
+    }
 });
 
 // load source files after autoload

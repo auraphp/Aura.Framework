@@ -22,7 +22,7 @@ if (! $src_file) {
 
 // does it exist?
 if (! file_exists($src_file)) {
-    echo "Package src file does not exist." . PHP_EOL;
+    echo "Package src file does not exist: '$src_file'" . PHP_EOL;
     exit(1);
 }
 
@@ -32,12 +32,18 @@ $test_file = str_replace(
     DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR,
     $src_file
 );
-$test_file = str_replace('.php', 'Test.php', $src_file);
+$test_file = str_replace('.php', 'Test.php', $test_file);
 
 // don't overwrite an existing test file
 if (file_exists($test_file)) {
-    echo "Package test file already exists." . PHP_EOL;
+    echo "Package test file already exists: '$test_file'" . PHP_EOL;
     exit(1);
+}
+
+// recursively create the test dir if needed
+$test_dir = dirname($test_file);
+if (! is_dir($test_dir)) {
+    mkdir($test_dir, 0777, true);
 }
 
 // strip off the package src directory prefix

@@ -148,7 +148,7 @@ class Command extends AbstractCommand
         }
         $cmd .= " --skeleton-test '{$class}' {$source_file}";
 
-        exec($cmd);
+        passthru($cmd);
 
         // did it get created?
         if (! is_readable($create_file)) {
