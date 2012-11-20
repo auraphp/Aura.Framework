@@ -25,3 +25,6 @@ spl_autoload_register(function($class) {
         require $tests;
     }
 });
+
+// load source files after autoload
+require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'src.php';
