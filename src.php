@@ -1,10 +1,12 @@
 <?php
-require_once __DIR__ . '/src/Aura/Framework/Bootstrap.php';
+require_once __DIR__ . '/src/Aura/Framework/Autoload/Loader.php';
+require_once __DIR__ . '/src/Aura/Framework/Bootstrap/Factory.php';
+require_once __DIR__ . '/src/Aura/Framework/Bootstrap/Cli.php';
+require_once __DIR__ . '/src/Aura/Framework/Bootstrap/Web.php';
 require_once __DIR__ . '/src/Aura/Framework/Cli/AbstractCommand.php';
 require_once __DIR__ . '/src/Aura/Framework/Cli/CacheClassmap/Command.php';
 require_once __DIR__ . '/src/Aura/Framework/Cli/CacheConfig/Command.php';
 require_once __DIR__ . '/src/Aura/Framework/Cli/Server/Command.php';
-require_once __DIR__ . '/src/Aura/Framework/Config.php';
 require_once __DIR__ . '/src/Aura/Framework/Exception.php';
 require_once __DIR__ . '/src/Aura/Framework/Exception/NoClassForController.php';
 require_once __DIR__ . '/src/Aura/Framework/Inflect.php';
