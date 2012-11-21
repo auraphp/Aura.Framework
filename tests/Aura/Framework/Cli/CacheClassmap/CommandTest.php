@@ -1,5 +1,6 @@
 <?php
 namespace Aura\Framework\Cli\CacheClassmap;
+
 use Aura\Framework\Cli\AbstractCommandTest;
 
 /**

@@ -30,13 +30,18 @@ class Factory
         'web' => 'Aura\Framework\Bootstrap\Web',
     ];
     
-    public function __construct($root = null)
+    public function __construct($root = null, array $map = null)
     {
         if (! $root) {
             // system/package/Aura.Framework/src/Aura/Framework/Bootstrap/Factory.php
             $root = dirname(dirname(dirname(dirname(dirname(dirname(__DIR__))))));
         }
+        
         $this->root = $root;
+        
+        if ($map) {
+            $this->map = array_merge($this->map, $map);
+        }
     }
     
     public function newInstance($type, $mode = null)
@@ -54,7 +59,7 @@ class Factory
         ini_set('html_errors', false);
 
         // create the system object
-        require dirname(__DIR__) . '/System.php';
+        require_once dirname(__DIR__) . '/System.php';
         $system = new System($this->root);
         
         // set the include path

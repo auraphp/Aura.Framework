@@ -40,13 +40,13 @@ abstract class AbstractCommandTest extends \PHPUnit_Framework_TestCase
     
     protected $errfile;
     
-    public function setUp()
+    protected function setUp()
     {
         $root = VfsSystem::create('root');
         $this->system = new System($root);
     }
     
-    public function tearDown()
+    protected function tearDown()
     {
         parent::tearDown();
         unset($this->stdio);

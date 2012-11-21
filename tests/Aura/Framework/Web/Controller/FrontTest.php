@@ -44,7 +44,7 @@ class FrontTest extends \PHPUnit_Framework_TestCase
         
         $this->signal = new SignalManager(new HandlerFactory, new ResultFactory, new ResultCollection);
         
-        $_SERVER['PATH_INFO'] = $path_info;
+        $_SERVER['REQUEST_URI'] = $path_info;
         $this->context = new Context($GLOBALS);
         
         $this->router = new RouterMap(new DefinitionFactory, new RouteFactory);
@@ -98,7 +98,7 @@ class FrontTest extends \PHPUnit_Framework_TestCase
         $front = $this->newFront('/mock');
         $response = $front->exec();
         $this->assertInstanceOf('Aura\Http\Message\Response', $response);
-        $expect = "Aura\Framework\Mock\NotFound::exec";
+        $expect = "Aura\Framework\Mock\Page::exec";
         $actual = $response->getContent();
         $this->assertSame($expect, $actual);
     }

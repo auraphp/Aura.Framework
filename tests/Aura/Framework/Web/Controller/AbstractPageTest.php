@@ -3,6 +3,7 @@ namespace Aura\Framework\Web\Controller;
 
 use Aura\Framework\Inflect;
 use Aura\Framework\Signal\Manager as SignalManager;
+use Aura\Framework\System;
 use Aura\Framework\Web\Renderer\AuraViewTwoStep as Renderer;
 use Aura\Router\Map as RouterMap;
 use Aura\Router\DefinitionFactory;
@@ -63,7 +64,25 @@ abstract class AbstractPageTest extends \PHPUnit_Framework_TestCase
         $router = new RouterMap(new DefinitionFactory, new RouteFactory);
         $page->setRouter($router);
         
+        // add system to page; use the real system
+        // system/package/Aura.Framework/Web/Controller/AbstractPageTest.php
+        $root = dirname(dirname(dirname(dirname(__DIR__))));
+        $system = new System($root);
+        $page->setSystem($system);
+        
         // done!
         return $page;
+    }
+    
+    public function testGetLayout()
+    {
+        $page = $this->newPage();
+        $this->assertNull($page->getLayout());
+    }
+    
+    public function testGetView()
+    {
+        $page = $this->newPage();
+        $this->assertNull($page->getView());
     }
 }
