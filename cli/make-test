@@ -65,8 +65,8 @@ $test_class = $src_class . 'Test';
 
 // the bootstrap file for loading classes as needed
 $bootstrap = dirname(__DIR__) . DIRECTORY_SEPARATOR
-           . 'tests' . DIRECTORY_SEPARATOR
-           . 'bootstrap.php';
+           . 'scripts' . DIRECTORY_SEPARATOR
+           . 'skelgen-bootstrap.php';
 
 // create and run the phpunit-skelgen command
 $cmd = "phpunit-skelgen --bootstrap $bootstrap --test -- $src_class $src_file $test_class $test_file";
