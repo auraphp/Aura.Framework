@@ -19,8 +19,8 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
     {
         // use the real system root
         $root = null;
-        $map = ['mock' => 'Aura\Framework\Mock\Boostrap'];
-        $this->factory = new Factory(null, $map);
+        $map = ['mock' => 'Aura\Framework\Mock\Bootstrap'];
+        $this->factory = new Factory($root, $map);
     }
 
     /**
@@ -37,6 +37,7 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testExec()
     {
-        $this->markTestIncomplete('Figure out how to run with PHPUnit bootstrap.');
+        $bootstrap = $this->factory->newInstance('mock');
+        $this->assertInstanceOf('Aura\Framework\Mock\Bootstrap', $bootstrap);
     }
 }
