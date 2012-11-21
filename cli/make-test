@@ -3,7 +3,8 @@
  * 
  * This file is part of the Aura project for PHP.
  * 
- * Uses phpunit-skelgen to create a test file.
+ * Uses phpunit-skelgen to create a test file. We use a plain script instead
+ * of Aura.Cli because we can't test phpunit-skelgen with a VfsStream.
  * 
  * @package Aura.Framework
  * 

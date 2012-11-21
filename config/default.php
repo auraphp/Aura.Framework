@@ -57,11 +57,17 @@ $di->params['Aura\Framework\Web\Renderer\AuraViewTwoStep'] = [
     'inflect' => $di->lazyGet('framework_inflect'),
 ];
 
-$di->params['Aura\Framework\Bootstrap\Cli']['forge'] = $di->getForge();
+$di->params['Aura\Framework\Cli\Factory']['forge'] = $di->getForge();
+
+$di->params['Aura\Framework\Bootstrap\Cli']['factory'] = $di->lazyNew('Aura\Framework\Cli\Factory');
 $di->params['Aura\Framework\Bootstrap\Cli']['context'] = $di->lazyGet('cli_context');
 
 $di->params['Aura\Framework\Bootstrap\Web']['front_controller'] = $di->lazyGet('web_front');
 $di->params['Aura\Framework\Bootstrap\Web']['http_transport'] = $di->lazyGet('http_transport');
+
+$di->params['Aura\Framework\Cli\Factory']['map']["$system/package/Aura.Framework/cli/cache-classmap"] = 'Aura\Framework\Cli\CacheClassmap\Command';
+$di->params['Aura\Framework\Cli\Factory']['map']["$system/package/Aura.Framework/cli/cache-config"] = 'Aura\Framework\Cli\CacheConfig\Command';
+$di->params['Aura\Framework\Cli\Factory']['map']["$system/package/Aura.Framework/cli/server"] = 'Aura\Framework\Cli\Server\Command';
 
 
 // override the factory for translator locator

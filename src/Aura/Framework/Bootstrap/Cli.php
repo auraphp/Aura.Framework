@@ -2,16 +2,16 @@
 namespace Aura\Framework\Bootstrap;
 
 use Aura\Cli\Context;
-use Aura\Di\ForgeInterface;
+use Aura\Framework\Cli\Factory as CliFactory;
 
 class Cli
 {
     public function __construct(
         Context $context,
-        ForgeInterface $forge
+        CliFactory $factory
     ) {
         $this->context = $context;
-        $this->forge = $forge;
+        $this->factory = $factory;
     }
     
     /**
@@ -23,11 +23,13 @@ class Cli
      * @return int The return code from the command.
      * 
      */
-    public function exec($class)
+    public function exec($file)
     {
         try {
+            // remove the invoking-script argument
             $this->context->shiftArgv();
-            $command = $this->forge->newInstance($class);
+            // create and execute the command
+            $command = $this->factory->newInstance($file);
             return (int) $command->exec();
         } catch (Exception $e) {
             $this->echoException($e);
