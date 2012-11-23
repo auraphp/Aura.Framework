@@ -100,18 +100,14 @@ class Command extends AbstractCommand
         
         $this->stdio->outln($msg);
 
-        // change to the web root directory
-        chdir($this->system->getWebPath());
-        
-        // set the command
+        // set the process elements
+        $root   = $this->system->getWebPath();
         $router = $this->system->getPackagePath('Aura.Framework/scripts/router.php');
         $cmd    = "{$this->php} -S 0.0.0.0:{$this->getopt->port} {$router}";
+        $spec   = [0 => STDIN, 1 => STDOUT, 2 => STDERR];
         
-        // open the pipe and output it
-        $pipe = popen($cmd, 'r');
-        while (! feof($pipe)) {
-            $this->stdio->outln(fread($pipe, 8192));
-        }
-        pclose($pipe);
+        // run the command as a process
+        $process = proc_open($cmd, $spec, $pipes, $root);
+        proc_close($process);
     }
 }
