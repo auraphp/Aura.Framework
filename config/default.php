@@ -55,6 +55,7 @@ $di->params['Aura\View\HelperLocator']['registry']['route'] = function() use ($d
 $di->params['Aura\Framework\Web\Renderer\AuraViewTwoStep'] = [
     'twostep' => $di->lazyNew('Aura\View\TwoStep'),
     'inflect' => $di->lazyGet('framework_inflect'),
+    'accept'  => $di->lazyGet('web_accept'),
 ];
 
 $di->params['Aura\Framework\Cli\Factory']['forge'] = $di->getForge();

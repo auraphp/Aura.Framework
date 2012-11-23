@@ -13,6 +13,18 @@ class Page implements ControllerInterface
     
     /**
      * 
+     * Returns the Accept object.
+     * 
+     * @return Accept
+     * 
+     */
+    public function getAccept()
+    {
+        
+    }
+    
+    /**
+     * 
      * Returns the Context object.
      * 
      * @return Context

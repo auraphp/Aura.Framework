@@ -14,6 +14,7 @@ use Aura\Framework\Inflect;
 use Aura\View\TwoStep;
 use Aura\Web\Renderer\AbstractRenderer;
 use Aura\Web\Controller\ControllerInterface;
+use Aura\Web\Accept;
 
 /**
  * 
@@ -44,6 +45,15 @@ class AuraViewTwoStep extends AbstractRenderer
 
     /**
      * 
+     * An accept object.
+     * 
+     * @var Accept
+     * 
+     */
+    protected $accept;
+
+    /**
+     * 
      * Constructor.
      * 
      * @param TwoStep $twostep TwoStep View of Aura.View
@@ -53,10 +63,12 @@ class AuraViewTwoStep extends AbstractRenderer
      */
     public function __construct(
         TwoStep $twostep,
-        Inflect $inflect
+        Inflect $inflect,
+        Accept  $accept
     ) {
         $this->twostep = $twostep;
         $this->inflect = $inflect;
+        $this->accept  = $accept;
     }
 
     /**
@@ -133,7 +145,7 @@ class AuraViewTwoStep extends AbstractRenderer
         $response = $this->controller->getResponse();
         if (! $response->getContent()) {
             $this->twostep->setData((array) $this->controller->getData());
-            $this->twostep->setAccept((array) $this->controller->getContext()->getAccept('type'));
+            $this->twostep->setAccept($this->accept->getContentType());
             $this->twostep->setInnerView($this->controller->getView());
             $this->twostep->setOuterView($this->controller->getLayout());
             $response->setContent($this->twostep->render());

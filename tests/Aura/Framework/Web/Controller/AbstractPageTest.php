@@ -18,6 +18,7 @@ use Aura\View\Template;
 use Aura\View\TemplateFinder;
 use Aura\View\TwoStep;
 use Aura\Web\Context;
+use Aura\Web\Accept;
 use Aura\Web\Response;
 
 /**
@@ -32,6 +33,9 @@ abstract class AbstractPageTest extends \PHPUnit_Framework_TestCase
     {
         // context
         $context            = new Context($GLOBALS);
+        
+        // accept
+        $accept             = new Accept($_SERVER);
         
         // web response dto
         $response           = new Response;
@@ -48,12 +52,13 @@ abstract class AbstractPageTest extends \PHPUnit_Framework_TestCase
         $twostep            = new TwoStep($template, $format_types);
         
         // renderer
-        $renderer           = new Renderer($twostep, new Inflect);
+        $renderer           = new Renderer($twostep, new Inflect, $accept);
         
         // page
         $class = $this->page_class;
         $page = new $class(
             $context,
+            $accept,
             $response,
             $signal,
             $renderer,
