@@ -7,5 +7,5 @@ use Aura\Cli\TranslatorInterface as CliTranslatorInterface;
 class Translator extends IntlTranslator implements
     CliTranslatorInterface
 {
-    // do nothing, just extend and impelemnt
+    // do nothing, just extend and implement
 }

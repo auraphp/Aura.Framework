@@ -13,7 +13,7 @@ class Loader extends Autoloader
         $read = function ($file, $system) {
             return require $file;
         };
-        
+
         // is there a cached class map for Aura packages?
         $file = $system->getTmpPath("cache/classmap.php");
         if (is_readable($file)) {
@@ -23,7 +23,7 @@ class Loader extends Autoloader
         } else {
             $this->add('Aura\Framework\\', $system->getPackagePath('Aura.Framework/src'));
         }
-        
+
         // look for Composer namespaces
         $file = $system->getVendorPath('composer/autoload_namespaces.php');
         if (is_readable($file)) {
@@ -34,7 +34,7 @@ class Loader extends Autoloader
                 }
             }
         }
-        
+
         // look for Composer classmap
         $file = $system->getVendorPath('composer/autoload_classmap.php');
         if (is_readable($file)) {

@@ -13,12 +13,12 @@ class Cli
         $this->context = $context;
         $this->factory = $factory;
     }
-    
+
     /**
      * 
      * Execute bootstrap in a CLI context.
      * 
-     * @param string $class The command class to instantiate and execute.
+     * @param string $file The command class file to instantiate and execute.
      * 
      * @return int The return code from the command.
      * 
@@ -36,7 +36,7 @@ class Cli
             return $e->getCode();
         }
     }
-    
+
     /**
      * 
      * Echoes an exception and all its previous exceptions.
@@ -46,7 +46,7 @@ class Cli
      * @return void
      * 
      */
-    protected function echoExeception(Exception $e = null)
+    protected function echoException(Exception $e = null)
     {
         if ($e) {
             echo $e . PHP_EOL;

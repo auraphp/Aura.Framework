@@ -180,7 +180,7 @@ class Command extends AbstractCommand
      * 
      * @param string $spec The fully-qualified class specification.
      * 
-     * @return array A seqential array of vendor name, package name, and
+     * @return array A sequential array of vendor name, package name, and
      * class name.
      * 
      */

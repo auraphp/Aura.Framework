@@ -24,26 +24,26 @@ use Exception;
 class Factory
 {
     protected $root;
-    
+
     protected $map = [
         'cli' => 'Aura\Framework\Bootstrap\Cli',
         'web' => 'Aura\Framework\Bootstrap\Web',
     ];
-    
+
     public function __construct($root = null, array $map = null)
     {
         if (! $root) {
             // system/package/Aura.Framework/src/Aura/Framework/Bootstrap/Factory.php
             $root = dirname(dirname(dirname(dirname(dirname(dirname(__DIR__))))));
         }
-        
+
         $this->root = $root;
-        
+
         if ($map) {
             $this->map = array_merge($this->map, $map);
         }
     }
-    
+
     public function newInstance($type, $mode = null)
     {
         $di = $this->prep($mode);
@@ -61,22 +61,22 @@ class Factory
         // create the system object
         require_once dirname(__DIR__) . '/System.php';
         $system = new System($this->root);
-        
+
         // set the include path
         set_include_path($system->getIncludePath());
 
         // requires
         require_once $system->getPackagePath('Aura.Autoload/src.php');
         require_once $system->getPackagePath('Aura.Framework/src/Aura/Framework/Autoload/Loader.php');
-        
+
         // set the DI container object
         $di = require_once $system->getPackagePath('Aura.Di/scripts/instance.php');
-        
+
         // set the autoloader
         $loader = new Loader;
         $loader->prep($system);
         $loader->register();
-        
+
         // set framework services
         $di->set('framework_system', $system);
         $di->set('framework_loader', $loader);
@@ -90,26 +90,26 @@ class Factory
                 $mode = 'default';
             }
         }
-        
+
         // function to read config files in isolated scope
         $read = function ($file) use ($di, $system, $loader) {
             require $file;
         };
-        
+
         // read config files
         $cache = $this->readCacheConfig($system, $read, $mode);
         if (! $cache) {
             $this->readPackageConfig($system, $read, $mode);
         }
         $this->readSystemConfig($system, $read, $mode);
-        
+
         // lock the container
         $di->lock();
-        
+
         // done!
         return $di;
     }
-    
+
     /**
      * 
      * Reads the cached config file, if any.
@@ -121,7 +121,7 @@ class Factory
     {
         $file = $system->getTmpPath("cache/config/{$mode}.php");
         if (is_readable($file)) {
-            $read($cache_file);
+            $read($file);
             return true;
         }
     }
@@ -140,7 +140,7 @@ class Factory
             $read($file);
         }
     }
-    
+
     /**
      * 
      * Reads each package config file for the mode.
@@ -153,12 +153,12 @@ class Factory
         $package_path = $system->getPackagePath();
         $package_list = file($system->getConfigPath('_packages'));
         foreach ($package_list as $package_name) {
-            
+
             $package_name = trim($package_name);
             if (! $package_name) {
                 continue;
             }
-            
+
             // load its default config file, if any
             $package_file = $package_path . DIRECTORY_SEPARATOR
                           . $package_name . DIRECTORY_SEPARATOR
@@ -177,7 +177,7 @@ class Factory
             $package_file = $package_path . DIRECTORY_SEPARATOR
                             . 'config' . DIRECTORY_SEPARATOR
                             . "{$mode}.php";
-            
+
             if (is_readable($package_file)) {
                 $read($package_file);
             }

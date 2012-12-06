@@ -44,14 +44,14 @@ class System
      * 
      * When using as a string, return the root path only.
      * 
-     * @return The root directory of the Aura system.
+     * @return string The root directory of the Aura system.
      * 
      */
     public function __toString()
     {
         return $this->root;
     }
-    
+
     /**
      * 
      * Gets the path for any directory, along with an optional subdirectory
