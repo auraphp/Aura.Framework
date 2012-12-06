@@ -97,7 +97,7 @@ class AuraViewTwoStep extends AbstractRenderer
     {
         // retain the controller
         $this->controller = $controller;
-        
+
         // get all included files
         $includes = array_reverse(get_included_files());
 

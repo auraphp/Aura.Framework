@@ -40,7 +40,7 @@ class Command extends AbstractCommand
      * 
      */
     protected $system;
-    
+
     /**
      * 
      * Getopt definitions.
@@ -85,7 +85,7 @@ class Command extends AbstractCommand
     {
         $this->system = $system;
     }
-    
+
     /**
      * 
      * Setup and run the server.
@@ -97,7 +97,7 @@ class Command extends AbstractCommand
     {
         $msg = "Starting the Aura development server @ "
              . "http://localhost:{$this->getopt->port}/";
-        
+
         $this->stdio->outln($msg);
 
         // set the process elements
@@ -105,7 +105,7 @@ class Command extends AbstractCommand
         $router = $this->system->getPackagePath('Aura.Framework/scripts/router.php');
         $cmd    = "{$this->php} -S 0.0.0.0:{$this->getopt->port} {$router}";
         $spec   = [0 => STDIN, 1 => STDOUT, 2 => STDERR];
-        
+
         // run the command as a process
         $process = proc_open($cmd, $spec, $pipes, $root);
         proc_close($process);

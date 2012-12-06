@@ -49,9 +49,6 @@ class Factory
      * 
      * @param array $map A map of controller names to controller classes.
      * 
-     * @param string $not_found The controller class to instantiate when no 
-     * mapping is found.
-     * 
      */
     public function __construct(
         ForgeInterface $forge,
