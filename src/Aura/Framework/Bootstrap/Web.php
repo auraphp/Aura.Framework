@@ -46,7 +46,7 @@ class Web
      * 
      * @param FrontController $front_controller The front controller.
      * 
-     * @var HttpTransport $http_transport An HTTP transport.
+     * @param HttpTransport $http_transport An HTTP transport.
      * 
      */
     public function __construct(
