@@ -56,9 +56,11 @@ class AuraViewTwoStep extends AbstractRenderer
      * 
      * Constructor.
      * 
-     * @param TwoStep $twostep TwoStep View of Aura.View
+     * @param TwoStep $twostep A two-step view object.
      * 
-     * @param Inflect $inflect Inflect class to file
+     * @param Inflect $inflect An inflection object.
+     * 
+     * @param Accept $accept An Accept object for content types.
      * 
      */
     public function __construct(
@@ -73,7 +75,7 @@ class AuraViewTwoStep extends AbstractRenderer
 
     /**
      * 
-     * allows us to call, e.g., $renderer->addInnerPath() to override stuff
+     * Allows us to call, e.g., $renderer->addInnerPath() to override stuff
      * in a seemingly-direct manner.
      *
      * @param string $method Method to call.
@@ -88,7 +90,10 @@ class AuraViewTwoStep extends AbstractRenderer
 
     /**
      * 
-     * Prepares the renderer after setController().
+     * Sets the controller object; prepares the renderer with view and layout
+     * paths based on the controller path.
+     * 
+     * @param ControllerInterface $controller The controller object.
      * 
      * @return void
      * 

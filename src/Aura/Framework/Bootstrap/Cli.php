@@ -1,11 +1,54 @@
 <?php
+/**
+ * 
+ * This file is part of the Aura project for PHP.
+ * 
+ * @package Aura.Framework
+ * 
+ * @license http://opensource.org/licenses/bsd-license.php BSD
+ * 
+ */
 namespace Aura\Framework\Bootstrap;
 
 use Aura\Cli\Context;
 use Aura\Framework\Cli\Factory as CliFactory;
 
+/**
+ * 
+ * A bootstrapper for CLI apps.
+ * 
+ * @package Aura.Framework
+ * 
+ */
 class Cli
 {
+    /**
+     * 
+     * A CLI context object.
+     * 
+     * @var Context
+     * 
+     */
+    protected $context;
+    
+    /**
+     * 
+     * A CLI command factory.
+     * 
+     * @var CliFactory
+     * 
+     */
+    protected $factory;
+    
+    /**
+     * 
+     * Constructor.
+     * 
+     * @param Context $context The CLI context.
+     * 
+     * @param CliFactory $factory A factory for CLI commands.
+     * 
+     */
     public function __construct(
         Context $context,
         CliFactory $factory
@@ -16,9 +59,10 @@ class Cli
 
     /**
      * 
-     * Execute bootstrap in a CLI context.
+     * Creates and executes a CLI command and returns the exit code;
+     * echoes exceptions along the way.
      * 
-     * @param string $file The command class file to instantiate and execute.
+     * @param string $file The command file that maps to a class name.
      * 
      * @return int The return code from the command.
      * 

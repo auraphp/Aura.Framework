@@ -15,8 +15,7 @@ use Aura\Framework\Exception\NoClassForController;
 
 /**
  * 
- * A factory to create controller objects; these need not be only Page
- * controllers, but (e.g.) Resource or App controllers.
+ * A factory to create command objects.
  * 
  * @package Aura.Framework
  * 
@@ -34,7 +33,7 @@ class Factory
 
     /**
      * 
-     * A map of command names to controller classes.
+     * A map of command names to command classes.
      * 
      * @var array
      * 
@@ -60,13 +59,11 @@ class Factory
 
     /**
      * 
-     * Creates and returns a controller class based on a controller name.
+     * Creates and returns a command class based on a controller name.
      * 
-     * @param string $name The controller name.
+     * @param string $file The command file that maps to a controller name
      * 
-     * @param array $params Params to pass to the controller.
-     * 
-     * @return Page A controller instance.
+     * @return AbstractCommand A CLI command instance.
      * 
      */
     public function newInstance($file)

@@ -16,20 +16,43 @@ use Exception;
 
 /**
  * 
- * A bootstrapper for web and cli execution.
+ * A bootstrapper factory.
  * 
  * @package Aura.Framework
  * 
  */
 class Factory
 {
+    /**
+     * 
+     * The path to the system root.
+     * 
+     * @var string
+     * 
+     */
     protected $root;
 
+    /**
+     * 
+     * An array of app types to bootstrap classes.
+     * 
+     * @var array
+     * 
+     */
     protected $map = [
         'cli' => 'Aura\Framework\Bootstrap\Cli',
         'web' => 'Aura\Framework\Bootstrap\Web',
     ];
 
+    /**
+     * 
+     * Constructor.
+     * 
+     * @param string $root The path to the system root.
+     * 
+     * @param array $map An override map of app types to bootstrap classes.
+     * 
+     */
     public function __construct($root = null, array $map = null)
     {
         if (! $root) {
@@ -44,6 +67,17 @@ class Factory
         }
     }
 
+    /**
+     * 
+     * Returns a new bootstrap instance.
+     * 
+     * @param string $type The app type.
+     * 
+     * @param string $mode The config mode to use.
+     * 
+     * @return object A bootstrapper.
+     * 
+     */
     public function newInstance($type, $mode = null)
     {
         $di = $this->prep($mode);
@@ -51,6 +85,16 @@ class Factory
         return $di->newInstance($class);
     }
 
+    /**
+     * 
+     * Preps the framework for bootstrapping: creates foundation objects,
+     * loads configurations, etc.
+     * 
+     * @param string $mode The config mode.
+     * 
+     * @return \Aura\Di\Container A dependency injection container.
+     * 
+     */
     public function prep($mode)
     {
         // turn up error reporting
@@ -114,6 +158,12 @@ class Factory
      * 
      * Reads the cached config file, if any.
      * 
+     * @param System $system A system object.
+     * 
+     * @param callable $read A callable to read configs in a limited scope.
+     * 
+     * @param string $mode The config mode.
+     * 
      * @return bool True if there was a cached config file, false if not.
      * 
      */
@@ -130,6 +180,12 @@ class Factory
      * 
      * Reads the system config file.
      * 
+     * @param System $system A system object.
+     * 
+     * @param callable $read A callable to read configs in a limited scope.
+     * 
+     * @param string $mode The config mode.
+     * 
      * @return void
      * 
      */
@@ -144,6 +200,12 @@ class Factory
     /**
      * 
      * Reads each package config file for the mode.
+     * 
+     * @param System $system A system object.
+     * 
+     * @param callable $read A callable to read configs in a limited scope.
+     * 
+     * @param string $mode The config mode.
      * 
      * @return void
      * 
