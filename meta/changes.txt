@@ -1,16 +1,43 @@
-- [BRK] Moved Web\Factory and Web\Front to Web\Controller\Factory and
-  Web\Controller\Front, respectively.
+- [CHG] Modify config files and composer.json
 
-- [CHG] Updated to use new package versions.
+- [CHG] In Aura\Framework\Web\Renderer\AuraViewTwoStep, use new Aura\Web\Accept object
 
-- [FIX] Cli\MakeTest\Command::action() now errors when no package file path is
-  specified.
+- [CHG] In Aura\Framework\Signal\Manager, implement new CLI signal interface
 
-- [NEW] CLI script to set up and run a development server using the built-in
-  PHP server.
+- [CHG] Use new Aura.Cli classes and resources
 
-- [FIX] Web\Controller\Front::request() now extracts path from REQUEST_URI
-  instead of using PATH_INFO; this helps with some non-Apache servers.
+- [CHG] Autoload 3rd party packages via Composer
 
-- [CHG] PSR-1/2 compliance.
+- [CHG] In Aura/Framework/Bootstrap, move loader setup to its own method
 
+- [CHG] In Aura/Framework/Bootstrap, honor exception messages at the command line
+
+- [NEW] Aura/Framework/Intl/Translator and Aura/Framework/Intl/TranslatorFactory (Aura.Intl overrides)
+
+- [CHG] In Aura/Framework/Bootstrap, honor exit codes returned by commands and exceptions
+
+- [BRK] Major break: Aura/Framework/Config now requires a config/_package file at system level to determine order of package loading
+
+- [CHG] src/Aura/Framework/Cli/CacheClassmap/Command.php src/Aura/Framework/Cli/CacheConfig/Command.php, take config/_packages into account
+
+- [DEL] Remove demo-ish stuff from the framework package, place in new Aura.Demo package
+
+- [ADD] Aura/Framework/System::__toString()
+
+- [CHG] Aura/Framework/Bootstrap, send $system as an object, not as a string
+
+- [ADD] Add a src.php file and have the tests use it so we get better coverage reports
+
+- [CHG] Update cli/make-test to use PHPUnit 3.7.x 'phpunit-skelgen' command
+
+- [NEW] Aura/Framework/Autoload/Loader, with prep() method removed from bootstrapping
+
+- [CHG] In Aura/Framework/Cli/Server/Command, use a System object instead of relative dirs
+
+- [BRK] Major rework of bootstrapping process: move Config behaviors back into bootstrapper, make bootstrapper into a factory, split out Cli and Web bootstrappers
+
+- [NEW] Aura/Framework/Cli/Factory: start using a cli factory, mapping __FILE__ to class names
+
+- [ADD] Give phpunit-skelgen its own bootstrap
+
+- [CHG] In Aura/Framework/Cli/Server/Command, close #20: mode is now set by the config/_mode file, instead of an environment variable.
