@@ -111,4 +111,3 @@ abstract class AbstractPage extends WebAbstractPage
         return $this->view;
     }
 }
- 

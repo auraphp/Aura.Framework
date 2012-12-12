@@ -42,14 +42,16 @@ class Page extends AbstractPage
      */
     public function actionIndex()
     {
+        $request_uri = $this->context->getServer('REQUEST_URI', '/');
+
         $uri = htmlspecialchars(
-            var_export($this->context->getServer('REQUEST_URI'), true),
+            var_export($request_uri, true),
             ENT_QUOTES,
             'UTF-8'
         );
 
         $path = htmlspecialchars(
-            var_export($this->context->getServer('PATH_INFO', '/'), true),
+            var_export(parse_url($request_uri, PHP_URL_PATH), true),
             ENT_QUOTES,
             'UTF-8'
         );
@@ -66,7 +68,10 @@ class Page extends AbstractPage
         <ol>
             <li>An <code>Aura\\Router\\Map</code> route for the path <code>$path</code></li>
             <li>A <code>['values']['controller']</code> value for the mapped route</li>
-            <li>A <code>\$di->params['Aura\\Framework\\Web\\Controller\\Factory']['map']</code> entry for the controller value.</li>
+            <li>
+                A <code>\$di->params['Aura\\Framework\\Web\\Controller\\Factory']['map']</code>
+                entry for the controller value.
+            </li>
         </ol>
     </body>
 </html>
@@ -76,4 +81,3 @@ HTML;
         $this->response->setStatusCode(404);
     }
 }
- 

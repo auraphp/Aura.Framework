@@ -3,8 +3,10 @@ namespace Aura\Framework\Web\Controller;
 
 use Aura\Framework\Inflect;
 use Aura\Framework\Signal\Manager as SignalManager;
+use Aura\Framework\System;
 use Aura\Framework\Web\Renderer\AuraViewTwoStep as Renderer;
 use Aura\Router\Map as RouterMap;
+use Aura\Router\DefinitionFactory;
 use Aura\Router\RouteFactory;
 use Aura\Signal\HandlerFactory;
 use Aura\Signal\ResultCollection;
@@ -16,6 +18,7 @@ use Aura\View\Template;
 use Aura\View\TemplateFinder;
 use Aura\View\TwoStep;
 use Aura\Web\Context;
+use Aura\Web\Accept;
 use Aura\Web\Response;
 
 /**
@@ -24,12 +27,15 @@ use Aura\Web\Response;
  */
 abstract class AbstractPageTest extends \PHPUnit_Framework_TestCase
 {
-    protected $page_name;
+    protected $page_class;
 
     protected function newPage($params = [])
     {
         // context
         $context            = new Context($GLOBALS);
+        
+        // accept
+        $accept             = new Accept($_SERVER);
         
         // web response dto
         $response           = new Response;
@@ -46,12 +52,13 @@ abstract class AbstractPageTest extends \PHPUnit_Framework_TestCase
         $twostep            = new TwoStep($template, $format_types);
         
         // renderer
-        $renderer           = new Renderer($twostep, new Inflect);
+        $renderer           = new Renderer($twostep, new Inflect, $accept);
         
         // page
-        $class = "\Aura\Framework\Web\\{$this->page_name}\Page";
+        $class = $this->page_class;
         $page = new $class(
             $context,
+            $accept,
             $response,
             $signal,
             $renderer,
@@ -59,10 +66,28 @@ abstract class AbstractPageTest extends \PHPUnit_Framework_TestCase
         );
         
         // add router to page
-        $router = new RouterMap(new RouteFactory);
+        $router = new RouterMap(new DefinitionFactory, new RouteFactory);
         $page->setRouter($router);
+        
+        // add system to page; use the real system
+        // system/package/Aura.Framework/Web/Controller/AbstractPageTest.php
+        $root = dirname(dirname(dirname(dirname(__DIR__))));
+        $system = new System($root);
+        $page->setSystem($system);
         
         // done!
         return $page;
+    }
+    
+    public function testGetLayout()
+    {
+        $page = $this->newPage();
+        $this->assertNull($page->getLayout());
+    }
+    
+    public function testGetView()
+    {
+        $page = $this->newPage();
+        $this->assertNull($page->getView());
     }
 }

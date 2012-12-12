@@ -13,6 +13,8 @@ namespace Aura\Framework\Web\Renderer;
 use Aura\Framework\Inflect;
 use Aura\View\TwoStep;
 use Aura\Web\Renderer\AbstractRenderer;
+use Aura\Web\Controller\ControllerInterface;
+use Aura\Web\Accept;
 
 /**
  * 
@@ -43,24 +45,37 @@ class AuraViewTwoStep extends AbstractRenderer
 
     /**
      * 
+     * An accept object.
+     * 
+     * @var Accept
+     * 
+     */
+    protected $accept;
+
+    /**
+     * 
      * Constructor.
      * 
-     * @param TwoStep $twostep TwoStep View of Aura.View
+     * @param TwoStep $twostep A two-step view object.
      * 
-     * @param Inflect $inflect Inflect class to file
+     * @param Inflect $inflect An inflection object.
+     * 
+     * @param Accept $accept An Accept object for content types.
      * 
      */
     public function __construct(
         TwoStep $twostep,
-        Inflect $inflect
+        Inflect $inflect,
+        Accept  $accept
     ) {
         $this->twostep = $twostep;
         $this->inflect = $inflect;
+        $this->accept  = $accept;
     }
 
     /**
      * 
-     * allows us to call, e.g., $renderer->addInnerPath() to override stuff
+     * Allows us to call, e.g., $renderer->addInnerPath() to override stuff
      * in a seemingly-direct manner.
      *
      * @param string $method Method to call.
@@ -75,13 +90,19 @@ class AuraViewTwoStep extends AbstractRenderer
 
     /**
      * 
-     * Prepares the renderer after setController().
+     * Sets the controller object; prepares the renderer with view and layout
+     * paths based on the controller path.
+     * 
+     * @param ControllerInterface $controller The controller object.
      * 
      * @return void
      * 
      */
-    protected function prep()
+    public function setController(ControllerInterface $controller)
     {
+        // retain the controller
+        $this->controller = $controller;
+
         // get all included files
         $includes = array_reverse(get_included_files());
 
@@ -129,7 +150,7 @@ class AuraViewTwoStep extends AbstractRenderer
         $response = $this->controller->getResponse();
         if (! $response->getContent()) {
             $this->twostep->setData((array) $this->controller->getData());
-            $this->twostep->setAccept($this->controller->getContext()->getAccept());
+            $this->twostep->setAccept($this->accept->getContentType());
             $this->twostep->setInnerView($this->controller->getView());
             $this->twostep->setOuterView($this->controller->getLayout());
             $response->setContent($this->twostep->render());
@@ -138,4 +159,3 @@ class AuraViewTwoStep extends AbstractRenderer
         $response->setContentType($this->twostep->getContentType());
     }
 }
- 

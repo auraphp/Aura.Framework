@@ -38,7 +38,7 @@ class Front
 
     /**
      * 
-     * The web reponse transfer object returned from the controller.
+     * The web response transfer object returned from the controller.
      * 
      * @var WebResponse
      * 
@@ -123,11 +123,11 @@ class Front
     {
         return $this->$key;
     }
-    
+
     /**
      * 
      * Dispatches a Route to a web controller, renders a view into the
-     * ReponseTransfer, and returns an HTTP response.
+     * ResponseTransfer, and returns an HTTP response.
      * 
      * @signal pre_exec
      * 
@@ -214,4 +214,3 @@ class Front
         $this->response->setContent($this->transfer->getContent());
     }
 }
- 

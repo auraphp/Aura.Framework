@@ -12,6 +12,7 @@ namespace Aura\Framework\Cli\Server;
 
 use Aura\Framework\Cli\AbstractCommand;
 use Aura\Cli\Option;
+use Aura\Framework\System;
 
 /**
  * 
@@ -33,6 +34,15 @@ class Command extends AbstractCommand
 
     /**
      * 
+     * A System object.
+     * 
+     * @var System
+     * 
+     */
+    protected $system;
+
+    /**
+     * 
      * Getopt definitions.
      * 
      * @var array
@@ -50,7 +60,7 @@ class Command extends AbstractCommand
 
     /**
      *
-     * Set the path to the PHP executable.
+     * Sets the path to the PHP executable.
      *
      * @param string $php The path to PHP.
      *
@@ -63,6 +73,20 @@ class Command extends AbstractCommand
     }
 
     /**
+     *
+     * Sets the System object.
+     *
+     * @param System $system
+     *
+     * @return void
+     * 
+     */
+    public function setSystem($system)
+    {
+        $this->system = $system;
+    }
+
+    /**
      * 
      * Setup and run the server.
      * 
@@ -71,26 +95,19 @@ class Command extends AbstractCommand
      */
     public function action()
     {
-        $url = "http://localhost:{$this->getopt->port}/";
-        $msg = "Starting the Aura development server @ {$url}";
+        $msg = "Starting the Aura development server @ "
+             . "http://localhost:{$this->getopt->port}/";
 
         $this->stdio->outln($msg);
 
-        $root = substr(__DIR__, 0, strrpos(__DIR__, 'package'));
-        $root = $root . 'web';
-
-        // change to the web root directory
-        chdir($root);
-
-        $router = __DIR__ . DIRECTORY_SEPARATOR . 'router.php';
+        // set the process elements
+        $root   = $this->system->getWebPath();
+        $router = $this->system->getPackagePath('Aura.Framework/scripts/router.php');
         $cmd    = "{$this->php} -S 0.0.0.0:{$this->getopt->port} {$router}";
-        $pipe   = popen($cmd, 'r');
+        $spec   = [0 => STDIN, 1 => STDOUT, 2 => STDERR];
 
-        while (! feof($pipe)) {
-            $this->stdio->outln(fread($pipe, 2048));
-        }
-
-        pclose($pipe);
+        // run the command as a process
+        $process = proc_open($cmd, $spec, $pipes, $root);
+        proc_close($process);
     }
 }
- 

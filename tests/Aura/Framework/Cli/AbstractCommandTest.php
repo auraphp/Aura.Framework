@@ -1,15 +1,20 @@
 <?php
 namespace Aura\Framework\Cli;
-use Aura\Cli\Getopt as Getopt;
-use Aura\Cli\Stdio as Stdio;
-use Aura\Cli\Vt100 as Vt100;
-use Aura\Cli\Context as Context;
-use Aura\Cli\OptionFactory as OptionFactory;
-use Aura\Signal\Manager;
+use Aura\Cli\ExceptionFactory;
+use Aura\Cli\Getopt;
+use Aura\Cli\Stdio;
+use Aura\Cli\StdioResource;
+use Aura\Cli\Vt100;
+use Aura\Cli\Context;
+use Aura\Cli\OptionFactory;
+use Aura\Framework\Signal\Manager;
 use Aura\Signal\HandlerFactory;
 use Aura\Signal\ResultFactory;
 use Aura\Signal\ResultCollection;
-use Aura\Framework\Mock\System;
+use Aura\Framework\System;
+use Aura\Framework\VfsSystem;
+use Aura\Framework\Intl\Translator;
+use Aura\Intl\BasicFormatter;
 
 /**
  * Test class for Command.
@@ -17,7 +22,7 @@ use Aura\Framework\Mock\System;
  */
 abstract class AbstractCommandTest extends \PHPUnit_Framework_TestCase
 {
-    protected $command_name;
+    protected $command_class;
     
     protected $stdio;
     
@@ -35,23 +40,18 @@ abstract class AbstractCommandTest extends \PHPUnit_Framework_TestCase
     
     protected $errfile;
     
-    public function setUp()
+    protected function setUp()
     {
-        $root = dirname(dirname(dirname(__DIR__)));
-        $this->system = System::newInstance($root);
-        $this->system->create();
+        $root = VfsSystem::create('root');
+        $this->system = new System($root);
     }
     
-    public function tearDown()
+    protected function tearDown()
     {
         parent::tearDown();
-        if ($this->stdio) {
-            fclose($this->stdio->getStdout());
-            fclose($this->stdio->getStderr());
-        }
+        unset($this->stdio);
         unlink($this->outfile);
         unlink($this->errfile);
-        $this->system->remove();
     }
     
     protected function newCommand($argv = [])
@@ -60,32 +60,37 @@ abstract class AbstractCommandTest extends \PHPUnit_Framework_TestCase
         
         $this->context = new Context($GLOBALS);
         
-        $sub = "test/Aura.Framework/Cli/{$this->command_name}/Command";
         $this->tmp_dir =  $this->system->getTmpPath();
         
         // use files because we can't use php://memory in proc_open() calls
         $this->outfile = tempnam($this->tmp_dir, '');
         $this->errfile = tempnam($this->tmp_dir, '');
         
-        $stdin = fopen('php://stdin', 'r');
-        $stdout = fopen($this->outfile, 'w+');
-        $stderr = fopen($this->errfile, 'w+');
+        $stdin = new StdioResource('php://stdin', 'r');
+        $stdout = new StdioResource($this->outfile, 'w+');
+        $stderr = new StdioResource($this->errfile, 'w+');
         $vt100 = new Vt100;
         
         $this->stdio = new Stdio($stdin, $stdout, $stderr, $vt100);
         
-        $option_factory = new OptionFactory();
-        $this->getopt = new Getopt($option_factory);
+        $option_factory = new OptionFactory;
+        $exception_factory = new ExceptionFactory(new Translator(
+            'en_US',
+            [],
+            new BasicFormatter,
+            null
+        ));
+        $this->getopt = new Getopt($option_factory, $exception_factory);
         
         $this->signal = new Manager(new HandlerFactory, new ResultFactory, new ResultCollection);
         
-        $class = "\Aura\Framework\Cli\\{$this->command_name}\Command";
+        $class = $this->command_class;
         $command = new $class(
             $this->context,
             $this->stdio,
-            $this->getopt
+            $this->getopt,
+            $this->signal
         );
-        $command->setSignal($this->signal);
         return $command;
     }
 }

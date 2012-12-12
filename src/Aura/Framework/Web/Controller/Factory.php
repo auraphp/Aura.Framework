@@ -96,4 +96,3 @@ class Factory
         return $this->forge->newInstance($class, ['params' => $params]);
     }
 }
- 

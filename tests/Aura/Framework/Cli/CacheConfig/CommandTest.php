@@ -11,7 +11,7 @@ class CommandTest extends AbstractCommandTest
     /**
      * @var Command
      */
-    protected $command_name = 'CacheConfig';
+    protected $command_class = '\Aura\Framework\Cli\CacheConfig\Command';
     
     protected function newCommand($argv = [], $system_dir = null)
     {

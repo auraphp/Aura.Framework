@@ -11,6 +11,7 @@
 namespace Aura\Framework\Signal;
 
 use Aura\Signal\Manager as SignalManager;
+use Aura\Cli\SignalInterface as CliSignalInterface;
 use Aura\Web\SignalInterface as WebSignalInterface;
 
 /**
@@ -20,8 +21,9 @@ use Aura\Web\SignalInterface as WebSignalInterface;
  * @package Aura.Framework
  * 
  */
-class Manager extends SignalManager implements WebSignalInterface
+class Manager extends SignalManager implements
+    CliSignalInterface,
+    WebSignalInterface
 {
     // nothing to do but implement the separated interface
 }
- 

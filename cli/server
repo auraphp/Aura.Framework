@@ -1,4 +1,6 @@
 <?php
-require dirname(__DIR__) . '/src/Aura/Framework/Bootstrap.php';
-$bootstrap = new \Aura\Framework\Bootstrap;
-$bootstrap->execCli('Aura\\Framework\\Cli\\Server\\Command');
+require dirname(dirname(__DIR__)) . '/Aura.Framework/src/Aura/Framework/Bootstrap/Factory.php';
+$factory = new \Aura\Framework\Bootstrap\Factory;
+$cli = $factory->newInstance('cli');
+$return = $cli->exec(__FILE__);
+exit($return);

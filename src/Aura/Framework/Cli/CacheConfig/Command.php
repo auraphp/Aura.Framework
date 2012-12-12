@@ -56,7 +56,7 @@ class Command extends AbstractCommand
     {
         if (! isset($this->params[0])) {
             $this->stdio->errln('Please specify a config mode to cache.');
-            return -1;
+            return 1;
         }
 
         $mode = $this->params[0];
@@ -68,11 +68,13 @@ class Command extends AbstractCommand
         $this->stdio->outln("Caching '$mode' config mode to $cache ... ");
 
         // get the list of all packages in the system
-        $package_glob = $this->system->getPackagePath('*');
-        $package_list = glob($package_glob, GLOB_ONLYDIR);
+        $package_list = file($this->system->getConfigPath('_packages'));
 
         // go through each package in the system
-        foreach ($package_list as $package_dir) {
+        foreach ($package_list as $package_name) {
+            // find its directory
+            $package_name = trim($package_name);
+            $package_dir = $this->system->getPackagePath($package_name);
             // load its default config
             file_put_contents($cache, $this->read($package_dir, 'default'), FILE_APPEND);
             // load its mode-specific config
@@ -143,4 +145,3 @@ class Command extends AbstractCommand
         return trim($src) . PHP_EOL . PHP_EOL . PHP_EOL;
     }
 }
- 

@@ -45,11 +45,11 @@ class Route extends AbstractHelper
 
     /**
      * 
-     * Returns a route by name; optionall interpolates data into it.
+     * Returns a route by name; optional interpolates data into it.
      * 
      * @param string $name The route name to look up.
      * 
-     * @param array $data The data to inpterolate into the URI; data keys
+     * @param array $data The data to interpolate into the URI; data keys
      * map to param tokens in the path.
      * 
      * @return string|false A URI path string if the route name is found, or
@@ -61,4 +61,3 @@ class Route extends AbstractHelper
         return $this->router->generate($name, $data);
     }
 }
- 

@@ -20,4 +20,3 @@ namespace Aura\Framework;
 class Exception extends \Exception
 {
 }
- 
