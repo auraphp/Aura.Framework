@@ -1,20 +1,52 @@
 {
     "name": "aura/framework",
     "type": "aura-package",
-    "description": "The Aura Framework package, when combined with a system skeleton, provides a full-stack framework built from Aura component packages.",
-    "keywords": [ "framework" ],
+    "description": "The Aura Framework package, when combined with a system skeleton, provides a full-stack framework built from Aura components.",
+    "keywords": [
+        "framework"
+    ],
     "homepage": "http://auraphp.github.com/Aura.Framework",
-    "version": "1.0.0-dev",
+    "version": "1.0.0-beta4",
+    "time": "2012-12-11",
     "license": "BSD-2-Clause",
     "authors": [
         {
-            "name": "Aura Contributors",
+            "name": "Aura.Framework Contributors",
             "homepage": "https://github.com/auraphp/Aura.Framework/contributors"
+        },
+        {
+            "name": "Paul M. Jones",
+            "email": "pmjones88@gmail.com",
+            "homepage": "http://paul-m-jones.com"
+        },
+        {
+            "name": "Galactic Void",
+            "email": "galacticvoid+git@gmail.com",
+            "homepage": ""
+        },
+        {
+            "name": "Hari KT",
+            "email": "kthari85@gmail.com",
+            "homepage": "http://harikt.com"
         }
     ],
     "require": {
         "php": ">=5.4.0",
-        "aura/installer-default": "1.0.0"
+        "installer-default": ">=1.0.0",
+        "aura/autoload": ">=1.0.0",
+        "aura/cli": ">=1.0.0",
+        "aura/di": ">=1.0.0",
+        "aura/filter": ">=1.0.0beta1",
+        "aura/http": ">=1.0.0",
+        "aura/intl": ">=1.0.0beta1",
+        "aura/marshal": ">=1.0.0",
+        "aura/router": ">=1.0.0",
+        "aura/session": ">=1.0.0beta1",
+        "aura/signal": ">=1.0.0",
+        "aura/sql": ">=1.0.0",
+        "aura/uri": ">=1.0.0",
+        "aura/view": ">=1.0.0",
+        "aura/web": ">=1.0.0"
     },
     "autoload": {
         "psr-0": {
