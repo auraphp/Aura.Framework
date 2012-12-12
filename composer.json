@@ -1,14 +1,14 @@
 {
     "name": "aura/framework",
-    "type": "library",
+    "type": "aura-package",
     "description": "The Aura Framework package, when combined with a system skeleton, provides a full-stack framework built from Aura components.",
     "keywords": [
         "framework"
     ],
     "homepage": "http://auraphp.github.com/Aura.Framework",
-    "version": "1.0.0-beta3",
-    "time": "2012-07-30",
-    "license": "BSD",
+    "version": "1.0.0-beta4",
+    "time": "2012-12-11",
+    "license": "BSD-2-Clause",
     "authors": [
         {
             "name": "Aura.Framework Contributors",
@@ -32,18 +32,22 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "Aura/Autoload": ">=1.0.0beta1",
-        "Aura/Cli": ">=1.0.0beta1",
-        "Aura/Di": ">=1.0.0beta1",
-        "Aura/Http": ">=1.0.0beta1",
-        "Aura/Marshal": ">=1.0.0beta1",
-        "Aura/Router": ">=1.0.0beta1",
-        "Aura/Signal": ">=1.0.0beta1",
-        "Aura/Sql": ">=1.0.0beta1",
-        "Aura/View": ">=1.0.0beta1",
-        "Aura/Web": ">=1.0.0beta1"
+        "installer-default": ">=1.0.0",
+        "aura/autoload": ">=1.0.0",
+        "aura/cli": ">=1.0.0",
+        "aura/di": ">=1.0.0",
+        "aura/filter": ">=1.0.0beta1",
+        "aura/http": ">=1.0.0",
+        "aura/intl": ">=1.0.0beta1",
+        "aura/marshal": ">=1.0.0",
+        "aura/router": ">=1.0.0",
+        "aura/session": ">=1.0.0beta1",
+        "aura/signal": ">=1.0.0",
+        "aura/sql": ">=1.0.0",
+        "aura/uri": ">=1.0.0",
+        "aura/view": ">=1.0.0",
+        "aura/web": ">=1.0.0"
     },
-    "minimum-stability": "dev",
     "autoload": {
         "psr-0": {
             "Aura\\Framework": "src/"
