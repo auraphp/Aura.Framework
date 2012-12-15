@@ -14,7 +14,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "installer-default": ">=1.0.0",
+        "aura/installer-default": ">=1.0.0",
         "aura/autoload": ">=1.0.0",
         "aura/cli": ">=1.0.0",
         "aura/di": ">=1.0.0",
