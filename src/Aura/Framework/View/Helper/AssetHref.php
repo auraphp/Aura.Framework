@@ -23,6 +23,15 @@ class AssetHref extends AbstractHelper
 {
     /**
      * 
+     * The base (prefix) href for all asset hrefs.
+     * 
+     * @var
+     * 
+     */
+    protected $base;
+    
+    /**
+     * 
      * Sets the base (prefix) href for all asset hrefs.
      * 
      * @param string $base The base href.

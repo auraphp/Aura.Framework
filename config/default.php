@@ -40,6 +40,8 @@ $di->setter['Aura\Framework\Web\Controller\AbstractPage'] = [
     'setSystem'  => $di->lazyGet('framework_system'),
 ];
 
+$di->setter['Aura\Framework\View\Helper\AssetHref']['setBase'] = '/asset';
+
 $di->params['Aura\View\HelperLocator']['registry']['assetHref'] = function() use ($di) {
     return $di->newInstance('Aura\Framework\View\Helper\AssetHref');
 };
@@ -73,6 +75,26 @@ $di->params['Aura\Framework\Cli\Factory']['map']["$system/package/Aura.Framework
 
 // override the factory for translator locator
 $di->params['Aura\Intl\TranslatorLocator']['factory'] = $di->lazyNew('Aura\Framework\Intl\TranslatorFactory');
+
+$di->params['Aura\Framework\Web\Controller\Factory']['map']['aura.framework.asset'] = 'Aura\Framework\Web\Asset\Page';
+
+$di->setter['Aura\Framework\Web\Asset\Page'] = [
+    'setSystem'           => $di->lazyGet('framework_system'),
+    'setWebCacheDir'      => 'cache/asset',
+    'setCacheConfigModes' => ['prod', 'staging'],
+];
+
+$di->params['Aura\Router\Map']['attach']['/asset'] = [
+    'routes' => [
+        [
+            'path' => '/{:package}/{:file:(.*?)}{:format:(\..+)?}',
+            'values' => [
+                'controller' => 'aura.framework.asset',
+                'action' => 'index',
+            ],
+        ]
+    ]
+];
 
 
 /**
