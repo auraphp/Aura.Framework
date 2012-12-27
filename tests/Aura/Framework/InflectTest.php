@@ -48,14 +48,16 @@ class InflectTest extends \PHPUnit_Framework_TestCase
     {
         // used PSR-0 spec as a base
         $list = [
-            'Doctrine\Common\IsolatedClassLoader'   => 'Doctrine' . DIRECTORY_SEPARATOR . 'Common' . DIRECTORY_SEPARATOR . 'IsolatedClassLoader.php',
-            'Symfony\Core\Request'                  => 'Symfony' . DIRECTORY_SEPARATOR . 'Core' . DIRECTORY_SEPARATOR . 'Request.php',
+            'Doctrine\Common\IsolatedClassLoader'   => 'Doctrine/Common/IsolatedClassLoader.php',
+            'Symfony\Core\Request'                  => 'Symfony/Core/Request.php',
             'Zend'                                  => 'Zend.php',
-            'Zend\Acl'                              => 'Zend' . DIRECTORY_SEPARATOR . 'Acl.php',
-            'Zend\Mail\Message'                     => 'Zend' . DIRECTORY_SEPARATOR . 'Mail' . DIRECTORY_SEPARATOR . 'Message.php',
-            'aura\package\ClassName'               => 'aura' . DIRECTORY_SEPARATOR . 'package' . DIRECTORY_SEPARATOR . 'ClassName.php',
-            'aura\pkg_name\Class_Name'             => 'aura' . DIRECTORY_SEPARATOR . 'pkg_name' . DIRECTORY_SEPARATOR . 'Class' . DIRECTORY_SEPARATOR . 'Name.php',
+            'Zend\Acl'                              => 'Zend/Acl.php',
+            'Zend\Mail\Message'                     => 'Zend/Mail/Message.php',
+            'aura\package\ClassName'                => 'aura/package/ClassName.php',
+            'aura\pkg_name\Class_Name'              => 'aura/pkg_name/Class/Name.php',
         ];
+        
+        $list = str_replace('/', DIRECTORY_SEPARATOR, $list);
         
         foreach ($list as $class => $expect) {
             $actual = $this->inflect->classToFile($class);
