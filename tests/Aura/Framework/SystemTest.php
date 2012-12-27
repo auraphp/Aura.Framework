@@ -50,7 +50,7 @@ class SystemTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetPackagePath()
     {
-        $expect = 'vfs://root/package';
+        $expect = 'vfs://root' . DIRECTORY_SEPARATOR . 'package';
         $actual = $this->system->getPackagePath();
         $this->assertSame($expect, $actual);
         
@@ -66,7 +66,7 @@ class SystemTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetTmpPath()
     {
-        $expect = 'vfs://root/tmp';
+        $expect = 'vfs://root' . DIRECTORY_SEPARATOR . 'tmp';
         $actual = $this->system->getTmpPath();
         $this->assertSame($expect, $actual);
         
@@ -82,7 +82,7 @@ class SystemTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetWebPath()
     {
-        $expect = 'vfs://root/web';
+        $expect = 'vfs://root' . DIRECTORY_SEPARATOR . 'web';
         $actual = $this->system->getWebPath();
         $this->assertSame($expect, $actual);
         
@@ -98,7 +98,7 @@ class SystemTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetConfigPath()
     {
-        $expect = 'vfs://root/config';
+        $expect = 'vfs://root' . DIRECTORY_SEPARATOR . 'config';
         $actual = $this->system->getConfigPath();
         $this->assertSame($expect, $actual);
         
@@ -114,7 +114,7 @@ class SystemTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetIncludePath()
     {
-        $expect = 'vfs://root/include';
+        $expect = 'vfs://root' . DIRECTORY_SEPARATOR . 'include';
         $actual = $this->system->getIncludePath();
         $this->assertSame($expect, $actual);
         
@@ -128,7 +128,7 @@ class SystemTest extends \PHPUnit_Framework_TestCase
     public function testGetVendorPath()
     {
 
-        $expect = 'vfs://root/vendor';
+        $expect = 'vfs://root' . DIRECTORY_SEPARATOR . 'vendor';
         $actual = $this->system->getVendorPath();
         $this->assertSame($expect, $actual);
 
