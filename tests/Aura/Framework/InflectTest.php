@@ -53,9 +53,11 @@ class InflectTest extends \PHPUnit_Framework_TestCase
             'Zend'                                  => 'Zend.php',
             'Zend\Acl'                              => 'Zend/Acl.php',
             'Zend\Mail\Message'                     => 'Zend/Mail/Message.php',
-            'aura\package\ClassName'               => 'aura/package/ClassName.php',
-            'aura\pkg_name\Class_Name'             => 'aura/pkg_name/Class/Name.php',
+            'aura\package\ClassName'                => 'aura/package/ClassName.php',
+            'aura\pkg_name\Class_Name'              => 'aura/pkg_name/Class/Name.php',
         ];
+        
+        $list = str_replace('/', DIRECTORY_SEPARATOR, $list);
         
         foreach ($list as $class => $expect) {
             $actual = $this->inflect->classToFile($class);
