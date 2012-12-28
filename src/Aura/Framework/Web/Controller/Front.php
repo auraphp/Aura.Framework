@@ -13,6 +13,7 @@ namespace Aura\Framework\Web\Controller;
 use Aura\Framework\Web\Controller\Factory;
 use Aura\Http\Message\Response as HttpResponse;
 use Aura\Router\Map as RouterMap;
+use Aura\Session\Manager as SessionManager;
 use Aura\Signal\Manager as SignalManager;
 use Aura\Web\Context;
 use Aura\Web\Response as WebResponse;
@@ -65,6 +66,15 @@ class Front
 
     /**
      * 
+     * A session manager.
+     * 
+     * @var SessionManager
+     * 
+     */
+    protected $session;
+
+    /**
+     * 
      * A signal manager.
      * 
      * @var SignalManager
@@ -101,13 +111,15 @@ class Front
         Context         $context,
         RouterMap       $router,
         Factory         $factory,
-        HttpResponse    $response
+        HttpResponse    $response,
+        SessionManager  $session
     ) {
         $this->signal   = $signal;
         $this->context  = $context;
         $this->router   = $router;
         $this->factory  = $factory;
         $this->response = $response;
+        $this->session  = $session;
     }
 
     /**
@@ -159,8 +171,9 @@ class Front
         $this->response();
         $this->signal->send($this, 'post_response', $this);
 
-        // done!
+        // done! post-exec signal, commit the session, and return the response
         $this->signal->send($this, 'post_exec', $this);
+        $this->session->commit();
         return $this->response;
     }
 

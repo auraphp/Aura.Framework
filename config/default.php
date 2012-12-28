@@ -33,6 +33,7 @@ $di->params['Aura\Framework\Web\Controller\Front'] = [
     'router'    => $di->lazyGet('router_map'),
     'factory'   => $di->lazyNew('Aura\Framework\Web\Controller\Factory'),
     'response'  => $di->lazyNew('Aura\Http\Message\Response'),
+    'session'   => $di->lazyGet('session_manager'),
 ];
 
 $di->setter['Aura\Framework\Web\Controller\AbstractPage'] = [
