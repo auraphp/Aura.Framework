@@ -140,12 +140,17 @@ class Factory
             require $file;
         };
 
-        // read config files
+        // read package config files
         $cache = $this->readCacheConfig($system, $read, $mode);
         if (! $cache) {
             $this->readPackageConfig($system, $read, $mode);
         }
+
+        // read system config files
         $this->readSystemConfig($system, $read, $mode);
+        if ($mode != 'default') {
+            $this->readSystemConfig($system, $read, $mode);
+        }
 
         // lock the container
         $di->lock();
