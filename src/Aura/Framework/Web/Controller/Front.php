@@ -186,9 +186,19 @@ class Front
      */
     public function request()
     {
+        // get the path, and make allowances for "index.php" in the path
+        $url  = $this->context->getServer('REQUEST_URI', '/');
+        $path = parse_url($url, PHP_URL_PATH);
+        $pos  = strpos($path, '/index.php');
+        if ($pos !== false) {
+            // read the path after /index.php
+            $path = substr($path, $pos + 10);
+            if (! $path) {
+                $path = '/';
+            }
+        }
+
         // match to a route
-        $url    = $this->context->getServer('REQUEST_URI', '/');
-        $path   = parse_url($url, PHP_URL_PATH);
         $server = $this->context->getServer();
         $route  = $this->router->match($path, $server);
 
