@@ -12,6 +12,7 @@ namespace Aura\Framework\Intl;
 
 use Aura\Intl\Translator as IntlTranslator;
 use Aura\Cli\TranslatorInterface as CliTranslatorInterface;
+use Aura\Filter\TranslatorInterface as FilterTranslatorInterface;
 
 /**
  * 
@@ -21,7 +22,8 @@ use Aura\Cli\TranslatorInterface as CliTranslatorInterface;
  * 
  */
 class Translator extends IntlTranslator implements
-    CliTranslatorInterface
+    CliTranslatorInterface,
+    FilterTranslatorInterface
 {
     // do nothing, just extend and implement
 }
