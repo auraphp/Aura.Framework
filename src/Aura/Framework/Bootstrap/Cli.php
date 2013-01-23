@@ -77,7 +77,15 @@ class Cli
             return (int) $command->exec();
         } catch (Exception $e) {
             $this->echoException($e);
-            return $e->getCode();
+            $code = $e->getCode();
+            if (is_numeric($code) && $code == (int) $code) {
+                // the code is an integer, return it as the error code
+                $code = (int) $code;
+            } else {
+                // the code is not an integer, return 1 as the error code
+                $code = 1;
+            };
+            return $code;
         }
     }
 
