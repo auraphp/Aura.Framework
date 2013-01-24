@@ -147,7 +147,7 @@ class Factory
         }
 
         // read system config files
-        $this->readSystemConfig($system, $read, $mode);
+        $this->readSystemConfig($system, $read, 'default');
         if ($mode != 'default') {
             $this->readSystemConfig($system, $read, $mode);
         }
