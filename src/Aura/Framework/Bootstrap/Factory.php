@@ -106,8 +106,8 @@ class Factory
         require_once dirname(__DIR__) . '/System.php';
         $system = new System($this->root);
 
-        // set the include path
-        set_include_path($system->getIncludePath());
+        // prepend to the include path
+        set_include_path($system->getIncludePath() . PATH_SEPARATOR . get_include_path());
 
         // requires
         require_once $system->getPackagePath('Aura.Autoload/src.php');
