@@ -242,8 +242,9 @@ class Factory
             }
 
             $package_file = $package_path . DIRECTORY_SEPARATOR
-                            . 'config' . DIRECTORY_SEPARATOR
-                            . "{$mode}.php";
+                          . $package_name . DIRECTORY_SEPARATOR
+                          . 'config' . DIRECTORY_SEPARATOR
+                          . "{$mode}.php";
 
             if (is_readable($package_file)) {
                 $read($package_file);
