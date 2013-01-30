@@ -14,6 +14,7 @@ require_once __DIR__ . '/src/Aura/Framework/Intl/Translator.php';
 require_once __DIR__ . '/src/Aura/Framework/Intl/TranslatorFactory.php';
 require_once __DIR__ . '/src/Aura/Framework/Signal/Manager.php';
 require_once __DIR__ . '/src/Aura/Framework/System.php';
+require_once __DIR__ . '/src/Aura/Framework/Test/WiringAssertionsTrait.php';
 require_once __DIR__ . '/src/Aura/Framework/View/Helper/Route.php';
 require_once __DIR__ . '/src/Aura/Framework/Web/Controller/AbstractPage.php';
 require_once __DIR__ . '/src/Aura/Framework/Web/Controller/Factory.php';
