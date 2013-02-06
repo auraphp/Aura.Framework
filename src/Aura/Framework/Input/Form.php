@@ -28,8 +28,8 @@ class Form extends InputForm
         return $this->filter->values($this->values);
     }
     
-    public function getMessages()
+    public function getMessages($field = null)
     {
-        return $this->filter->getMessages();
+        return $this->filter->getMessages($field);
     }
 }
