@@ -20,6 +20,7 @@
         "aura/di": "dev-develop",
         "aura/filter": "dev-develop",
         "aura/http": "dev-develop",
+        "aura/input": "dev-develop",
         "aura/intl": "dev-develop",
         "aura/marshal": "dev-develop",
         "aura/router": "dev-develop",
