@@ -68,6 +68,11 @@ $di->params['Aura\Framework\Cli\Factory']['map']["$system/package/Aura.Framework
 $di->setter['Aura\Framework\Cli\Server\Command']['setSystem'] = $di->lazyGet('framework_system');
 
 /**
+ * Aura\Framework\Cli\Server\Command
+ */
+$di->setter['Aura\Framework\Input\Form']['setFilter'] = $di->lazyNew('Aura\Filter\RuleCollection');
+
+/**
  * Aura\Framework\View\Helper\AssetHref
  */
 $di->setter['Aura\Framework\View\Helper\AssetHref']['setBase'] = '/asset';
