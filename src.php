@@ -10,7 +10,7 @@ require_once __DIR__ . '/src/Aura/Framework/Cli/Server/Command.php';
 require_once __DIR__ . '/src/Aura/Framework/Exception.php';
 require_once __DIR__ . '/src/Aura/Framework/Exception/NoClassForController.php';
 require_once __DIR__ . '/src/Aura/Framework/Inflect.php';
-require_once __DIR__ . '/src/Aura/Framework/Input/Form.php';
+require_once __DIR__ . '/src/Aura/Framework/Input/Filter.php';
 require_once __DIR__ . '/src/Aura/Framework/Intl/Translator.php';
 require_once __DIR__ . '/src/Aura/Framework/Intl/TranslatorFactory.php';
 require_once __DIR__ . '/src/Aura/Framework/Signal/Manager.php';
