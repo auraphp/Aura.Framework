@@ -134,6 +134,12 @@ $di->params['Aura\Framework\Web\Renderer\AuraViewTwoStep'] = [
 $di->params['Aura\Intl\TranslatorLocator']['factory'] = $di->lazyNew('Aura\Framework\Intl\TranslatorFactory');
 
 /**
+ * Aura\Input\Form
+ */
+// use the framework filter
+$di->params['Aura\Input\Form']['filter'] = $di->lazyNew('Aura\Framework\Input\Filter');
+
+/**
  * Aura\View\HelperLocator
  */
 $di->params['Aura\View\HelperLocator']['registry']['assetHref'] = $di->lazyNew('Aura\Framework\View\Helper\AssetHref');

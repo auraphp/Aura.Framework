@@ -28,7 +28,6 @@ class WiringTest extends \PHPUnit_Framework_TestCase
         $this->assertNewInstance('Aura\Framework\Cli\CacheConfig\Command');
         $this->assertNewInstance('Aura\Framework\Cli\Factory');
         $this->assertNewInstance('Aura\Framework\Cli\Server\Command');
-        $this->assertNewInstance('Aura\Framework\Input\Form');
         $this->assertNewInstance('Aura\Framework\View\Helper\AssetHref');
         $this->assertNewInstance('Aura\Framework\View\Helper\Route');
         $this->assertNewInstance('Aura\Framework\Web\Asset\Page');
@@ -36,6 +35,7 @@ class WiringTest extends \PHPUnit_Framework_TestCase
         $this->assertNewInstance('Aura\Framework\Web\Controller\Factory');
         $this->assertNewInstance('Aura\Framework\Web\Controller\Front');
         $this->assertNewInstance('Aura\Framework\Web\Renderer\AuraViewTwoStep');
+        $this->assertNewInstance('Aura\Input\Form');
         $this->assertNewInstance('Aura\Intl\TranslatorLocator');
     }
     
