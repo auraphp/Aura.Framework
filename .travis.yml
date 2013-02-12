@@ -5,6 +5,5 @@ before_script:
   - git clone https://github.com/auraphp/system.git
   - cd system
   - composer update
-  - pwd
   - cd package/Aura.Framework/tests
 script: phpunit
