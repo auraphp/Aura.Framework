@@ -95,7 +95,7 @@ class Factory
      * @return \Aura\Di\Container A dependency injection container.
      * 
      */
-    public function prep($mode)
+    public function prep($mode = null)
     {
         // turn up error reporting
         error_reporting(E_ALL);
