@@ -95,7 +95,7 @@ class Factory
      * @return \Aura\Di\Container A dependency injection container.
      * 
      */
-    public function prep($mode)
+    public function prep($mode = null)
     {
         // turn up error reporting
         error_reporting(E_ALL);
@@ -106,8 +106,8 @@ class Factory
         require_once dirname(__DIR__) . '/System.php';
         $system = new System($this->root);
 
-        // set the include path
-        set_include_path($system->getIncludePath());
+        // prepend to the include path
+        set_include_path($system->getIncludePath() . PATH_SEPARATOR . get_include_path());
 
         // requires
         require_once $system->getPackagePath('Aura.Autoload/src.php');
@@ -140,12 +140,17 @@ class Factory
             require $file;
         };
 
-        // read config files
+        // read package config files
         $cache = $this->readCacheConfig($system, $read, $mode);
         if (! $cache) {
             $this->readPackageConfig($system, $read, $mode);
         }
-        $this->readSystemConfig($system, $read, $mode);
+
+        // read system config files
+        $this->readSystemConfig($system, $read, 'default');
+        if ($mode != 'default') {
+            $this->readSystemConfig($system, $read, $mode);
+        }
 
         // lock the container
         $di->lock();
@@ -237,8 +242,9 @@ class Factory
             }
 
             $package_file = $package_path . DIRECTORY_SEPARATOR
-                            . 'config' . DIRECTORY_SEPARATOR
-                            . "{$mode}.php";
+                          . $package_name . DIRECTORY_SEPARATOR
+                          . 'config' . DIRECTORY_SEPARATOR
+                          . "{$mode}.php";
 
             if (is_readable($package_file)) {
                 $read($package_file);

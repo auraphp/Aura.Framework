@@ -8,11 +8,10 @@
  * @license http://opensource.org/licenses/bsd-license.php BSD
  * 
  */
-namespace Aura\Framework\Signal;
+namespace Aura\Framework\Input;
 
-use Aura\Signal\Manager as SignalManager;
-use Aura\Cli\SignalInterface as CliSignalInterface;
-use Aura\Web\SignalInterface as WebSignalInterface;
+use Aura\Input\FilterInterface;
+use Aura\Filter\RuleCollection;
 
 /**
  * 
@@ -21,9 +20,7 @@ use Aura\Web\SignalInterface as WebSignalInterface;
  * @package Aura.Framework
  * 
  */
-class Manager extends SignalManager implements
-    CliSignalInterface,
-    WebSignalInterface
+class Filter extends RuleCollection implements FilterInterface
 {
     // nothing to do but implement the separated interface
 }

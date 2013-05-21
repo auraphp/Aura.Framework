@@ -17,6 +17,11 @@ use Aura\Signal\Manager as SignalManager;
 use Aura\Signal\ResultCollection;
 use Aura\Signal\ResultFactory;
 use Aura\Web\Context;
+use Aura\Session\Manager as SessionManager;
+use Aura\Session\SegmentFactory;
+use Aura\Session\CsrfTokenFactory;
+use Aura\Session\Randval;
+use Aura\Session\Phpfunc;
 
 class FrontTest extends \PHPUnit_Framework_TestCase
 {
@@ -31,6 +36,8 @@ class FrontTest extends \PHPUnit_Framework_TestCase
     protected $factory;
     
     protected $response;
+    
+    protected $session;
     
     protected $front;
     
@@ -62,12 +69,15 @@ class FrontTest extends \PHPUnit_Framework_TestCase
         
         $this->response = new HttpResponse(new Headers(new HeaderFactory), new Cookies(new CookieFactory));
         
+        $this->session = new SessionManager(new SegmentFactory, new CsrfTokenFactory(new Randval(new Phpfunc)));
+        
         return new Front(
             $this->signal,
             $this->context,
             $this->router,
             $this->factory,
-            $this->response
+            $this->response,
+            $this->session
         );
     }
     

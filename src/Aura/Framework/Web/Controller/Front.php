@@ -13,6 +13,7 @@ namespace Aura\Framework\Web\Controller;
 use Aura\Framework\Web\Controller\Factory;
 use Aura\Http\Message\Response as HttpResponse;
 use Aura\Router\Map as RouterMap;
+use Aura\Session\Manager as SessionManager;
 use Aura\Signal\Manager as SignalManager;
 use Aura\Web\Context;
 use Aura\Web\Response as WebResponse;
@@ -65,6 +66,15 @@ class Front
 
     /**
      * 
+     * A session manager.
+     * 
+     * @var SessionManager
+     * 
+     */
+    protected $session;
+
+    /**
+     * 
      * A signal manager.
      * 
      * @var SignalManager
@@ -95,19 +105,23 @@ class Front
      * 
      * @param HttpResponse $response The eventual HTTP response object.
      * 
+     * @param SessionManager $session A session manager.
+     * 
      */
     public function __construct(
         SignalManager   $signal,
         Context         $context,
         RouterMap       $router,
         Factory         $factory,
-        HttpResponse    $response
+        HttpResponse    $response,
+        SessionManager  $session
     ) {
         $this->signal   = $signal;
         $this->context  = $context;
         $this->router   = $router;
         $this->factory  = $factory;
         $this->response = $response;
+        $this->session  = $session;
     }
 
     /**
@@ -159,8 +173,9 @@ class Front
         $this->response();
         $this->signal->send($this, 'post_response', $this);
 
-        // done!
+        // done! post-exec signal, commit the session, and return the response
         $this->signal->send($this, 'post_exec', $this);
+        $this->session->commit();
         return $this->response;
     }
 
@@ -173,9 +188,19 @@ class Front
      */
     public function request()
     {
+        // get the path, and make allowances for "index.php" in the path
+        $url  = $this->context->getServer('REQUEST_URI', '/');
+        $path = parse_url($url, PHP_URL_PATH);
+        $pos  = strpos($path, '/index.php');
+        if ($pos !== false) {
+            // read the path after /index.php
+            $path = substr($path, $pos + 10);
+            if (! $path) {
+                $path = '/';
+            }
+        }
+
         // match to a route
-        $url    = $this->context->getServer('REQUEST_URI', '/');
-        $path   = parse_url($url, PHP_URL_PATH);
         $server = $this->context->getServer();
         $route  = $this->router->match($path, $server);
 
