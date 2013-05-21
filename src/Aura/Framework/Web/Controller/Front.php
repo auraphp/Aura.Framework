@@ -105,6 +105,8 @@ class Front
      * 
      * @param HttpResponse $response The eventual HTTP response object.
      * 
+     * @param SessionManager $session A session manager.
+     * 
      */
     public function __construct(
         SignalManager   $signal,
