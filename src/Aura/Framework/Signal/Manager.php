@@ -16,7 +16,7 @@ use Aura\Web\SignalInterface as WebSignalInterface;
 
 /**
  * 
- * Nothing to do but implement the separated interface
+ * Nothing to do but implement the separated interface.
  * 
  * @package Aura.Framework
  * 
