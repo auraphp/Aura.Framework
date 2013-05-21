@@ -1,34 +1,68 @@
 {
     "name": "aura/framework",
+    "version": "1.0.0-beta6",
     "type": "aura-package",
-    "description": "The Aura Framework package, when combined with a system skeleton, provides a full-stack framework built from Aura component packages.",
-    "keywords": [ "framework" ],
+    "description": "The Aura Framework package, when combined with a system skeleton, provides a full-stack framework built from Aura components.",
+    "keywords": [
+        "framework"
+    ],
     "homepage": "http://auraphp.github.com/Aura.Framework",
+    "time": "2013-05-20",
     "license": "BSD-2-Clause",
     "authors": [
         {
-            "name": "Aura Contributors",
+            "name": "Aura.Framework Contributors",
             "homepage": "https://github.com/auraphp/Aura.Framework/contributors"
+        },
+        {
+            "name": "Paul M. Jones",
+            "email": "pmjones88@gmail.com",
+            "homepage": "http://paul-m-jones.com"
+        },
+        {
+            "name": "Galactic Void",
+            "email": "galacticvoid+git@gmail.com",
+            "homepage": ""
+        },
+        {
+            "name": "Hari KT",
+            "email": "kthari85@gmail.com",
+            "homepage": "http://harikt.com"
+        },
+        {
+            "name": "Nakymaton",
+            "email": "nakymaton.hdc@googlemail.com",
+            "homepage": ""
+        },
+        {
+            "name": "Branden Cash",
+            "email": "bcash@parchment.com",
+            "homepage": ""
+        },
+        {
+            "name": "Pascal Borreli",
+            "email": "pascal@borreli.com.",
+            "homepage": null
         }
     ],
     "require": {
         "php": ">=5.4.0",
-        "aura/installer-default": "dev-develop",
-        "aura/autoload": "dev-develop",
-        "aura/cli": "dev-develop",
-        "aura/di": "dev-develop",
-        "aura/filter": "dev-develop",
-        "aura/http": "dev-develop",
-        "aura/input": "dev-develop",
-        "aura/intl": "dev-develop",
-        "aura/marshal": "dev-develop",
-        "aura/router": "dev-develop",
-        "aura/session": "dev-develop",
-        "aura/signal": "dev-develop",
-        "aura/sql": "dev-develop",
-        "aura/uri": "dev-develop",
-        "aura/view": "dev-develop",
-        "aura/web": "dev-develop"
+        "aura/installer-default": ">=1.0.0",
+        "aura/autoload": ">=1.0.1",
+        "aura/cli": ">=1.1.0",
+        "aura/di": ">=1.1.0",
+        "aura/filter": ">=1.0.0beta2",
+        "aura/http": ">=1.0.1",
+        "aura/input": ">=1.0.0beta1",
+        "aura/intl": ">=1.0.0beta2",
+        "aura/marshal": ">=1.1.0",
+        "aura/router": ">=1.1.0",
+        "aura/session": ">=1.0.0",
+        "aura/signal": ">=1.0.1",
+        "aura/sql": ">=1.1.0",
+        "aura/uri": ">=1.1.0",
+        "aura/view": ">=1.1.2",
+        "aura/web": ">=1.0.1"
     },
     "autoload": {
         "psr-0": {
