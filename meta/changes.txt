@@ -1,43 +1,23 @@
-- [CHG] Modify config files and composer.json
+- [ADD] Re-add View\Helper\AssetHref and Web\Asset.
 
-- [CHG] In Aura\Framework\Web\Renderer\AuraViewTwoStep, use new Aura\Web\Accept object
+- [FIX] In tests, replaced static Unix-Style Directory Seperators with dynamic ones from PHPs DIRECTORY_SEPARATOR Constant; else all tests would fail on Windows environments.
 
-- [CHG] In Aura\Framework\Signal\Manager, implement new CLI signal interface
+- [BRK] In front controller, add a session manager param to the constructor, and commit the session at the end of exec().
 
-- [CHG] Use new Aura.Cli classes and resources
+- [FIX] In front controller, make allowances for index.php in the path.
 
-- [CHG] Autoload 3rd party packages via Composer
+- [FIX] In Bootstrap\Factory, load system-level default config, and then system-level mode config, instead of just the mode without default. (fixes #29)
 
-- [CHG] In Aura/Framework/Bootstrap, move loader setup to its own method
+- [NEW] Aura\Framework\Intl\Translator to implement a separated interface.
 
-- [CHG] In Aura/Framework/Bootstrap, honor exception messages at the command line
+- [FIX] Make allowances for non-integer return codes in Bootstrap\Cli.
 
-- [NEW] Aura/Framework/Intl/Translator and Aura/Framework/Intl/TranslatorFactory (Aura.Intl overrides)
+- [FIX] In Bootstrap\Factory, don't read the same $mode file twice. read 'default' then whatever the non-default mode is. closes #32. thanks @ammmze
 
-- [CHG] In Aura/Framework/Bootstrap, honor exit codes returned by commands and exceptions
+- [FIX] In Bootstrap\Factory, instead of overriding the include path, prepend it with the system include directory
 
-- [BRK] Major break: Aura/Framework/Config now requires a config/_package file at system level to determine order of package loading
+- [NEW] Test\WiringAssertionsTrait for wiring test assertions.
 
-- [CHG] src/Aura/Framework/Cli/CacheClassmap/Command.php src/Aura/Framework/Cli/CacheConfig/Command.php, take config/_packages into account
+- [NEW] Input\Filter to implement separated interface.
 
-- [DEL] Remove demo-ish stuff from the framework package, place in new Aura.Demo package
-
-- [ADD] Aura/Framework/System::__toString()
-
-- [CHG] Aura/Framework/Bootstrap, send $system as an object, not as a string
-
-- [ADD] Add a src.php file and have the tests use it so we get better coverage reports
-
-- [CHG] Update cli/make-test to use PHPUnit 3.7.x 'phpunit-skelgen' command
-
-- [NEW] Aura/Framework/Autoload/Loader, with prep() method removed from bootstrapping
-
-- [CHG] In Aura/Framework/Cli/Server/Command, use a System object instead of relative dirs
-
-- [BRK] Major rework of bootstrapping process: move Config behaviors back into bootstrapper, make bootstrapper into a factory, split out Cli and Web bootstrappers
-
-- [NEW] Aura/Framework/Cli/Factory: start using a cli factory, mapping __FILE__ to class names
-
-- [ADD] Give phpunit-skelgen its own bootstrap
-
-- [CHG] In Aura/Framework/Cli/Server/Command, close #20: mode is now set by the config/_mode file, instead of an environment variable.
+- [CHG] In Bootstrap\Factory::prep(), use null mode by default
