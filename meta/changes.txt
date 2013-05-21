@@ -1,3 +1,5 @@
+(This list includes the changes from 1.0.0-beta5, which had problems with its composer.json file.)
+
 - [ADD] Re-add View\Helper\AssetHref and Web\Asset.
 
 - [FIX] In tests, replaced static Unix-Style Directory Seperators with dynamic ones from PHPs DIRECTORY_SEPARATOR Constant; else all tests would fail on Windows environments.
