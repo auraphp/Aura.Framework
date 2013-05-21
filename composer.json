@@ -1,6 +1,6 @@
 {
     "name": "aura/framework",
-    "version": "1.0.0-beta6",
+    "version": "1.0.0-beta7",
     "type": "aura-package",
     "description": "The Aura Framework package, when combined with a system skeleton, provides a full-stack framework built from Aura components.",
     "keywords": [
@@ -41,8 +41,8 @@
         },
         {
             "name": "Pascal Borreli",
-            "email": "pascal@borreli.com.",
-            "homepage": null
+            "email": "pascal@borreli.com",
+            "homepage": ""
         }
     ],
     "require": {
