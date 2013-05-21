@@ -1,4 +1,4 @@
-(This list includes the changes from 1.0.0-beta5, which had problems with its composer.json file.)
+(This list includes the changes from 1.0.0-beta5 and 6, which had problems with their composer.json files.)
 
 - [ADD] Re-add View\Helper\AssetHref and Web\Asset.
 
