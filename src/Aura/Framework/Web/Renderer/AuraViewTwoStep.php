@@ -145,8 +145,16 @@ class AuraViewTwoStep extends AbstractRenderer
      */
     public function exec()
     {
-        $this->twostep->setFormat($this->controller->getFormat());
-
+        if (is_array($this->controller->getView()) && $this->controller->getFormat() == null) {
+            $format = $this->twostep->getFormatTypes()
+                    ->matchAcceptFormats(
+                        array_keys($this->accept->getContentType()),
+                        array_keys($this->controller->getView())
+                    );
+        } else {
+            $format = $this->controller->getFormat();
+        }
+        $this->twostep->setFormat($format);
         $response = $this->controller->getResponse();
         if (! $response->getContent()) {
             $this->twostep->setData((array) $this->controller->getData());
@@ -155,7 +163,6 @@ class AuraViewTwoStep extends AbstractRenderer
             $this->twostep->setOuterView($this->controller->getLayout());
             $response->setContent($this->twostep->render());
         }
-
         $response->setContentType($this->twostep->getContentType());
     }
 }
