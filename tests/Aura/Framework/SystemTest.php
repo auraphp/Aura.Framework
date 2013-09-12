@@ -3,20 +3,10 @@ namespace Aura\Framework;
 
 use Aura\Framework\VfsSystem;
 
-/**
- * Test class for System.
- */
 class SystemTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @var System
-     */
     protected $system;
 
-    /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     */
     public function setUp()
     {
         parent::setUp();
@@ -45,9 +35,6 @@ class SystemTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expect, $actual);
     }
     
-    /**
-     * @todo Implement testGetPackagePath().
-     */
     public function testGetPackagePath()
     {
         $expect = 'vfs://root' . DIRECTORY_SEPARATOR . 'package';
@@ -61,9 +48,6 @@ class SystemTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expect, $actual);
     }
     
-    /**
-     * @todo Implement testGetTmpPath().
-     */
     public function testGetTmpPath()
     {
         $expect = 'vfs://root' . DIRECTORY_SEPARATOR . 'tmp';
@@ -77,9 +61,6 @@ class SystemTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expect, $actual);
     }
     
-    /**
-     * @todo Implement testGetWebPath().
-     */
     public function testGetWebPath()
     {
         $expect = 'vfs://root' . DIRECTORY_SEPARATOR . 'web';
@@ -93,9 +74,6 @@ class SystemTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expect, $actual);
     }
     
-    /**
-     * @todo Implement testGetConfigPath().
-     */
     public function testGetConfigPath()
     {
         $expect = 'vfs://root' . DIRECTORY_SEPARATOR . 'config';
@@ -109,9 +87,6 @@ class SystemTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expect, $actual);
     }
     
-    /**
-     * @todo Implement testGetIncludePath().
-     */
     public function testGetIncludePath()
     {
         $expect = 'vfs://root' . DIRECTORY_SEPARATOR . 'include';
