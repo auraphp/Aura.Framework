@@ -31,13 +31,9 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
     {
     }
 
-    /**
-     * @covers Aura\Framework\Bootstrap::exec
-     * @todo   Implement testExec().
-     */
     public function testExec()
     {
-        $bootstrap = $this->factory->newInstance('mock');
+        $bootstrap = $this->factory->newInstance('mock', 'test');
         $this->assertInstanceOf('Aura\Framework\Mock\Bootstrap', $bootstrap);
     }
 }

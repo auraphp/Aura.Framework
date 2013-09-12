@@ -1,6 +1,8 @@
 <?php
 namespace Aura\Framework\Mock;
+
 use Aura\Web\Response;
+
 class NotFound {
     
     public function __construct()

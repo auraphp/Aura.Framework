@@ -47,21 +47,21 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
     public function testNewInstance()
     {
         $factory = $this->newFactory([
-            'mock' => 'Aura\Framework\Mock\Page',
+            'mock' => 'StdClass',
         ]);
         $name = 'mock';
         $params = [];
         $controller = $factory->newInstance($name, $params);
-        $this->assertInstanceOf('Aura\Framework\Mock\Page', $controller);
+        $this->assertInstanceOf('StdClass', $controller);
     }
     
     public function testNewInstanceNotFound()
     {
-        $factory = $this->newFactory([], 'Aura\Framework\Mock\Page');
+        $factory = $this->newFactory([], 'StdClass');
         $name = 'no-such-name';
         $params = [];
         $controller = $factory->newInstance($name, $params);
-        $this->assertInstanceOf('Aura\Framework\Mock\Page', $controller);
+        $this->assertInstanceOf('StdClass', $controller);
     }
     
     public function testNewInstanceException()

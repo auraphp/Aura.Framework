@@ -2,98 +2,12 @@
 namespace Aura\Framework\Mock;
 
 use Aura\Web\Response;
-use Aura\Web\Controller\ControllerInterface;
+use Aura\Framework\Web\Controller\AbstractPage;
 
-class Page implements ControllerInterface
+class Page extends AbstractPage
 {
-    
-    public function __construct()
+    public function setView($view)
     {
-    }
-    
-    /**
-     * 
-     * Returns the Accept object.
-     * 
-     * @return Accept
-     * 
-     */
-    public function getAccept()
-    {
-        
-    }
-    
-    /**
-     * 
-     * Returns the Context object.
-     * 
-     * @return Context
-     * 
-     */
-    public function getContext()
-    {
-        
-    }
-
-    /**
-     * 
-     * Returns the data collection object.
-     * 
-     * @return object
-     * 
-     */
-    public function getData()
-    {
-        
-    }
-
-    /**
-     * 
-     * Returns the params.
-     * 
-     * @return array
-     * 
-     */
-    public function getParams()
-    {
-        
-    }
-
-    /**
-     * 
-     * Returns the Response object.
-     * 
-     * @return Response
-     * 
-     */
-    public function getResponse()
-    {
-        
-    }
-
-    /**
-     * 
-     * Returns the SignalInterface object.
-     * 
-     * @return SignalInterface
-     * 
-     */
-    public function getSignal()
-    {
-        
-    }
-
-    /**
-     * 
-     * Executes the controller.
-     * 
-     * @return Response
-     * 
-     */
-    public function exec()
-    {
-        $response = new Response;
-        $response->setContent(__METHOD__);
-        return $response;
+        $this->view = $view;
     }
 }
