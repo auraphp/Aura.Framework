@@ -40,11 +40,6 @@ $di->params['Aura\Framework\Bootstrap\Web']['front_controller'] = $di->lazyGet('
 $di->params['Aura\Framework\Bootstrap\Web']['http_transport'] = $di->lazyGet('http_transport');
 
 /**
- * Aura\Framework\Cli\AbstractCommand
- */
-$di->setter['Aura\Framework\Cli\AbstractCommand']['setSignal'] = $di->lazyGet('signal_manager');
-
-/**
  * Aura\Framework\Cli\CacheClassmap\Command
  */
 $di->setter['Aura\Framework\Cli\CacheClassmap\Command']['setSystem'] = $di->lazyGet('framework_system');
