@@ -145,24 +145,21 @@ class AuraViewTwoStep extends AbstractRenderer
      */
     public function exec()
     {
-        if (is_array($this->controller->getView()) && $this->controller->getFormat() == null) {
-            $format = $this->twostep->getFormatTypes()
-                    ->matchAcceptFormats(
-                        array_keys($this->accept->getContentType()),
-                        array_keys($this->controller->getView())
-                    );
-        } else {
-            $format = $this->controller->getFormat();
-        }
-        $this->twostep->setFormat($format);
+        // set any explicit format from the controller
+        $this->twostep->setFormat($this->controller->getFormat());
+        
+        // is there already response content?
         $response = $this->controller->getResponse();
         if (! $response->getContent()) {
+            // no, render the two-step view into the response content
             $this->twostep->setData((array) $this->controller->getData());
             $this->twostep->setAccept($this->accept->getContentType());
             $this->twostep->setInnerView($this->controller->getView());
             $this->twostep->setOuterView($this->controller->getLayout());
             $response->setContent($this->twostep->render());
         }
+        
+        // set the response content-type
         $response->setContentType($this->twostep->getContentType());
     }
 }
