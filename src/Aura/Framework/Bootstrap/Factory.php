@@ -75,12 +75,15 @@ class Factory
      * 
      * @param string $mode The config mode to use.
      * 
+     * @param bool $silent_loader Force the autoloader to MODE_SILENT; this is
+     * useful primarily for testing purposes.
+     * 
      * @return object A bootstrapper.
      * 
      */
-    public function newInstance($type, $mode = null)
+    public function newInstance($type, $mode = null, $silent_loader = false)
     {
-        $di = $this->prep($mode);
+        $di = $this->prep($mode, $silent_loader);
         $class = $this->map[$type];
         return $di->newInstance($class);
     }
@@ -92,10 +95,13 @@ class Factory
      * 
      * @param string $mode The config mode.
      * 
+     * @param bool $silent_loader Force the autoloader to MODE_SILENT; this is
+     * useful primarily for testing purposes.
+     * 
      * @return \Aura\Di\Container A dependency injection container.
      * 
      */
-    public function prep($mode = null)
+    public function prep($mode = null, $silent_loader = false)
     {
         // turn up error reporting
         error_reporting(E_ALL);
@@ -119,6 +125,9 @@ class Factory
         // set the autoloader
         $loader = new Loader;
         $loader->prep($system);
+        if ($silent_loader) {
+            $loader->setMode($loader::MODE_SILENT);
+        }
         $loader->register();
 
         // set framework services

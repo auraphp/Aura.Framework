@@ -13,9 +13,9 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
         $this->factory = new Factory($root, $map);
     }
 
-    public function testExec()
+    public function testNewInstance()
     {
-        $bootstrap = $this->factory->newInstance('mock', 'test');
+        $bootstrap = $this->factory->newInstance('mock', 'test', true);
         $this->assertInstanceOf('Aura\Framework\Mock\Bootstrap', $bootstrap);
     }
 }
