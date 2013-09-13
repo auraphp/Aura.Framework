@@ -3,6 +3,23 @@ php:
   - 5.4
   - 5.5
 before_script:
-  - composer install
-  - cd package/Aura.Framework/tests
+  - mkdir package
+  - cd package
+  - git clone https://github.com/auraphp/Aura.Autoload.git
+  - git clone https://github.com/auraphp/Aura.Cli.git
+  - git clone https://github.com/auraphp/Aura.Di.git
+  - git clone https://github.com/auraphp/Aura.Filter.git
+  - git clone https://github.com/auraphp/Aura.Framework.git
+  - git clone https://github.com/auraphp/Aura.Http.git
+  - git clone https://github.com/auraphp/Aura.Input.git
+  - git clone https://github.com/auraphp/Aura.Intl.git
+  - git clone https://github.com/auraphp/Aura.Marshal.git
+  - git clone https://github.com/auraphp/Aura.Router.git
+  - git clone https://github.com/auraphp/Aura.Session.git
+  - git clone https://github.com/auraphp/Aura.Signal.git
+  - git clone https://github.com/auraphp/Aura.Sql.git
+  - git clone https://github.com/auraphp/Aura.Uri.git
+  - git clone https://github.com/auraphp/Aura.View.git
+  - git clone https://github.com/auraphp/Aura.Web.git
+  - cd Aura.Framework/tests
 script: phpunit
