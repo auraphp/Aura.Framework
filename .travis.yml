@@ -3,8 +3,6 @@ php:
   - 5.4
   - 5.5
 before_script:
-  - git clone https://github.com/auraphp/system.git
-  - cd system
-  - composer update
+  - composer install
   - cd package/Aura.Framework/tests
 script: phpunit
