@@ -32,14 +32,22 @@ trait WiringAssertionsTrait
     
     /**
      * 
-     * Loads the $di property from the global variable $AURA_FRAMEWORK_DI.
+     * Loads the $di property.
      * 
      * @return void
      * 
      */
     protected function loadDi()
     {
-        $this->di = $GLOBALS['AURA_FRAMEWORK_DI'];
+        // prep the framework in 'test' mode via the bootstrap factory
+        // and get back the DI container
+        $factory = new \Aura\Framework\Bootstrap\Factory;
+        $this->di = $factory->prep('test');
+
+        // set the loader mode so that missing PHPUnit files don't blow up the tests;
+        // there are issues with PHP_Invoker
+        $loader = $this->di->get('framework_loader');
+        $loader->setMode(\Aura\Autoload\Loader::MODE_SILENT);
     }
     
     /**

@@ -10,6 +10,9 @@
  */
 namespace Aura\Framework\Bootstrap;
 
+use Aura\Di\Config;
+use Aura\Di\Container;
+use Aura\Di\Forge;
 use Aura\Framework\Autoload\Loader;
 use Aura\Framework\System;
 use Exception;
@@ -120,7 +123,7 @@ class Factory
         require_once $system->getPackagePath('Aura.Framework/src/Aura/Framework/Autoload/Loader.php');
 
         // set the DI container object
-        $di = require_once $system->getPackagePath('Aura.Di/scripts/instance.php');
+        $di = new Container(new Forge(new Config));
 
         // set the autoloader
         $loader = new Loader;
