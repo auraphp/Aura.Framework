@@ -1,8 +1,6 @@
 Aura Framework
 ==============
 
-[![Build Status](https://travis-ci.org/auraphp/Aura.Framework.png?branch=develop)](https://travis-ci.org/auraphp/Aura.Framework)
-
 Unlike every other Aura package, the Aura Framework package *does* have
 dependencies. This is because it composes them into a unified framework for
 development. You probably don't want to download this directly; more likely,
