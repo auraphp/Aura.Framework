@@ -127,7 +127,6 @@ class Factory
         $loader->register();
 
         // create the DI container
-        $loader->add('Aura\Di\\', $system->getPackagePath('Aura.Di/src'));
         $di = new Container(new Forge(new Config));
 
         // set framework services
