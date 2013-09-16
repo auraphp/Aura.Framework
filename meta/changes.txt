@@ -6,3 +6,4 @@
 
 - [CHG] Bootstrap\Factory::newInstance() and prep() now have a $silent_loader'
   param; when true, this forces the autoloader into MODE_SILENT for testing
+
