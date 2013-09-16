@@ -2,7 +2,7 @@
 
 - [DOC] Update license and add Travis build status badge.
 
-- [CHG] Web\Renderer\AuraViewTwoStep::render() now honors any explicit format
-  in the controller via Controller::getFormat().
-
 - [CHG] Update config files to remove unneeded setters.
+
+- [CHG] Bootstrap\Factory::newInstance() and prep() now have a $silent_loader'
+  param; when true, this forces the autoloader into MODE_SILENT for testing
