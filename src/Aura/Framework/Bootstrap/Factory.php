@@ -111,27 +111,24 @@ class Factory
         ini_set('display_errors', true);
         ini_set('html_errors', false);
 
-        // create the system object
+        // create the system object and prepend to include path
         require_once dirname(__DIR__) . '/System.php';
         $system = new System($this->root);
-
-        // prepend to the include path
         set_include_path($system->getIncludePath() . PATH_SEPARATOR . get_include_path());
 
-        // requires
+        // create the autoloader
         require_once $system->getPackagePath('Aura.Autoload/src.php');
         require_once $system->getPackagePath('Aura.Framework/src/Aura/Framework/Autoload/Loader.php');
-
-        // set the DI container object
-        $di = new Container(new Forge(new Config));
-
-        // set the autoloader
         $loader = new Loader;
         $loader->prep($system);
         if ($silent_loader) {
             $loader->setMode($loader::MODE_SILENT);
         }
         $loader->register();
+
+        // create the DI container
+        $loader->add('Aura\Di\\', $system->getPackagePath('Aura.Di/src'));
+        $di = new Container(new Forge(new Config));
 
         // set framework services
         $di->set('framework_system', $system);
