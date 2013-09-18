@@ -1,7 +1,2 @@
-<phpunit bootstrap="./bootstrap.php" processIsolation="true">
-    <testsuites>
-        <testsuite>
-            <directory>./Aura/Framework</directory>
-        </testsuite>
-    </testsuites>
+<phpunit bootstrap="./bootstrap.php">
 </phpunit>

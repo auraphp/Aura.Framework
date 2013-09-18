@@ -10,6 +10,9 @@
  */
 namespace Aura\Framework\Bootstrap;
 
+use Aura\Di\Config;
+use Aura\Di\Container;
+use Aura\Di\Forge;
 use Aura\Framework\Autoload\Loader;
 use Aura\Framework\System;
 use Exception;
@@ -75,12 +78,15 @@ class Factory
      * 
      * @param string $mode The config mode to use.
      * 
+     * @param bool $silent_loader Force the autoloader to MODE_SILENT; this is
+     * useful primarily for testing purposes.
+     * 
      * @return object A bootstrapper.
      * 
      */
-    public function newInstance($type, $mode = null)
+    public function newInstance($type, $mode = null, $silent_loader = false)
     {
-        $di = $this->prep($mode);
+        $di = $this->prep($mode, $silent_loader);
         $class = $this->map[$type];
         return $di->newInstance($class);
     }
@@ -92,34 +98,36 @@ class Factory
      * 
      * @param string $mode The config mode.
      * 
+     * @param bool $silent_loader Force the autoloader to MODE_SILENT; this is
+     * useful primarily for testing purposes.
+     * 
      * @return \Aura\Di\Container A dependency injection container.
      * 
      */
-    public function prep($mode = null)
+    public function prep($mode = null, $silent_loader = false)
     {
         // turn up error reporting
         error_reporting(E_ALL);
         ini_set('display_errors', true);
         ini_set('html_errors', false);
 
-        // create the system object
+        // create the system object and prepend to include path
         require_once dirname(__DIR__) . '/System.php';
         $system = new System($this->root);
-
-        // prepend to the include path
         set_include_path($system->getIncludePath() . PATH_SEPARATOR . get_include_path());
 
-        // requires
+        // create the autoloader
         require_once $system->getPackagePath('Aura.Autoload/src.php');
         require_once $system->getPackagePath('Aura.Framework/src/Aura/Framework/Autoload/Loader.php');
-
-        // set the DI container object
-        $di = require_once $system->getPackagePath('Aura.Di/scripts/instance.php');
-
-        // set the autoloader
         $loader = new Loader;
         $loader->prep($system);
+        if ($silent_loader) {
+            $loader->setMode($loader::MODE_SILENT);
+        }
         $loader->register();
+
+        // create the DI container
+        $di = new Container(new Forge(new Config));
 
         // set framework services
         $di->set('framework_system', $system);

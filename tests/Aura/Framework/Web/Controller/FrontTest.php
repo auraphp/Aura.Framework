@@ -41,17 +41,13 @@ class FrontTest extends \PHPUnit_Framework_TestCase
     
     protected $front;
     
-    /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     */
-    protected function newFront($path_info)
+    protected function newFront($request_uri)
     {
         parent::setUp();
         
         $this->signal = new SignalManager(new HandlerFactory, new ResultFactory, new ResultCollection);
         
-        $_SERVER['REQUEST_URI'] = $path_info;
+        $_SERVER['REQUEST_URI'] = $request_uri;
         $this->context = new Context($GLOBALS);
         
         $this->router = new RouterMap(new DefinitionFactory, new RouteFactory);
@@ -63,7 +59,7 @@ class FrontTest extends \PHPUnit_Framework_TestCase
         
         $this->forge = new Forge(new Config);
         
-        $map = ['mock' => 'Aura\Framework\Mock\Page'];
+        $map = ['mock' => 'Aura\Framework\Mock\Controller'];
         $not_found = 'Aura\Framework\Mock\NotFound';
         $this->factory = new Factory($this->forge, $map, $not_found);
         
@@ -81,18 +77,11 @@ class FrontTest extends \PHPUnit_Framework_TestCase
         );
     }
     
-    /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     */
     public function tearDown()
     {
         parent::tearDown();
     }
 
-    /**
-     * @todo Implement test__get().
-     */
     public function test__get()
     {
         $front = $this->newFront('/');
@@ -108,7 +97,27 @@ class FrontTest extends \PHPUnit_Framework_TestCase
         $front = $this->newFront('/mock');
         $response = $front->exec();
         $this->assertInstanceOf('Aura\Http\Message\Response', $response);
-        $expect = "Aura\Framework\Mock\Page::exec";
+        $expect = "Aura\Framework\Mock\Controller::exec";
+        $actual = $response->getContent();
+        $this->assertSame($expect, $actual);
+    }
+    
+    public function testExec_indexPhp()
+    {
+        $front = $this->newFront('/index.php/mock');
+        $response = $front->exec();
+        $this->assertInstanceOf('Aura\Http\Message\Response', $response);
+        $expect = "Aura\Framework\Mock\Controller::exec";
+        $actual = $response->getContent();
+        $this->assertSame($expect, $actual);
+    }
+    
+    public function testExec_indexPhpEmpty()
+    {
+        $front = $this->newFront('/index.php');
+        $response = $front->exec();
+        $this->assertInstanceOf('Aura\Http\Message\Response', $response);
+        $expect = "Aura\Framework\Mock\NotFound::exec";
         $actual = $response->getContent();
         $this->assertSame($expect, $actual);
     }

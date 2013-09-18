@@ -46,6 +46,7 @@ class Loader extends Autoloader
             $classes = $read($file, $system);
             $this->setClasses($classes);
         } else {
+            $this->add('Aura\Di\\', $system->getPackagePath('Aura.Di/src'));
             $this->add('Aura\Framework\\', $system->getPackagePath('Aura.Framework/src'));
         }
 

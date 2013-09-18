@@ -12,7 +12,6 @@ use Aura\Signal\HandlerFactory;
 use Aura\Signal\ResultFactory;
 use Aura\Signal\ResultCollection;
 use Aura\Framework\System;
-use Aura\Framework\VfsSystem;
 use Aura\Framework\Intl\Translator;
 use Aura\Intl\BasicFormatter;
 
@@ -42,7 +41,7 @@ abstract class AbstractCommandTest extends \PHPUnit_Framework_TestCase
     
     protected function setUp()
     {
-        $root = VfsSystem::create('root');
+        $root = dirname(dirname(dirname(dirname(dirname(dirname(__DIR__))))));
         $this->system = new System($root);
     }
     

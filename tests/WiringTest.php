@@ -31,7 +31,7 @@ class WiringTest extends \PHPUnit_Framework_TestCase
         $this->assertNewInstance('Aura\Framework\View\Helper\AssetHref');
         $this->assertNewInstance('Aura\Framework\View\Helper\Route');
         $this->assertNewInstance('Aura\Framework\Web\Asset\Page');
-        $this->assertNewInstance('Aura\Framework\Web\Controller\AbstractPage', 'Aura\Framework\Web\MockPage');
+        $this->assertNewInstance('Aura\Framework\Web\Controller\AbstractPage', 'Aura\Framework\Mock\Page');
         $this->assertNewInstance('Aura\Framework\Web\Controller\Factory');
         $this->assertNewInstance('Aura\Framework\Web\Controller\Front');
         $this->assertNewInstance('Aura\Framework\Web\Renderer\AuraViewTwoStep');

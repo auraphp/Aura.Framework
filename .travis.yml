@@ -1,9 +1,0 @@
-language: php
-php:
-  - 5.4
-before_script:
-  - git clone https://github.com/auraphp/system.git
-  - cd system
-  - composer update
-  - cd package/Aura.Framework/tests
-script: phpunit

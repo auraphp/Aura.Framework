@@ -1,25 +1,9 @@
-(This list includes the changes from 1.0.0-beta5 and 6, which had problems with their composer.json files.)
+- [TST] Added PHP 5.5 to the Travis-CI build.
 
-- [ADD] Re-add View\Helper\AssetHref and Web\Asset.
+- [DOC] Update license and add Travis build status badge.
 
-- [FIX] In tests, replaced static Unix-Style Directory Seperators with dynamic ones from PHPs DIRECTORY_SEPARATOR Constant; else all tests would fail on Windows environments.
+- [CHG] Update config files to remove unneeded setters.
 
-- [BRK] In front controller, add a session manager param to the constructor, and commit the session at the end of exec().
+- [CHG] Bootstrap\Factory::newInstance() and prep() now have a $silent_loader'
+  param; when true, this forces the autoloader into MODE_SILENT for testing
 
-- [FIX] In front controller, make allowances for index.php in the path.
-
-- [FIX] In Bootstrap\Factory, load system-level default config, and then system-level mode config, instead of just the mode without default. (fixes #29)
-
-- [NEW] Aura\Framework\Intl\Translator to implement a separated interface.
-
-- [FIX] Make allowances for non-integer return codes in Bootstrap\Cli.
-
-- [FIX] In Bootstrap\Factory, don't read the same $mode file twice. read 'default' then whatever the non-default mode is. closes #32. thanks @ammmze
-
-- [FIX] In Bootstrap\Factory, instead of overriding the include path, prepend it with the system include directory
-
-- [NEW] Test\WiringAssertionsTrait for wiring test assertions.
-
-- [NEW] Input\Filter to implement separated interface.
-
-- [CHG] In Bootstrap\Factory::prep(), use null mode by default

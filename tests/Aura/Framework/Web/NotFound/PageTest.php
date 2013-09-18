@@ -25,10 +25,10 @@ class PageTest extends AbstractPageTest
     </head>
     <body>
         <h1>404 Not Found</h1>
-        <p>No controller found for <code>&#039;/&#039;</code></p>
+        <p>No controller found for <code>&#039;/no-such-controller&#039;</code></p>
         <p>Please check that your config has:</p>
         <ol>
-            <li>An <code>Aura\Router\Map</code> route for the path <code>&#039;/&#039;</code></li>
+            <li>An <code>Aura\Router\Map</code> route for the path <code>&#039;/no-such-controller&#039;</code></li>
             <li>A <code>['values']['controller']</code> value for the mapped route</li>
             <li>
                 A <code>\$di->params['Aura\\Framework\\Web\\Controller\\Factory']['map']</code>
