@@ -12,14 +12,4 @@ class CommandTest extends AbstractCommandTest
         $command->setSystem($this->system);
         return $command;
     }
-    
-    public function testAction()
-    {
-        $command = $this->newCommand();
-        
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
-    }
 }
