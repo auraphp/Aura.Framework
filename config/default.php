@@ -5,27 +5,22 @@
 $loader->add('Aura\Framework\\', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'src');
 
 /**
+ * Router
+ */
+$router->add(null, '/asset/{:package}/{:file:(.*?)}{:format:(\..+)?}', [
+    'values' => [
+        'controller' => 'aura.framework.asset',
+        'action' => 'index',
+    ],
+]);
+
+/**
  * Services
  */
 $di->set('framework_inflect', $di->lazyNew('Aura\Framework\Inflect'));
 $di->set('web_front', $di->lazyNew('Aura\Framework\Web\Controller\Front'));
 // override the service for signal manager
 $di->set('signal_manager', $di->lazyNew('Aura\Framework\Signal\Manager'));
-
-/**
- * Aura\Router\Map
- */
-$di->params['Aura\Router\Map']['attach']['/asset'] = [
-    'routes' => [
-        [
-            'path' => '/{:package}/{:file:(.*?)}{:format:(\..+)?}',
-            'values' => [
-                'controller' => 'aura.framework.asset',
-                'action' => 'index',
-            ],
-        ]
-    ]
-];
 
 /**
  * Aura\Framework\Bootstrap\Cli
