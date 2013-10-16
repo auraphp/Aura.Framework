@@ -15,6 +15,9 @@ use Aura\Di\Container;
 use Aura\Di\Forge;
 use Aura\Framework\Autoload\Loader;
 use Aura\Framework\System;
+use Aura\Router\Map as RouterMap;
+use Aura\Router\DefinitionFactory;
+use Aura\Router\RouteFactory;
 use Exception;
 
 /**
@@ -126,13 +129,18 @@ class Factory
         }
         $loader->register();
 
+        // create the router
+        require_once $system->getPackagePath('Aura.Router/src.php');
+        $router = new RouterMap(new DefinitionFactory, new RouteFactory);
+        
         // create the DI container
         $di = new Container(new Forge(new Config));
 
         // set framework services
         $di->set('framework_system', $system);
         $di->set('framework_loader', $loader);
-
+        $di->set('router_map', $router);
+        
         // get the config mode
         if (! $mode) {
             $file = $system->getConfigPath('_mode');
@@ -144,7 +152,7 @@ class Factory
         }
 
         // function to read config files in isolated scope
-        $read = function ($file) use ($di, $system, $loader) {
+        $read = function ($file) use ($di, $system, $loader, $router) {
             require $file;
         };
 
@@ -163,6 +171,13 @@ class Factory
         // lock the container
         $di->lock();
 
+        // create a temp router; this captures the config params for routes
+        $temp_router = $di->newInstance('Aura\Router\Map');
+        
+        // prepend the temp router configs to the existing router service so
+        // that we have backwards compat with existing configs
+        $router->prependMap($temp_router);
+        
         // done!
         return $di;
     }
