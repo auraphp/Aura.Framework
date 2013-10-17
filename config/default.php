@@ -5,16 +5,6 @@
 $loader->add('Aura\Framework\\', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'src');
 
 /**
- * Router
- */
-$router->add(null, '/asset/{:package}/{:file:(.*?)}{:format:(\..+)?}', [
-    'values' => [
-        'controller' => 'aura.framework.asset',
-        'action' => 'index',
-    ],
-]);
-
-/**
  * Services
  */
 $di->set('framework_inflect', $di->lazyNew('Aura\Framework\Inflect'));
@@ -123,6 +113,21 @@ $di->params['Aura\Intl\TranslatorLocator']['factory'] = $di->lazyNew('Aura\Frame
  */
 // use the framework filter
 $di->params['Aura\Input\Form']['filter'] = $di->lazyNew('Aura\Framework\Input\Filter');
+
+/**
+ * Aura\Router\Map
+ */
+$di->params['Aura\Router\Map']['attach']['/asset'] = [
+    'routes' => [
+        [
+            'path' => '/{:package}/{:file:(.*?)}{:format:(\..+)?}',
+            'values' => [
+                'controller' => 'aura.framework.asset',
+                'action' => 'index',
+            ],
+        ]
+    ]
+];
 
 /**
  * Aura\View\HelperLocator
