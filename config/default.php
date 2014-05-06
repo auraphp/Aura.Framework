@@ -38,9 +38,11 @@ $di->setter['Aura\Framework\Cli\CacheConfig\Command']['setSystem'] = $di->lazyGe
  * Aura\Framework\Cli\Factory
  */
 $di->params['Aura\Framework\Cli\Factory']['forge'] = $di->getForge();
-$di->params['Aura\Framework\Cli\Factory']['map']["$system/package/Aura.Framework/cli/cache-classmap"] = 'Aura\Framework\Cli\CacheClassmap\Command';
-$di->params['Aura\Framework\Cli\Factory']['map']["$system/package/Aura.Framework/cli/cache-config"] = 'Aura\Framework\Cli\CacheConfig\Command';
-$di->params['Aura\Framework\Cli\Factory']['map']["$system/package/Aura.Framework/cli/server"] = 'Aura\Framework\Cli\Server\Command';
+$cli_path = $system . DIRECTORY_SEPARATOR . 'package' . DIRECTORY_SEPARATOR .
+			'Aura.Framework' . DIRECTORY_SEPARATOR . 'cli' . DIRECTORY_SEPARATOR;
+$di->params['Aura\Framework\Cli\Factory']['map'][$cli_path . 'cache-classmap'] = 'Aura\Framework\Cli\CacheClassmap\Command';
+$di->params['Aura\Framework\Cli\Factory']['map'][$cli_path . 'cache-config'] = 'Aura\Framework\Cli\CacheConfig\Command';
+$di->params['Aura\Framework\Cli\Factory']['map'][$cli_path . 'server'] = 'Aura\Framework\Cli\Server\Command';
 
 /**
  * Aura\Framework\Cli\Server\Command
