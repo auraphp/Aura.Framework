@@ -19,5 +19,10 @@
         "psr-0": {
             "Aura\\Framework": "src/"
         }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-develop": "1.0.x-dev"
+        }
     }
 }
