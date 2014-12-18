@@ -9,6 +9,7 @@ $loader->add('Aura\Framework\\', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'src')
  */
 $di->set('framework_inflect', $di->lazyNew('Aura\Framework\Inflect'));
 $di->set('web_front', $di->lazyNew('Aura\Framework\Web\Controller\Front'));
+$di->set('router_map', $di->lazyNew('Aura\Router\Map'));
 // override the service for signal manager
 $di->set('signal_manager', $di->lazyNew('Aura\Framework\Signal\Manager'));
 
@@ -39,7 +40,7 @@ $di->setter['Aura\Framework\Cli\CacheConfig\Command']['setSystem'] = $di->lazyGe
  */
 $di->params['Aura\Framework\Cli\Factory']['forge'] = $di->getForge();
 $cli_path = $system . DIRECTORY_SEPARATOR . 'package' . DIRECTORY_SEPARATOR .
-			'Aura.Framework' . DIRECTORY_SEPARATOR . 'cli' . DIRECTORY_SEPARATOR;
+      'Aura.Framework' . DIRECTORY_SEPARATOR . 'cli' . DIRECTORY_SEPARATOR;
 $di->params['Aura\Framework\Cli\Factory']['map'][$cli_path . 'cache-classmap'] = 'Aura\Framework\Cli\CacheClassmap\Command';
 $di->params['Aura\Framework\Cli\Factory']['map'][$cli_path . 'cache-config'] = 'Aura\Framework\Cli\CacheConfig\Command';
 $di->params['Aura\Framework\Cli\Factory']['map'][$cli_path . 'server'] = 'Aura\Framework\Cli\Server\Command';
