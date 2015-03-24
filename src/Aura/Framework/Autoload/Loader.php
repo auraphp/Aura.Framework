@@ -1,12 +1,10 @@
 <?php
 /**
- * 
+ *
  * This file is part of the Aura project for PHP.
- * 
- * @package Aura.Framework
- * 
+ *
  * @license http://opensource.org/licenses/bsd-license.php BSD
- * 
+ *
  */
 namespace Aura\Framework\Autoload;
 
@@ -14,22 +12,22 @@ use Aura\Autoload\Loader as Autoloader;
 use Aura\Framework\System;
 
 /**
- * 
+ *
  * A framework-aware autoloader.
- * 
+ *
  * @package Aura.Framework
- * 
+ *
  */
 class Loader extends Autoloader
 {
     /**
-     * 
+     *
      * Preps the autoloader with system information.
-     * 
+     *
      * @param System $system A system object.
-     * 
+     *
      * @return void
-     * 
+     *
      */
     public function prep(System $system)
     {

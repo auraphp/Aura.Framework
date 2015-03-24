@@ -1,12 +1,10 @@
 <?php
 /**
- * 
+ *
  * This file is part of the Aura project for PHP.
- * 
- * @package Aura.Framework
- * 
+ *
  * @license http://opensource.org/licenses/bsd-license.php BSD
- * 
+ *
  */
 
 $root      = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'web';

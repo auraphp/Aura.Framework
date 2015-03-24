@@ -1,32 +1,30 @@
 <?php
 /**
- * 
+ *
  * This file is part of the Aura project for PHP.
- * 
- * @package Aura.Framework
- * 
+ *
  * @license http://opensource.org/licenses/bsd-license.php BSD
- * 
+ *
  */
 namespace Aura\Framework;
 
 /**
- * 
+ *
  * Methods for inflecting strings from one form to another form.
- * 
+ *
  * @package Aura.Framework
- * 
+ *
  */
 class Inflect
 {
     /**
-     * 
+     *
      * Returns "camelCapsWord" and "CamelCapsWord" as "camel-caps-word".
-     * 
+     *
      * @param string $str The camel-caps word.
-     * 
+     *
      * @return string The word with dashes in place of camel caps.
-     * 
+     *
      */
     public function camelToDashes($str)
     {
@@ -36,13 +34,13 @@ class Inflect
     }
 
     /**
-     * 
+     *
      * Returns "camelCapsWord" and "CamelCapsWord" as "Camel_Caps_Word".
-     * 
+     *
      * @param string $str The camel-caps word.
-     * 
+     *
      * @return string The word with underscores in place of camel caps.
-     * 
+     *
      */
     public function camelToUnder($str)
     {
@@ -52,13 +50,13 @@ class Inflect
     }
 
     /**
-     * 
+     *
      * PSR-0 class-to-filename implementation.
-     * 
+     *
      * @param string $spec The class or interface name.
-     * 
+     *
      * @return string The spec as converted to a file path.
-     * 
+     *
      */
     public function classToFile($spec)
     {
@@ -75,14 +73,14 @@ class Inflect
     }
 
     /**
-     * 
+     *
      * Splits a fully-qualified class name into namespace and class portions.
-     * 
+     *
      * @param string $spec The fully-qualified class name.
-     * 
+     *
      * @return array A 2-element array where element 0 is the namespace and
      * element 1 is the class.
-     * 
+     *
      */
     public function splitNamespaceAndClass($spec)
     {
@@ -100,13 +98,13 @@ class Inflect
     }
 
     /**
-     * 
+     *
      * Returns "foo-bar-baz" as "fooBarBaz".
-     * 
+     *
      * @param string $str The dashed word.
-     * 
+     *
      * @return string The word in camelCaps.
-     * 
+     *
      */
     public function dashesToCamel($str)
     {
@@ -116,13 +114,13 @@ class Inflect
     }
 
     /**
-     * 
+     *
      * Returns "foo-bar-baz" as "foo_bar_baz".
-     * 
+     *
      * @param string $str The underscore word.
-     * 
+     *
      * @return string The word with dashes.
-     * 
+     *
      */
     public function dashesToUnder($str)
     {
@@ -130,13 +128,13 @@ class Inflect
     }
 
     /**
-     * 
+     *
      * Returns "foo-bar-baz" as "FooBarBaz".
-     * 
+     *
      * @param string $str The dashed word.
-     * 
+     *
      * @return string The word in StudlyCaps.
-     * 
+     *
      */
     public function dashesToStudly($str)
     {
@@ -144,13 +142,13 @@ class Inflect
     }
 
     /**
-     * 
+     *
      * Returns "foo_bar_baz" as "fooBarBaz".
-     * 
+     *
      * @param string $str The underscore word.
-     * 
+     *
      * @return string The word in camelCaps.
-     * 
+     *
      */
     public function underToCamel($str)
     {
@@ -160,13 +158,13 @@ class Inflect
     }
 
     /**
-     * 
+     *
      * Returns "foo_bar_baz" as "foo-bar-baz".
-     * 
+     *
      * @param string $str The underscore word.
-     * 
+     *
      * @return string The word with dashes.
-     * 
+     *
      */
     public function underToDashes($str)
     {
@@ -174,13 +172,13 @@ class Inflect
     }
 
     /**
-     * 
+     *
      * Returns "foo_bar_baz" as "FooBarBaz".
-     * 
+     *
      * @param string $str The underscore word.
-     * 
+     *
      * @return string The word in StudlyCaps.
-     * 
+     *
      */
     public function underToStudly($str)
     {

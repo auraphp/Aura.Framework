@@ -1,9 +1,7 @@
-- [TST] Added PHP 5.5 to the Travis-CI build.
+- ADD: Inject a $router when loading configs. This is a backwards-compatible change;  old configs will work along with the new ones, and new configs can make use of the new $router. Old configs take precedence over new.
 
-- [DOC] Update license and add Travis build status badge.
+- FIX: Merge pull request #50, issue with Windows paths
 
-- [CHG] Update config files to remove unneeded setters.
+- CFG: Merge pull request #51, Add branch alias 1.x to composer.json
 
-- [CHG] Bootstrap\Factory::newInstance() and prep() now have a $silent_loader'
-  param; when true, this forces the autoloader into MODE_SILENT for testing
-
+- FIX: Merge pull request #52, Fixes the issues introduced in https://github.com/auraphp/Aura.Router/commit/eaf6c1188dc46e123da9367e0a5e59d9a9bd4079

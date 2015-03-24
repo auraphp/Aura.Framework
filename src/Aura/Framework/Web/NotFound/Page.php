@@ -1,32 +1,30 @@
 <?php
 /**
- * 
+ *
  * This file is part of the Aura Project for PHP.
- * 
- * @package Aura.Framework
- * 
+ *
  * @license http://opensource.org/licenses/bsd-license.php BSD
- * 
+ *
  */
 namespace Aura\Framework\Web\NotFound;
 
 use Aura\Framework\Web\Controller\AbstractPage;
 
 /**
- * 
+ *
  * Show this when a page controller could not be found for the request.
- * 
+ *
  * @package Aura.Framework
- * 
+ *
  */
 class Page extends AbstractPage
 {
     /**
-     * 
+     *
      * Force the action to "index".
-     * 
+     *
      * @return void
-     * 
+     *
      */
     public function preExec()
     {
@@ -34,11 +32,11 @@ class Page extends AbstractPage
     }
 
     /**
-     * 
+     *
      * Shows information about what happened.
-     * 
+     *
      * @return void
-     * 
+     *
      */
     public function actionIndex()
     {
