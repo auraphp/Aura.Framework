@@ -1,39 +1,37 @@
 <?php
 /**
- * 
+ *
  * This file is part of the Aura project for PHP.
- * 
- * @package Aura.Framework
- * 
+ *
  * @license http://opensource.org/licenses/bsd-license.php BSD
- * 
+ *
  */
 namespace Aura\Framework;
 
 /**
- * 
+ *
  * Keeps track of the Aura system directories.
- * 
+ *
  * @package Aura.Framework
- * 
+ *
  */
 class System
 {
     /**
-     * 
+     *
      * The root directory of the Aura system.
-     * 
+     *
      * @var string
-     * 
+     *
      */
     protected $root;
 
     /**
-     * 
+     *
      * Constructor.
-     * 
+     *
      * @param string $root The root directory of the Aura system.
-     * 
+     *
      */
     public function __construct($root)
     {
@@ -41,11 +39,11 @@ class System
     }
 
     /**
-     * 
+     *
      * When using as a string, return the root path only.
-     * 
+     *
      * @return string The root directory of the Aura system.
-     * 
+     *
      */
     public function __toString()
     {
@@ -53,16 +51,16 @@ class System
     }
 
     /**
-     * 
+     *
      * Gets the path for any directory, along with an optional subdirectory
      * path.
-     * 
+     *
      * @param string $dir The directory name to get the path for.
-     * 
+     *
      * @param string $sub An optional subdirectory path.
-     * 
+     *
      * @return The full directory path, with proper directory separators.
-     * 
+     *
      */
     protected function getSubPath($dir, $sub = null)
     {
@@ -75,14 +73,14 @@ class System
     }
 
     /**
-     * 
-     * Gets the root path for the Aura system, along with an optional 
+     *
+     * Gets the root path for the Aura system, along with an optional
      * subdirectory path.
-     * 
+     *
      * @param string $sub An optional subdirectory path.
-     * 
+     *
      * @return The full directory path, with proper directory separators.
-     * 
+     *
      */
     public function getRootPath($sub = null)
     {
@@ -95,14 +93,14 @@ class System
     }
 
     /**
-     * 
-     * Gets the package path for the Aura system, along with an optional 
+     *
+     * Gets the package path for the Aura system, along with an optional
      * subdirectory path.
-     * 
+     *
      * @param string $sub An optional subdirectory path.
-     * 
+     *
      * @return The full directory path, with proper directory separators.
-     * 
+     *
      */
     public function getPackagePath($sub = null)
     {
@@ -110,14 +108,14 @@ class System
     }
 
     /**
-     * 
-     * Gets the tmp path for the Aura system, along with an optional 
+     *
+     * Gets the tmp path for the Aura system, along with an optional
      * subdirectory path.
-     * 
+     *
      * @param string $sub An optional subdirectory path.
-     * 
+     *
      * @return The full directory path, with proper directory separators.
-     * 
+     *
      */
     public function getTmpPath($sub = null)
     {
@@ -125,14 +123,14 @@ class System
     }
 
     /**
-     * 
-     * Gets the config path for the Aura system, along with an optional 
+     *
+     * Gets the config path for the Aura system, along with an optional
      * subdirectory path.
-     * 
+     *
      * @param string $sub An optional subdirectory path.
-     * 
+     *
      * @return The full directory path, with proper directory separators.
-     * 
+     *
      */
     public function getConfigPath($sub = null)
     {
@@ -140,14 +138,14 @@ class System
     }
 
     /**
-     * 
-     * Gets the include path for the Aura system, along with an optional 
+     *
+     * Gets the include path for the Aura system, along with an optional
      * subdirectory path.
-     * 
+     *
      * @param string $sub An optional subdirectory path.
-     * 
+     *
      * @return The full directory path, with proper directory separators.
-     * 
+     *
      */
     public function getIncludePath($sub = null)
     {
@@ -155,14 +153,14 @@ class System
     }
 
     /**
-     * 
-     * Gets the vendor path for the Aura system, along with an optional 
+     *
+     * Gets the vendor path for the Aura system, along with an optional
      * subdirectory path.
-     * 
+     *
      * @param string $sub An optional subdirectory path.
-     * 
+     *
      * @return The full directory path, with proper directory separators.
-     * 
+     *
      */
     public function getVendorPath($sub = null)
     {
@@ -170,14 +168,14 @@ class System
     }
 
     /**
-     * 
-     * Gets the web path for the Aura system, along with an optional 
+     *
+     * Gets the web path for the Aura system, along with an optional
      * subdirectory path.
-     * 
+     *
      * @param string $sub An optional subdirectory path.
-     * 
+     *
      * @return The full directory path, with proper directory separators.
-     * 
+     *
      */
     public function getWebPath($sub = null)
     {

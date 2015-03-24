@@ -1,12 +1,10 @@
 <?php
 /**
- * 
+ *
  * This file is part of the Aura project for PHP.
- * 
- * @package Aura.Framework
- * 
+ *
  * @license http://opensource.org/licenses/bsd-license.php BSD
- * 
+ *
  */
 namespace Aura\Framework\Cli\Server;
 
@@ -15,38 +13,38 @@ use Aura\Cli\Option;
 use Aura\Framework\System;
 
 /**
- * 
+ *
  * Setup and run a development server.
- * 
+ *
  * @package Aura.Framework
- * 
+ *
  */
 class Command extends AbstractCommand
 {
     /**
-     * 
+     *
      * The path to the PHP executable.
-     * 
+     *
      * @var string
-     * 
+     *
      */
     protected $php = 'php';
 
     /**
-     * 
+     *
      * A System object.
-     * 
+     *
      * @var System
-     * 
+     *
      */
     protected $system;
 
     /**
-     * 
+     *
      * Getopt definitions.
-     * 
+     *
      * @var array
-     * 
+     *
      */
     protected $options = [
         'port' => [
@@ -65,7 +63,7 @@ class Command extends AbstractCommand
      * @param string $php The path to PHP.
      *
      * @return void
-     * 
+     *
      */
     public function setPhp($php)
     {
@@ -79,7 +77,7 @@ class Command extends AbstractCommand
      * @param System $system
      *
      * @return void
-     * 
+     *
      */
     public function setSystem($system)
     {
@@ -87,11 +85,11 @@ class Command extends AbstractCommand
     }
 
     /**
-     * 
+     *
      * Setup and run the server.
-     * 
+     *
      * @return void
-     * 
+     *
      */
     public function action()
     {

@@ -1,23 +1,21 @@
 <?php
 /**
- * 
+ *
  * This file is part of the Aura Project for PHP.
- * 
- * @package Aura.Framework
- * 
+ *
  * @license http://opensource.org/licenses/bsd-license.php BSD
- * 
+ *
  */
 namespace Aura\Framework\Web\Asset;
 
 use Aura\Framework\Web\Controller\AbstractPage;
 
 /**
- * 
+ *
  * Provides a public interface to web assets for a package.
- * 
+ *
  * Your package should be set up like this:
- * 
+ *
  *      Vendor.Package/
  *          config/
  *          scripts/
@@ -28,45 +26,45 @@ use Aura\Framework\Web\Controller\AbstractPage;
  *              scripts/
  *              styles/
  *                  foo.css
- * 
+ *
  * You can then use the URL `/asset/Vendor.Package/styles/foo.css` to access
  * the package asset, even though it's not in the web document root.
- * 
+ *
  * Additionally, you can cache the assets to the web document root, so that
  * they are served statically instead of through PHP.
- * 
+ *
  * @package Aura.Framework
- * 
+ *
  */
 class Page extends AbstractPage
 {
     /**
-     * 
+     *
      * The Aura config modes in which we should cache web assets.
-     * 
+     *
      * @var array
-     * 
+     *
      */
     protected $cache_config_modes = [];
 
     /**
-     * 
+     *
      * The subdirectory inside the web document root where we should cache
      * web assets.
-     * 
+     *
      * @var array
-     * 
+     *
      */
     protected $web_cache_dir;
 
     /**
-     * 
+     *
      * Sets the config modes in which caching should take place.
-     * 
+     *
      * @param array $modes An array of mode names.
-     * 
+     *
      * @return void
-     * 
+     *
      */
     public function setCacheConfigModes(array $modes = [])
     {
@@ -74,14 +72,14 @@ class Page extends AbstractPage
     }
 
     /**
-     * 
+     *
      * Sets the subdirectory in the web document root where web assets should
      * be cached.
-     * 
+     *
      * @param string $dir
-     * 
+     *
      * @return void
-     * 
+     *
      */
     public function setWebCacheDir($dir)
     {
@@ -89,16 +87,16 @@ class Page extends AbstractPage
     }
 
     /**
-     * 
+     *
      * Given a package name and an asset file name, delivers the asset
      * (and caches it if the config mode is correct).
-     * 
+     *
      * @param string $package The package name (e.g., `Vendor.Package`).
-     * 
+     *
      * @param string $file The asset file name (e.g. `images/logo.jpg`).
-     * 
+     *
      * @return void
-     * 
+     *
      */
     public function actionIndex($package = null, $file = null)
     {

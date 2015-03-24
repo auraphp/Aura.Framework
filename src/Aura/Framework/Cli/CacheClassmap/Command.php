@@ -1,12 +1,10 @@
 <?php
 /**
- * 
+ *
  * This file is part of the Aura project for PHP.
- * 
- * @package Aura.Framework
- * 
+ *
  * @license http://opensource.org/licenses/bsd-license.php BSD
- * 
+ *
  */
 namespace Aura\Framework\Cli\CacheClassmap;
 
@@ -14,29 +12,29 @@ use Aura\Framework\Cli\AbstractCommand;
 use Aura\Framework\System as System;
 
 /**
- * 
+ *
  * Caches the map of package source class files to `tmp/cache/classmap.php`.
- * 
+ *
  * @package Aura.Framework
- * 
+ *
  */
 class Command extends AbstractCommand
 {
     /**
-     * 
+     *
      * The System object.
-     * 
+     *
      * @var System
-     * 
+     *
      */
     protected $system;
 
     /**
-     * 
+     *
      * Sets the system object.
-     * 
+     *
      * @param System $system The system object.
-     * 
+     *
      */
     public function setSystem(System $system)
     {
@@ -44,12 +42,12 @@ class Command extends AbstractCommand
     }
 
     /**
-     * 
+     *
      * Caches the map of package source class files to
      * `tmp/cache/classmap.php`.
-     * 
+     *
      * @return mixed
-     * 
+     *
      */
     public function action()
     {

@@ -1,12 +1,10 @@
 <?php
 /**
- * 
+ *
  * This file is part of the Aura Project for PHP.
- * 
- * @package Aura.Framework
- * 
+ *
  * @license http://opensource.org/licenses/bsd-license.php BSD
- * 
+ *
  */
 namespace Aura\Framework\Web\Renderer;
 
@@ -17,51 +15,51 @@ use Aura\Web\Controller\ControllerInterface;
 use Aura\Web\Accept;
 
 /**
- * 
+ *
  * Incorporate the Aura.View two step rendering
- * 
+ *
  * @package Aura.Framework
- * 
+ *
  */
 class AuraViewTwoStep extends AbstractRenderer
 {
     /**
-     * 
+     *
      * A TwoStep view object.
-     * 
+     *
      * @var TwoStep
-     * 
+     *
      */
     protected $twostep;
 
     /**
-     * 
+     *
      * An inflection object.
-     * 
+     *
      * @var Inflect
-     * 
+     *
      */
     protected $inflect;
 
     /**
-     * 
+     *
      * An accept object.
-     * 
+     *
      * @var Accept
-     * 
+     *
      */
     protected $accept;
 
     /**
-     * 
+     *
      * Constructor.
-     * 
+     *
      * @param TwoStep $twostep A two-step view object.
-     * 
+     *
      * @param Inflect $inflect An inflection object.
-     * 
+     *
      * @param Accept $accept An Accept object for content types.
-     * 
+     *
      */
     public function __construct(
         TwoStep $twostep,
@@ -74,14 +72,14 @@ class AuraViewTwoStep extends AbstractRenderer
     }
 
     /**
-     * 
+     *
      * Allows us to call, e.g., $renderer->addInnerPath() to override stuff
      * in a seemingly-direct manner.
      *
      * @param string $method Method to call.
-     * 
+     *
      * @param array $params Params for the method.
-     * 
+     *
      */
     public function __call($method, array $params)
     {
@@ -89,14 +87,14 @@ class AuraViewTwoStep extends AbstractRenderer
     }
 
     /**
-     * 
+     *
      * Sets the controller object; prepares the renderer with view and layout
      * paths based on the controller path.
-     * 
+     *
      * @param ControllerInterface $controller The controller object.
-     * 
+     *
      * @return void
-     * 
+     *
      */
     public function setController(ControllerInterface $controller)
     {
@@ -137,17 +135,17 @@ class AuraViewTwoStep extends AbstractRenderer
     }
 
     /**
-     * 
+     *
      * Executes the renderer.
-     * 
+     *
      * @return void
-     * 
+     *
      */
     public function exec()
     {
         // set any explicit format from the controller
         $this->twostep->setFormat($this->controller->getFormat());
-        
+
         // is there already response content?
         $response = $this->controller->getResponse();
         if (! $response->getContent()) {
@@ -158,7 +156,7 @@ class AuraViewTwoStep extends AbstractRenderer
             $this->twostep->setOuterView($this->controller->getLayout());
             $response->setContent($this->twostep->render());
         }
-        
+
         // set the response content-type
         $response->setContentType($this->twostep->getContentType());
     }

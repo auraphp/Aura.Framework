@@ -1,12 +1,10 @@
 <?php
 /**
- * 
+ *
  * This file is part of the Aura project for PHP.
- * 
- * @package Aura.Framework
- * 
+ *
  * @license http://opensource.org/licenses/bsd-license.php BSD
- * 
+ *
  */
 namespace Aura\Framework\Bootstrap;
 
@@ -21,29 +19,29 @@ use Aura\Router\RouteFactory;
 use Exception;
 
 /**
- * 
+ *
  * A bootstrapper factory.
- * 
+ *
  * @package Aura.Framework
- * 
+ *
  */
 class Factory
 {
     /**
-     * 
+     *
      * The path to the system root.
-     * 
+     *
      * @var string
-     * 
+     *
      */
     protected $root;
 
     /**
-     * 
+     *
      * An array of app types to bootstrap classes.
-     * 
+     *
      * @var array
-     * 
+     *
      */
     protected $map = [
         'cli' => 'Aura\Framework\Bootstrap\Cli',
@@ -51,13 +49,13 @@ class Factory
     ];
 
     /**
-     * 
+     *
      * Constructor.
-     * 
+     *
      * @param string $root The path to the system root.
-     * 
+     *
      * @param array $map An override map of app types to bootstrap classes.
-     * 
+     *
      */
     public function __construct($root = null, array $map = null)
     {
@@ -74,18 +72,18 @@ class Factory
     }
 
     /**
-     * 
+     *
      * Returns a new bootstrap instance.
-     * 
+     *
      * @param string $type The app type.
-     * 
+     *
      * @param string $mode The config mode to use.
-     * 
+     *
      * @param bool $silent_loader Force the autoloader to MODE_SILENT; this is
      * useful primarily for testing purposes.
-     * 
+     *
      * @return object A bootstrapper.
-     * 
+     *
      */
     public function newInstance($type, $mode = null, $silent_loader = false)
     {
@@ -95,17 +93,17 @@ class Factory
     }
 
     /**
-     * 
+     *
      * Preps the framework for bootstrapping: creates foundation objects,
      * loads configurations, etc.
-     * 
+     *
      * @param string $mode The config mode.
-     * 
+     *
      * @param bool $silent_loader Force the autoloader to MODE_SILENT; this is
      * useful primarily for testing purposes.
-     * 
+     *
      * @return \Aura\Di\Container A dependency injection container.
-     * 
+     *
      */
     public function prep($mode = null, $silent_loader = false)
     {
@@ -132,7 +130,7 @@ class Factory
         // create the router
         require_once $system->getPackagePath('Aura.Router/src.php');
         $router = new RouterMap(new DefinitionFactory, new RouteFactory);
-        
+
         // create the DI container
         $di = new Container(new Forge(new Config));
 
@@ -140,7 +138,7 @@ class Factory
         $di->set('framework_system', $system);
         $di->set('framework_loader', $loader);
         $di->set('router_map', $router);
-        
+
         // get the config mode
         if (! $mode) {
             $file = $system->getConfigPath('_mode');
@@ -173,27 +171,27 @@ class Factory
 
         // create a temp router; this captures the config params for routes
         $temp_router = $di->newInstance('Aura\Router\Map');
-        
+
         // prepend the temp router configs to the existing router service so
         // that we have backwards compat with existing configs
         $router->prependMap($temp_router);
-        
+
         // done!
         return $di;
     }
 
     /**
-     * 
+     *
      * Reads the cached config file, if any.
-     * 
+     *
      * @param System $system A system object.
-     * 
+     *
      * @param callable $read A callable to read configs in a limited scope.
-     * 
+     *
      * @param string $mode The config mode.
-     * 
+     *
      * @return bool True if there was a cached config file, false if not.
-     * 
+     *
      */
     public function readCacheConfig(System $system, callable $read, $mode)
     {
@@ -205,17 +203,17 @@ class Factory
     }
 
     /**
-     * 
+     *
      * Reads the system config file.
-     * 
+     *
      * @param System $system A system object.
-     * 
+     *
      * @param callable $read A callable to read configs in a limited scope.
-     * 
+     *
      * @param string $mode The config mode.
-     * 
+     *
      * @return void
-     * 
+     *
      */
     public function readSystemConfig(System $system, callable $read, $mode)
     {
@@ -226,17 +224,17 @@ class Factory
     }
 
     /**
-     * 
+     *
      * Reads each package config file for the mode.
-     * 
+     *
      * @param System $system A system object.
-     * 
+     *
      * @param callable $read A callable to read configs in a limited scope.
-     * 
+     *
      * @param string $mode The config mode.
-     * 
+     *
      * @return void
-     * 
+     *
      */
     public function readPackageConfig(System $system, callable $read, $mode)
     {

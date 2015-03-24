@@ -1,12 +1,10 @@
 <?php
 /**
- * 
+ *
  * This file is part of the Aura project for PHP.
- * 
- * @package Aura.Framework
- * 
+ *
  * @license http://opensource.org/licenses/bsd-license.php BSD
- * 
+ *
  */
 namespace Aura\Framework\Web\Controller;
 
@@ -19,94 +17,94 @@ use Aura\Web\Context;
 use Aura\Web\Response as WebResponse;
 
 /**
- * 
+ *
  * Takes an incoming web request (Context), then dispatches it, renders
  * content, and returns a response for it.
- * 
+ *
  * @package Aura.Framework
- * 
+ *
  */
 class Front
 {
     /**
-     * 
+     *
      * The web request context.
-     * 
+     *
      * @var Context
-     * 
+     *
      */
     protected $context;
 
     /**
-     * 
+     *
      * The web response transfer object returned from the controller.
-     * 
+     *
      * @var WebResponse
-     * 
+     *
      */
     protected $transfer;
 
     /**
-     * 
+     *
      * The full HTTP response created from the transfer object.
-     * 
+     *
      * @var HttpResponse
-     * 
+     *
      */
     protected $response;
 
     /**
-     * 
+     *
      * A controller factory.
-     * 
+     *
      * @var Factory
-     * 
+     *
      */
     protected $factory;
 
     /**
-     * 
+     *
      * A session manager.
-     * 
+     *
      * @var SessionManager
-     * 
+     *
      */
     protected $session;
 
     /**
-     * 
+     *
      * A signal manager.
-     * 
+     *
      * @var SignalManager
-     * 
+     *
      */
     protected $signal;
 
     /**
-     * 
+     *
      * A router map.
-     * 
+     *
      * @var RouterMap
-     * 
+     *
      */
     protected $router;
 
     /**
-     * 
+     *
      * Constructor.
-     * 
+     *
      * @param SignalManager $signal A signal manager.
-     * 
+     *
      * @param Context $context The web context.
-     * 
+     *
      * @param RouterMap $router The router map.
-     * 
+     *
      * @param Factory $factory A web page controller factory.
-     * 
+     *
      * @param HttpResponse $response The eventual HTTP response object.
-     * 
+     *
      * @param SessionManager $session A session manager.
-     * 
+     *
      */
     public function __construct(
         SignalManager   $signal,
@@ -125,13 +123,13 @@ class Front
     }
 
     /**
-     * 
+     *
      * Magic read-only access to properties.
-     * 
+     *
      * @param string $key The property to retrieve.
-     * 
+     *
      * @return mixed
-     * 
+     *
      */
     public function __get($key)
     {
@@ -139,24 +137,24 @@ class Front
     }
 
     /**
-     * 
+     *
      * Dispatches a Route to a web controller, renders a view into the
      * ResponseTransfer, and returns an HTTP response.
-     * 
+     *
      * @signal pre_exec
-     * 
+     *
      * @signal pre_request
-     * 
+     *
      * @signal post_request
-     * 
+     *
      * @signal pre_response
-     * 
+     *
      * @signal post_response
-     * 
+     *
      * @signal post_exec
-     * 
+     *
      * @return Aura\Http\Response
-     * 
+     *
      */
     public function exec()
     {
@@ -180,11 +178,11 @@ class Front
     }
 
     /**
-     * 
+     *
      * Handle the incoming request.
-     * 
+     *
      * @return void
-     * 
+     *
      */
     public function request()
     {
@@ -223,11 +221,11 @@ class Front
     }
 
     /**
-     * 
+     *
      * Converts the web response transfer object into the HTTP response.
-     * 
+     *
      * @return void
-     * 
+     *
      */
     public function response()
     {
