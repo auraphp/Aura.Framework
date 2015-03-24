@@ -1,19 +1,62 @@
 {
     "name": "aura/framework",
     "type": "aura-package",
-    "description": "The Aura Framework package, when combined with a system skeleton, provides a full-stack framework built from Aura component packages.",
-    "keywords": [ "framework" ],
-    "homepage": "http://auraphp.github.com/Aura.Framework",
+    "description": "The Aura Framework package, when combined with a system skeleton, provides a full-stack framework built from Aura components.",
+    "keywords": [
+        "framework"
+    ],
+    "homepage": "http://auraphp.com/Aura.Framework",
     "license": "BSD-2-Clause",
     "authors": [
         {
-            "name": "Aura Contributors",
+            "name": "Aura.Framework Contributors",
             "homepage": "https://github.com/auraphp/Aura.Framework/contributors"
+        },
+        {
+            "name": "Paul M. Jones",
+            "email": "pmjones88@gmail.com",
+            "homepage": "http://paul-m-jones.com"
+        },
+        {
+            "name": "Galactic Void",
+            "email": "galacticvoid+git@gmail.com"
+        },
+        {
+            "name": "Hari KT",
+            "email": "kthari85@gmail.com",
+            "homepage": "http://harikt.com"
+        },
+        {
+            "name": "Nakymaton",
+            "email": "nakymaton.hdc@googlemail.com"
+        },
+        {
+            "name": "Branden Cash",
+            "email": "bcash@parchment.com"
+        },
+        {
+            "name": "Pascal Borreli",
+            "email": "pascal@borreli.com"
         }
     ],
     "require": {
         "php": ">=5.4.0",
-        "aura/installer-default": "dev-develop"
+        "aura/installer-default": "~1.0",
+        "aura/autoload": "~1.0",
+        "aura/cli": "~1.0",
+        "aura/di": "~1.0",
+        "aura/filter": "~1.0",
+        "aura/http": "~1.0",
+        "aura/input": "~1.0",
+        "aura/intl": "~1.0",
+        "aura/marshal": "~1.0",
+        "aura/router": "~1.0",
+        "aura/session": "~1.0",
+        "aura/signal": "~1.0",
+        "aura/sql": "~1.0",
+        "aura/uri": "~1.0",
+        "aura/view": "~1.0",
+        "aura/web": "~1.0"
     },
     "autoload": {
         "psr-0": {
@@ -24,5 +67,7 @@
         "branch-alias": {
             "dev-develop": "1.0.x-dev"
         }
-    }
+    },
+    "version": "1.0.1",
+    "time": "2015-03-24"
 }
