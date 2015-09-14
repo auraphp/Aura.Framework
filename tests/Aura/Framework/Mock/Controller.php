@@ -3,8 +3,7 @@ namespace Aura\Framework\Mock;
 
 use Aura\Web\Response;
 
-class Controller
-{
+class Controller {
     
     public function __construct()
     {

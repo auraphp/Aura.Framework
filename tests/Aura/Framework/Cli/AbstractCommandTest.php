@@ -1,6 +1,5 @@
 <?php
 namespace Aura\Framework\Cli;
-
 use Aura\Cli\ExceptionFactory;
 use Aura\Cli\Getopt;
 use Aura\Cli\Stdio;

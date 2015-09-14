@@ -1,5 +1,5 @@
 <?php
-spl_autoload_register(function ($class) {
+spl_autoload_register(function($class) {
     
     // split the class into namespace parts
     $parts = explode('\\', $class);

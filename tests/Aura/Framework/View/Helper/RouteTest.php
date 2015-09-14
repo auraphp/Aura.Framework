@@ -19,7 +19,7 @@ class RouteTest extends \PHPUnit_Framework_TestCase
         $this->route = new Route($map);
     }
 
-    public function testMagicInvoke()
+    public function test__invoke()
     {
         $actual = $this->route->__invoke('mock', ['bar' => 'zim']);
         $expect = '/foo/zim';
