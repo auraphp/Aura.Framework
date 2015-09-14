@@ -30,7 +30,7 @@ class SystemTest extends \PHPUnit_Framework_TestCase
     }
     
     
-    public function test__toString()
+    public function testMagicToString()
     {
         $expect = $this->root;
         $actual = (string) $this->system;
