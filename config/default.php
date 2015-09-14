@@ -40,9 +40,8 @@ $di->setter['Aura\Framework\Cli\CacheConfig\Command']['setSystem'] = $di->lazyGe
  */
 $di->params['Aura\Framework\Cli\Factory']['forge'] = $di->getForge();
 $cli_path = $system . DIRECTORY_SEPARATOR . 'package' . DIRECTORY_SEPARATOR .
-    'Aura.Framework' . DIRECTORY_SEPARATOR . 'cli' . DIRECTORY_SEPARATOR;
-$di->params['Aura\Framework\Cli\Factory']['map'][$cli_path . 'cache-classmap'] =
-    'Aura\Framework\Cli\CacheClassmap\Command';
+      'Aura.Framework' . DIRECTORY_SEPARATOR . 'cli' . DIRECTORY_SEPARATOR;
+$di->params['Aura\Framework\Cli\Factory']['map'][$cli_path . 'cache-classmap'] = 'Aura\Framework\Cli\CacheClassmap\Command';
 $di->params['Aura\Framework\Cli\Factory']['map'][$cli_path . 'cache-config'] = 'Aura\Framework\Cli\CacheConfig\Command';
 $di->params['Aura\Framework\Cli\Factory']['map'][$cli_path . 'server'] = 'Aura\Framework\Cli\Server\Command';
 
@@ -138,3 +137,4 @@ $di->params['Aura\Router\Map']['attach']['/asset'] = [
  */
 $di->params['Aura\View\HelperLocator']['registry']['assetHref'] = $di->lazyNew('Aura\Framework\View\Helper\AssetHref');
 $di->params['Aura\View\HelperLocator']['registry']['route'] = $di->lazyNew('Aura\Framework\View\Helper\Route');
+
