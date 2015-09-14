@@ -3,7 +3,8 @@ namespace Aura\Framework\Mock;
 
 use Aura\Web\Response;
 
-class NotFound {
+class NotFound
+{
     
     public function __construct()
     {

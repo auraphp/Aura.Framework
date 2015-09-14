@@ -82,13 +82,13 @@ class FrontTest extends \PHPUnit_Framework_TestCase
         parent::tearDown();
     }
 
-    public function test__get()
+    public function testMagicGet()
     {
         $front = $this->newFront('/');
-        $this->assertSame($this->signal,   $front->signal);
-        $this->assertSame($this->context,  $front->context);
-        $this->assertSame($this->router,   $front->router);
-        $this->assertSame($this->factory,  $front->factory);
+        $this->assertSame($this->signal, $front->signal);
+        $this->assertSame($this->context, $front->context);
+        $this->assertSame($this->router, $front->router);
+        $this->assertSame($this->factory, $front->factory);
         $this->assertSame($this->response, $front->response);
     }
     
@@ -102,7 +102,7 @@ class FrontTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expect, $actual);
     }
     
-    public function testExec_indexPhp()
+    public function testExecIndexPhp()
     {
         $front = $this->newFront('/index.php/mock');
         $response = $front->exec();
@@ -112,7 +112,7 @@ class FrontTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expect, $actual);
     }
     
-    public function testExec_indexPhpEmpty()
+    public function testExecIndexPhpEmpty()
     {
         $front = $this->newFront('/index.php');
         $response = $front->exec();
@@ -122,7 +122,7 @@ class FrontTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expect, $actual);
     }
     
-    public function testExec_notFound()
+    public function testExecNotFound()
     {
         $front = $this->newFront('/no-such-controller');
         $response = $front->exec();

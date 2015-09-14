@@ -55,7 +55,7 @@ class AuraViewTwoStepTest extends \PHPUnit_Framework_TestCase
         );
     }
     
-    public function test__call()
+    public function testMagicCall()
     {
         $this->renderer->addInnerPath('/foo/bar');
         $dir = dirname(dirname(__DIR__));
