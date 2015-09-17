@@ -1,15 +1,8 @@
 Aura Framework
 ==============
 
-Unlike every other Aura package, the Aura Framework package *does* have
-dependencies. This is because it composes them into a unified framework for
-development. You probably don't want to download this directly; more likely,
-you want the [system repository](https://github.com/auraphp/system) for a
-project skeleton.
+This project is no longer maintained and no pull requests will be accepted. To read about the future of Aura, please see [Paul M. Jones' post on the subject](https://groups.google.com/d/msg/auraphp/30ijuEofSvI/uGORD7bllkYJ).
 
-This package is compliant with [PSR-0][], [PSR-1][], and [PSR-2][]. If you
-notice compliance oversights, please send a patch via pull request.
+V2 can be found at [https://github.com/auraphp/Aura.Web_Kernel/](https://github.com/auraphp/Aura.Web_Kernel/)
 
-[PSR-0]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md
-[PSR-1]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md
-[PSR-2]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md
+Please also see [https://github.com/radarphp/](https://github.com/radarphp/)
